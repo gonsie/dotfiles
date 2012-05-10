@@ -1,7 +1,3 @@
-[user]
-	name = Elsa Gonsiorowski (Uranus)
-	email = me@gonsie.com
-
 [alias]
         # svn like aliases
 	st = status

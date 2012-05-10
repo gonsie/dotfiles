@@ -1,10 +1,3 @@
-# USER ADDED
-export SNPSLMD_LICENSE_FILE=1701@file.ecse.rpi.edu
-
-
-# Added search path for `cd`
-export CDPATH=".:..:~:~/Documents/School/Rensselaer/"
-
 # Highligh section titles in manual pages
 export LESS_TERM_CAP_md="ORANGE"
 
