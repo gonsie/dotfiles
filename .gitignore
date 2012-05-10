@@ -1,0 +1,18 @@
+# Mac OS X
+.DS_Store
+
+# my symbolic links
+*.link
+
+# LaTeX
+*.aux
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+
+# XCode 4
+*.xcworkspace
+xcuserdata
