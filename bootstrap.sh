@@ -9,11 +9,11 @@ else
 fi
 
 function doIt() {
-    echo "==> Bash Files"
+    echo -e ${GREEN}"==> Bash Files"${WHITE}
     rsync -av ./bash/ ~
-    echo "==> EMACS Files"
+    echo -e ${GREEN}"==> Emacs Files"${WHITE}
     rsync -av ./emacs/ ~
-    echo "==> GIT Files"
+    echo -e ${GREEN}"==> GIT Files"${WHITE}
     rsync -av ./git/ ~
 }
 

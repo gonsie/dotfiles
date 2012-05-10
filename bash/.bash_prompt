@@ -5,6 +5,8 @@ GREEN="\033[0;32m"
 WHITE="\033[0m"
 
 export ORANGE
+export GREEN
+export WHITE
 
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
