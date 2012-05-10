@@ -22,3 +22,4 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 # Inspiration stolen from 
 https://github.com/mathiasbynens/dotfiles
+https://github.com/necolas/dotfiles
