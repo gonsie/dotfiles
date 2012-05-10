@@ -1,3 +1,6 @@
+# EMACS all the way
+export EDITOR="em"
+
 # Highligh section titles in manual pages
 export LESS_TERM_CAP_md="ORANGE"
 
