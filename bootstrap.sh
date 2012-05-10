@@ -2,12 +2,19 @@
 
 cd "$(dirname "$0")"
 
-git pull
+if [ "$1" == "--quick" -o "$1" == "-q" ]; then
+    shift
+else
+    git pull
+fi
 
 function doIt() {
-    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README" -av ./bash/ ~
-    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README" -av ./git/ ~
-    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README" -av ./emacs/ ~
+    echo "==> Bash Files"
+    rsync -av ./bash/ ~
+    echo "==> EMACS Files"
+    rsync -av ./emacs/ ~
+    echo "==> GIT Files"
+    rsync -av ./git/ ~
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
