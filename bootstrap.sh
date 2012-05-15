@@ -2,6 +2,14 @@
 
 cd "$(dirname "$0")"
 
+if [ "$1" == "--help"  -o "$1" == "-h" ]; then
+    echo "Usage: `basename $0`"
+    echo -e "\t--help -h\tThis text"
+    echo -e "\t--quick -q\tDo not perform a \`git pull\` prior to running the script"
+    echo -e "\t--force -f\tDo not show the overwrite warning"
+    exit
+fi
+
 if [ "$1" == "--quick" -o "$1" == "-q" ]; then
     shift
 else
