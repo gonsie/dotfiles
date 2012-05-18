@@ -45,10 +45,17 @@ if [[ $fflag == no ]]; then
     diffEm
 fi
 
+## This does not work without my git aliases
+#if [[ $qflag == no ]]; then
+#    git cm "made some local changes"
+#    git put
+#    git pul
+#fi
+
 if [[ $qflag == no ]]; then
-    git cm "made some local changes"
-    git put
-    git pul
+    git commit -a -m "made some local changes"
+    git push origin master
+    git pull origin master
 fi
 
 doIt
