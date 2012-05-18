@@ -12,7 +12,10 @@
 *.out
 *.synctex.gz
 *.toc
+# BibTex
+*.blg
 
 # XCode 4
 *.xcworkspace
 xcuserdata
+
