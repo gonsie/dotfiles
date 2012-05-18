@@ -2,19 +2,40 @@
 
 cd "$(dirname "$0")"
 
-if [ "$1" == "--help"  -o "$1" == "-h" ]; then
-    echo "Usage: `basename $0`"
-    echo -e "\t--help -h\tThis text"
-    echo -e "\t--quick -q\tDo not perform a \`git pull\` prior to running the script"
-    echo -e "\t--force -f\tDo not show the overwrite warning"
-    exit
-fi
+hflag=no
+qflag=no
+fflag=no
 
-if [ "$1" == "--quick" -o "$1" == "-q" ]; then
-    shift
-else
-    git pull
-fi
+while getopts "hqfm" FLAG; do
+    case $FLAG in
+        h)
+            echo "Usage: `basename $0`"
+            echo -e "\t-h := help\tThis text"
+            echo -e "\t-f := force\tDo not diff with existing files"
+            echo -e "\t-q := quick\tDo not perform a \`git put; git pull\`"
+            exit
+            ;;
+        q)
+            qflag=yes
+            ;;
+        f)
+            fflag=yes
+            ;;
+    esac
+done
+
+function diffEm() {
+    for file in `find ./*/ -depth 1`; do
+        diff $file ~/`basename $file`
+        if [ $? -eq 1 ]; then
+            read -p "==> pull changes for `basename $file`? (y/n) " -n 1
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                cp ~/`basename $file` $file
+            fi
+        fi
+    done
+}
 
 function doIt() {
     echo -e ${GREEN}"==> Bash Files"${WHITE}
@@ -25,14 +46,18 @@ function doIt() {
     rsync -av ./git/ ~
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-    doIt
-else
-    read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        doIt
-        fi
+if [[ $fflag == no ]]; then
+    diffEm
 fi
+
+if [[ $qflag == no ]]; then
+    git cm "made some local changes"
+    git put
+    git pul
+fi
+
+doIt
+
+unset diffEm
 unset doIt
 source ~/.bash_profile
