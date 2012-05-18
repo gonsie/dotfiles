@@ -53,9 +53,9 @@ fi
 #fi
 
 if [[ $qflag == no ]]; then
+    git pull origin master
     git commit -a -m "made some local changes"
     git push origin master
-    git pull origin master
 fi
 
 doIt
