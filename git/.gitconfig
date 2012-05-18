@@ -4,8 +4,8 @@
         s = status -s
 	ls = ls-files
         # quick and dirty push/pull to origin   
-        put = push origin branch-name
-	pul = pull origin branch-name
+        put = push origin master
+	pul = pull origin master
 	# oops
         fix = commit --amend -C HEAD
         undopush = push -f origin HEAD^:master
