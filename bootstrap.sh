@@ -38,12 +38,7 @@ function diffEm() {
 }
 
 function doIt() {
-    echo -e ${GREEN}"==> Bash Files"${WHITE}
-    rsync -av ./bash/ ~
-    echo -e ${GREEN}"==> Emacs Files"${WHITE}
-    rsync -av ./emacs/ ~
-    echo -e ${GREEN}"==> GIT Files"${WHITE}
-    rsync -av ./git/ ~
+    rsync -av `find ./ -depth 1 -type d -regex "\.//[^\.].*"`/ ~
 }
 
 if [[ $fflag == no ]]; then
