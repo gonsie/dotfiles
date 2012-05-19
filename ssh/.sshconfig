@@ -50,3 +50,6 @@ host odin
 user gonsie
 HostName odin.cs.rpi.edu
 
+host linux
+user gonsie
+HostName linux.cs.rpi.edu
