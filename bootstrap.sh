@@ -38,7 +38,7 @@ function diffEm() {
 }
 
 function doIt() {
-    rsync -av `find ./ -depth 1 -type d -regex "\.//[^\.].*"`/ ~
+    rsync -av `find ./ -depth 1 -type d -regex "\.//[^\.].*"`/ ~/
 }
 
 if [[ $fflag == no ]]; then
