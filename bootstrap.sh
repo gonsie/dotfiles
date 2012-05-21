@@ -58,7 +58,7 @@ fi
 if [[ $qflag == no ]]; then
     git pull origin master
     git add *
-    git commit -a -m $cmsg
+    git commit
     git push origin master
 fi
 
