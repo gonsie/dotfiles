@@ -32,8 +32,7 @@ function diffEm() {
             read -p "==> pull changes for `basename $file`? (y/n) " -n 1
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
-                echo $file
-                cp -r ~/`basename $file` $file
+                rsync -av ~/`basename $file` `dirname $file`
                 read -p "Message: " change
             fi
             cmsg=$cmsg$change"\n"
@@ -58,6 +57,7 @@ fi
 
 if [[ $qflag == no ]]; then
     git pull origin master
+    git add *
     git commit -a -m $cmsg
     git push origin master
 fi
