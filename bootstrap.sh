@@ -32,7 +32,8 @@ function diffEm() {
             read -p "==> pull changes for `basename $file`? (y/n) " -n 1
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
-                cp ~/`basename $file` $file
+                echo $file
+                cp -r ~/`basename $file` $file
                 read -p "Message: " change
             fi
             cmsg=$cmsg$change"\n"
