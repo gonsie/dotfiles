@@ -34,8 +34,8 @@ function diffEm() {
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 rsync -av ~/`basename $file` `dirname $file`
                 read -p "Message: " change
+                cmsg=$cmsg$change"\n"
             fi
-            cmsg=$cmsg$change"\n"
         fi
     done
 }
