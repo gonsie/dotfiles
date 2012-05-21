@@ -25,6 +25,7 @@ while getopts "hqfm" FLAG; do
 done
 
 function diffEm() {
+    cmsg=""
     for file in `find ./*/ -depth 1`; do
         diff $file ~/`basename $file`
         if [ $? -eq 1 ]; then
@@ -32,7 +33,9 @@ function diffEm() {
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 cp ~/`basename $file` $file
+                read -p "Message: " change
             fi
+            cmsg=$cmsg$change"\n"
         fi
     done
 }
@@ -54,7 +57,7 @@ fi
 
 if [[ $qflag == no ]]; then
     git pull origin master
-    git commit -a -m "made some local changes"
+    git commit -a -m $cmsg
     git push origin master
 fi
 
