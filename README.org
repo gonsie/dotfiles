@@ -1,0 +1,41 @@
+* Gonsie's homedir settings files
+  These files are organized by type. Using the =bootstrap.sh= script, local changes can be pulled and comitted. 
+
+** Installation
+   Get the git repo, then update homedir
+   : git clone https://github.com/gonsie/dotsettings.git
+   : cd dotsettings 
+   : ./bootstrap.sh -q -f
+
+   Or install without git
+   : cd; curl -#L https://github.com/gonsie/dotsettings/tarball/master | tar -xzv --strip-components 1 --exclude={README,bootstrap.sh}
+
+** Setup
+   Create a symlink for the ssh config file
+   : cd .ssh/
+   : mv config config.bk
+   : ln -s ../.sshconfig config
+
+** Inspiration stolen from 
+
+*** Other dotfile repositories
+   - https://github.com/mathiasbynens/dotfiles
+   - https://github.com/necolas/dotfiles
+
+*** Emacs addons
+    - https://github.com/tlh/workgroups.el
+    - http://autopair.googlecode.com
+
+** =.extra= file example
+
+: # local exports
+: export SNPSLMD_LICENSE_FILE=f@file.com
+: export CDPATH=".:..:~:~/Documents/School/Rensselaer/"
+: 
+: # local git settings
+: GIT_AUTHOR_NAME="Elsa"
+: GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+: git config --global user.name "$GIT_AUTHOR_NAME"
+: GIT_AUTHOR_EMAIL="elsa@example.com"
+: GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+: git config --global user.email "$GIT_AUTHOR_EMAIL"
