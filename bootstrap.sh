@@ -26,7 +26,7 @@ done
 
 function diffEm() {
     cmsg=""
-    for file in `find ./*/ -depth 1`; do
+    for file in `find ./*/ -maxdepth 1`; do
         diff $file ~/`basename $file`
         if [ $? -eq 1 ]; then
             read -p "==> pull changes for `basename $file`? (y/n) " -n 1
@@ -41,7 +41,7 @@ function diffEm() {
 }
 
 function doIt() {
-    rsync -av `find ./ -depth 1 -type d -regex "\.//[^\.].*"`/ ~/
+    rsync -av `find . -maxdepth 2 -regex "\./[^.].*/.*"` ~/
 }
 
 if [[ $fflag == no ]]; then
