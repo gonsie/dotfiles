@@ -3,7 +3,7 @@
 
 ** Installation
    Get the git repo, then update homedir
-   : git clone https://github.com/gonsie/dotsettings.git
+   : git clone git@github.com:gonsie/dotsettings.git
    : cd dotsettings 
    : ./bootstrap.sh -q -f
 
