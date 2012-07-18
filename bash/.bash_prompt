@@ -1,8 +1,8 @@
-ORANGE="\033[0;33m"
-BLUE="\033[0;34m"
-PINK="\033[0;35m"
-GREEN="\033[0;32m"
-WHITE="\033[0m"
+ORANGE="\[\033[0;33m\]"
+BLUE="\[\033[0;34m\]"
+PINK="\[\033[0;35m\]"
+GREEN="\[\033[0;32m\]"
+WHITE="\[\033[0m\]"
 
 export ORANGE
 export GREEN
