@@ -1,7 +1,7 @@
 [alias]
         # svn like aliases
 	st = status
-        s = status -s
+        s = status -sb
 	ls = ls-files
         # quick and dirty push/pull to origin   
         put = push origin master
@@ -19,7 +19,7 @@
         # fast commit
 	cm = commit -a -m
         # fast log
-	lg = log --decorate -n 
+	lg = log --oneline --decorate -n 
         # fast branch (create)
         go = checkout -B
 
