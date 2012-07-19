@@ -16,6 +16,9 @@ alias g="git"
 alias o="open"
 alias oo="open ."
 
+# http://defunkt.io/hub/
+alias git=hub
+
 # enable aliases to be sudo'ed
 alias sudo='sudo '
 
