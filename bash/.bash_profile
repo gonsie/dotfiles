@@ -3,6 +3,8 @@ for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
 done
 unset file
 
+source ~/.local/bin/bashmarks.sh
+
 # Case-insensitive globbing (used in pathname expansion)
 #shopt -s nocaseglob
 
