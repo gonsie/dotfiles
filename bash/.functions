@@ -17,3 +17,9 @@ if [ $? -eq 0 ]; then
             git diff --no-index --color-words "$@"
             }
 fi
+
+# Move something, then follow it
+function fl() {
+         mv $1 $2
+         cd $2
+}

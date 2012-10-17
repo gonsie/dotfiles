@@ -1,3 +1,4 @@
+alias emacs="/usr/local/Cellar/emacs/24.2/Emacs.app/Contents/MacOS/Emacs"
 alias em="emacs -nw"
 alias emw="emacs"
 
