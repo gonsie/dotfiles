@@ -53,3 +53,7 @@ HostName odin.cs.rpi.edu
 host linux
 user gonsie
 HostName linux.cs.rpi.edu
+
+host mastiff
+user gonsie
+HostName mastiff.cs.rpi.edu
