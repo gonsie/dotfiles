@@ -23,3 +23,10 @@ function fl() {
          mv $1 $2
          cd $2
 }
+
+# Switch two files
+function sw() {
+         mv $1 ${2}-temp
+         mv $2 $1
+         mv ${2}-temp $2
+}

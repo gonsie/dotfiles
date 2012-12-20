@@ -4,8 +4,11 @@
 (setq-default c-basic-offset 4)
 (global-set-key (kbd "C-o") 'other-window)
 
+;; Key Bindings
 ;; NOTE: shift key generally doesn't work in terminal.app
 (define-key function-key-map "\e[Z" [S-tab])
+(setq mac-command-modifier 'super)
+(setq mac-option-modifier 'meta)
 
 ;; single files should be saved here
 (add-to-list 'load-path "~/elisp")
