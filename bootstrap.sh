@@ -27,6 +27,7 @@ done
 function diffEm() {
     cmsg=""
     for file in `find ./*/ -maxdepth 1`; do
+        echo "--> DIFF $file"
         diff $file ~/`basename $file`
         if [ $? -eq 1 ]; then
             read -p "==> pull changes for `basename $file`? (y/n) " -n 1
@@ -34,6 +35,7 @@ function diffEm() {
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 rsync -av ~/`basename $file` `dirname $file`
                 read -p "Message: " change
+                echo $cmsg $change
                 cmsg=$cmsg$change"\n"
             fi
         fi
