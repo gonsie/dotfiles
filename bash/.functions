@@ -30,3 +30,8 @@ function sw() {
          mv $2 $1
          mv ${2}-temp $2
 }
+
+# Change the name of the window
+function title() {
+         echo -n -e "\033]0;$1\007"
+}
