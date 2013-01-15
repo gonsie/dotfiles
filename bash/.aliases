@@ -1,4 +1,3 @@
-alias emacs="/usr/local/Cellar/emacs/24.2/Emacs.app/Contents/MacOS/Emacs"
 alias em="emacs -nw"
 alias emw="emacs"
 
@@ -16,9 +15,6 @@ alias -- -="cd -"
 alias g="git"
 alias o="open"
 alias oo="open ."
-
-# http://defunkt.io/hub/
-alias git=hub
 
 # enable aliases to be sudo'ed
 alias sudo='sudo '
