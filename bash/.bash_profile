@@ -1,4 +1,4 @@
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+for file in ~/.config/bash/.{bash_prompt,exports,aliases,functions} ~/.extra; do
     [ -r "$file" ] && source "$file"
 done
 unset file

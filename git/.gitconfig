@@ -28,8 +28,8 @@
         whitespace = fix
 [core]
         # use custom .gitignore and .gitattributes
-	excludesfile = ~/.gitignore
-        attributiesfile = ~/.gitattributes
+	excludesfile = ~/.config/git/.gitignore
+        attributiesfile = ~/.config/git/.gitattributes
 
 [color]
         # use colors in commands capable of colored output

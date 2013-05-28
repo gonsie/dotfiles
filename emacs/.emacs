@@ -11,7 +11,7 @@
 (setq mac-option-modifier 'meta)
 
 ;; single files should be saved here
-(add-to-list 'load-path "~/elisp")
+(add-to-list 'load-path "~/.config/emacs/elisp")
 
 ;; Autopair
 (require 'autopair)
@@ -24,10 +24,10 @@
 (require 'workgroups)
 (workgroups-mode 1)
 (setq wg-switch-on-load nil)
-(wg-load "~/elisp/wg-saves")
+(wg-load "~/.config/emacs/elisp/wg-saves")
 
 ;; Color-Theme 6.6.0
-(add-to-list 'load-path "~/elisp/color-theme-6.6.0/")
+(add-to-list 'load-path "~/.config/emacs/elisp/color-theme-6.6.0/")
 (require 'color-theme)
 (defun color-theme-dusk ()
   "Color theme by Elsa Gonsiorowski, created 2012-05-15.
