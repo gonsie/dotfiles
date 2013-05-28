@@ -1,29 +1,28 @@
 * Gonsie's homedir settings files
-  These files are organized by type. Using the =sync.sh= script, local changes can be pulled and comitted. 
+  These files are organized by type. Using the =synch.sh= script, local changes can be pulled. 
+  Private info is stored in the =~/.extra= file on each local machine. Sorce'd by bash.
 
 ** Setup
    All config files are located in ~/.config/ directory and are grouped into sub-directories by type. 
-   From here, all dot file expected in different locations by the operating system are sym-linked. 
+   From here, all dot file expected in different locations by the operating system are sym-linked.
+   These are listed in the =links= file of each directory.
 
-*** Dot Files expected locations
+*** Dot file symlinks
     - ~/.bash_profile
     - ~/.bashrc
+    - ~/.inputrc
     - ~/.ssh/config
+    - ~/.gitconfig
+    - ~/.emacs
 
 ** Installation
    Get the git repo, then update homedir
    : git clone git@github.com:gonsie/dotsettings.git
    : cd dotsettings 
-   : ./bootstrap.sh -q -f
+   : ./synch.sh
 
-   Or install without git
-   : cd; curl -#L https://github.com/gonsie/dotsettings/tarball/master | tar -xzv --strip-components 1 --exclude={README,bootstrap.sh}
-
-** Setup
-   Create a symlink for the ssh config file
-   : cd .ssh/
-   : mv config config.bk
-   : ln -s ../.sshconfig config
+   Or install without git (does this still work??)
+   : cd; curl -#L https://github.com/gonsie/dotsettings/tarball/master | tar -xzv --strip-components 1 --exclude={README,synch.sh}
 
 ** Inspiration stolen from 
 
