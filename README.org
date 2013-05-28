@@ -1,5 +1,14 @@
 * Gonsie's homedir settings files
-  These files are organized by type. Using the =bootstrap.sh= script, local changes can be pulled and comitted. 
+  These files are organized by type. Using the =sync.sh= script, local changes can be pulled and comitted. 
+
+** Setup
+   All config files are located in ~/.config/ directory and are grouped into sub-directories by type. 
+   From here, all dot file expected in different locations by the operating system are sym-linked. 
+
+*** Dot Files expected locations
+    - ~/.bash_profile
+    - ~/.bashrc
+    - ~/.ssh/config
 
 ** Installation
    Get the git repo, then update homedir

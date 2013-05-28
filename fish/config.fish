@@ -1,4 +1,3 @@
-alias emacs "/usr/local/Cellar/emacs/24.2/bin/emacs"
 alias em "emacs -nw"
 alias emw "emacs"
 
