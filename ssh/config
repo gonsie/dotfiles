@@ -1,0 +1,59 @@
+host andro
+user elsagonsiorowski
+HostName Andromeda.1006589440.members.btmm.icloud.com.
+
+host uranus
+user gonsie
+HostName Uranus.1006589440.members.btmm.icloud.com.
+
+host kratos
+user gonsie
+HostName kratos.cs.rpi.edu
+
+host ecse
+user gonsie
+HostName rs-01.ecse.rpi.edu
+
+host lp1
+user RSNTgons
+HostName lp01.ccni.rpi.edu
+
+host lp2
+user RSNTgons
+HostName lp02.ccni.rpi.edu
+
+host lp3
+user RSNTgons
+HostName lp03.ccni.rpi.edu
+
+host master
+user gonsie
+HostName master.cs.rpi.edu
+
+host brigg
+user gonsie
+HostName brigg.upe.cs.rpi.edu
+
+host dimple
+user gonsie
+HostName dimple.dyn.cs.rpi.edu
+
+host remote
+user gonsie
+HostName remote.cs.rpi.edu
+
+host area51
+user gonsie
+HostName area51.cs.rpi.edu
+
+host odin
+user gonsie
+HostName odin.cs.rpi.edu
+
+host linux
+user gonsie
+HostName linux.cs.rpi.edu
+
+host mastiff
+user gonsie
+HostName mastiff.cs.rpi.edu
