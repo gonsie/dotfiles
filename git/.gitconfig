@@ -30,6 +30,7 @@
         # use custom .gitignore and .gitattributes
 	excludesfile = ~/.config/git/.gitignore
         attributiesfile = ~/.config/git/.gitattributes
+        editor = subl -nw
 
 [color]
         # use colors in commands capable of colored output

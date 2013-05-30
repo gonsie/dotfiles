@@ -3,6 +3,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
 (global-set-key (kbd "C-o") 'other-window)
+(setq gdb-gud-control-all-threads t)
 
 ;; Key Bindings
 ;; NOTE: shift key generally doesn't work in terminal.app
@@ -12,6 +13,9 @@
 
 ;; single files should be saved here
 (add-to-list 'load-path "~/.config/emacs/elisp")
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; Autopair
 (require 'autopair)
