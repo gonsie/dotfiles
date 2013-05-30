@@ -40,3 +40,9 @@ function title() {
 function mva() {
          mv $1 $1.$2
 }
+
+# cat a specific line
+function catl() {
+         cat $2 | head -$1 | tail -1
+}
+
