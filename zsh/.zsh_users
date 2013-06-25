@@ -1,0 +1,13 @@
+source ~/Projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/Projects/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# bind UP and DOWN arrow keys
+for keycode in '[' 'O'; do
+  bindkey "^[${keycode}A" history-substring-search-up
+  bindkey "^[${keycode}B" history-substring-search-down
+done
+unset keycode
+
+# bind P and N for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down

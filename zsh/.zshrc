@@ -12,5 +12,8 @@ do
 done
 
 
+autoload -U compinit
+compinit -d ~/.config/zsh/.zcompdump
 
+setopt correct
 
