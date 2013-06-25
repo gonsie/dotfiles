@@ -1,0 +1,12 @@
+
+#########################################################################################
+# Colors
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats "(%b) "
+precmd () { vcs_info }
+
+setopt prompt_subst
+
+PS1="%F{yellow}%* %F{blue}%n@%m %F{magenta}%c %F{green}\$vcs_info_msg_0_%F{red}%(?..[%?] )%F{white}%f%# "
+
