@@ -24,4 +24,4 @@ done
 # load my functions
 export FPATH=~/.config/zsh/functions:$FPATH
 autoload -Uz catl fl md mva sw
-
+source ~/.config/zsh/zshmarks.sh
