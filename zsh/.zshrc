@@ -17,3 +17,5 @@ compinit -d ~/.config/zsh/.zcompdump
 
 setopt correct
 
+export FPATH=~/.config/zsh/functions:$FPATH
+autoload -Uz catl fl md mva sw

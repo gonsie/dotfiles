@@ -1,0 +1,5 @@
+# Move something, then follow it
+function fl () {
+         mv $1 $2
+         cd $2
+}

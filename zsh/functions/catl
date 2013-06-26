@@ -1,0 +1,4 @@
+# cat a specific line
+function catl () {
+         cat $2 | head -$1 | tail -1
+}

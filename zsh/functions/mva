@@ -1,0 +1,4 @@
+# Append to a file name
+function mva () {
+         mv $1 $1.$2
+}
