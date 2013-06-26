@@ -14,15 +14,16 @@
     - ~/.ssh/config
     - ~/.gitconfig
     - ~/.emacs
+    - ~/.zshrc
 
 ** Installation
    Get the git repo, then update homedir
-   : git clone git@github.com:gonsie/dotsettings.git
-   : cd dotsettings 
+   : git clone git@github.com:gonsie/dotfiles.git
+   : cd dotfiles
    : ./synch.sh
 
    Or install without git (does this still work??)
-   : cd; curl -#L https://github.com/gonsie/dotsettings/tarball/master | tar -xzv --strip-components 1 --exclude={README,synch.sh}
+   : cd; curl -#L https://github.com/gonsie/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README,synch.sh}
 
 ** Inspiration stolen from 
 
