@@ -1,5 +1,7 @@
-source ~/Projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/Projects/zsh-history-substring-search/zsh-history-substring-search.zsh
+source_dir=~/Projects/CLONES
+
+source $source_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $source_dir/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # bind UP and DOWN arrow keys
 for keycode in '[' 'O'; do
