@@ -10,6 +10,10 @@
 (define-key function-key-map "\e[Z" [S-tab])
 (setq mac-command-modifier 'super)
 (setq mac-option-modifier 'meta)
+;; remap of up key in shell mode
+(defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
+(add-hook 'shell-mode-hook 'remap-up-key-in-shell)
+
 
 ;; single files should be saved here
 (add-to-list 'load-path "~/.config/emacs/elisp")
