@@ -20,6 +20,6 @@ alias git hub
 alias sudo 'sudo '
 
 function fish_user_key_bindings
-         bind \t nextd-or-forward-word
-         bind \[Z prevd-or-backward-word
+         bind -k right nextd-or-forward-word
+         bind -k left prevd-or-backward-word
 end
