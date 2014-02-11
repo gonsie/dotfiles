@@ -21,6 +21,19 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
+;; Linum
+(setq linum-format "%d ")
+
+;; CMake Syntax
+; Add cmake listfile names to the mode list.
+(setq auto-mode-alist
+        (append
+            '(("CMakeLists\\.txt\\'" . cmake-mode))
+            '(("\\.cmake\\'" . cmake-mode))
+            auto-mode-alist))
+
+(autoload 'cmake-mode "/usr/local/share/cmake/editors/emacs/cmake-mode.el" t)
+
 ;; Autopair
 (require 'autopair)
 (autopair-global-mode)
