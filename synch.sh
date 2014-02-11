@@ -44,7 +44,7 @@ for d in `ls -d */`; do
     # ensure links are properly set
     for l in `sed "s.~.$HOME." $d/$link_file`; do
         if [ ! -e $l ]; then # file doesn't exist
-            ln -s $install_dir/$d$/`basename $l` $l
+            ln -s $install_dir/$d/`basename $l` $l
         elif [ ! -h $l ]; then # file exists and isn't a link
             diff $l $d/`basename $l` > tmp
             if [ $? -eq 0 ]; then # no diff
