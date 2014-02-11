@@ -17,6 +17,12 @@ function diffIt() {
     fi
 }
 
+# create install_dir if it doesn't exist
+if [ ! -e $install_dir ]; then
+    echo "Creating $install_dir"
+    mkdir $install_dir
+fi
+
 for d in `ls -d */`; do
     d=`basename $d`
     # move files to install dir
@@ -37,9 +43,11 @@ for d in `ls -d */`; do
     fi
     # ensure links are properly set
     for l in `sed "s.~.$HOME." $d/$link_file`; do
-        if [ ! -h $l ]; then
+        if [ ! -e $l ]; then # file doesn't exist
+            ln -s $install_dir/$d$/`basename $l` $l
+        elif [ ! -h $l ]; then # file exists and isn't a link
             diff $l $d/`basename $l` > tmp
-            if [ $? -eq 0 ]; then
+            if [ $? -eq 0 ]; then # no diff
                 echo "Creating link for $l"
                 mv $l $l.bak
                 ln -s $install_dir/$d/`basename $l` $l
