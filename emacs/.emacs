@@ -21,6 +21,10 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
+;; Whitespace
+(require 'whitespace)
+(autoload 'whitespace-mode "whitespace" "Toggle whitespace visualization." t)
+
 ;; Linum
 (setq linum-format "%d ")
 
