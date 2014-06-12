@@ -57,3 +57,7 @@ HostName linux.cs.rpi.edu
 host mastiff
 user gonsie
 HostName mastiff.cs.rpi.edu
+
+host kepler
+user gonsie
+HostName ccni-08.dynamic2.rpi.edu
