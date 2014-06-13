@@ -61,3 +61,12 @@ HostName mastiff.cs.rpi.edu
 host kepler
 user gonsie
 HostName ccni-08.dynamic2.rpi.edu
+
+host rcs
+user gonsie
+HostName rcs.rpi.edu
+
+host charm
+user gonsie
+port 9418
+HostName charm.cs.illinois.edu
