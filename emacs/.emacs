@@ -38,6 +38,13 @@
 
 (autoload 'cmake-mode "/usr/local/share/cmake/editors/emacs/cmake-mode.el" t)
 
+;; NEDfile Syntax
+(autoload 'ned-mode "ned-mode" "Major Mode for editing Ned files" t)
+(setq auto-mode-alist (cons '("\\.ned\\'" . ned-mode) auto-mode-alist))
+(autoload 'ini-mode "ini-mode" "Major Mode for editing Ini files" t)
+(setq auto-mode-alist (cons '("\\.ini\\'" . ini-mode) auto-mode-alist))
+
+
 ;; Autopair
 (require 'autopair)
 (autopair-global-mode)
