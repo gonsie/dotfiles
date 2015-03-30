@@ -5,7 +5,7 @@
 	ls = ls-files
         # quick and dirty push/pull to origin   
         put = push origin master
-	pul = pull origin master
+	pul = pull --rebase origin master
 	# oops
         fix = commit --amend -C HEAD
         undopush = push -f origin HEAD^:master
