@@ -1,6 +1,11 @@
 alias em "emacs -nw"
 alias emw "emacs"
 
+# interactive
+alias cp "cp -i"
+alias mv "mv -i"
+alias rm "rm -i"
+
 # navigation
 alias marco "pwd"
 alias polo "dirs"
