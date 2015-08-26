@@ -19,8 +19,11 @@ function diffIt() {
 
 # create install_dir if it doesn't exist
 if [ ! -e $install_dir ]; then
+    echo "Welcome, I assume it's your first time here?"
+    first_time=true
     echo "Creating $install_dir"
     mkdir $install_dir
+    mkdir $install_dir/originals
 fi
 
 for d in `ls -d */`; do
@@ -46,20 +49,31 @@ for d in `ls -d */`; do
         if [ ! -e $l ]; then # file doesn't exist
             ln -s $install_dir/$d/`basename $l` $l
         elif [ ! -h $l ]; then # file exists and isn't a link
-            diff $l $d/`basename $l` > tmp
-            if [ $? -eq 0 ]; then # no diff
-                echo "Creating link for $l"
-                mv $l $l.bak
-                ln -s $install_dir/$d/`basename $l` $l
-            else
-                echo "ERROR: Cannot create link for $l, file is different:"
-                cat tmp
-            fi
+	    if [ "$first_time" = true ]; then # it's our first time
+		mv $l $install_dir/originals  # save the original file
+		ln -s $install_dir/$d/`basename $l` $l # link github file
+	    else
+		diff $l $d/`basename $l` > tmp
+		if [ $? -eq 0 ]; then # no diff
+                    echo "Creating link for $l"
+                    mv $l $l.bak
+                    ln -s $install_dir/$d/`basename $l` $l
+		else
+                    echo "ERROR: Cannot create link for $l, file is different:"
+                    cat tmp
+		fi
+	    fi
         fi
     done
 done
 
+if [ "$first_time" = true ]; then
+    echo "Setup Complete."
+    echo "Please review the files saved in $install_dir/originals"
+fi
+
 unset install_dir
+unset first_time
 unset link_file
 unset diffIt
 rm tmp
