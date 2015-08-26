@@ -68,6 +68,12 @@ for d in `ls -d */`; do
 done
 
 if [ "$first_time" = true ]; then
+    echo "Installing Bashmarks"
+    cd ../
+    git clone git@github.com:gonsie/bashmarks.git
+    cd bashmarks
+    make install
+    
     echo "Setup Complete."
     echo "Please review the files saved in $install_dir/originals"
 fi
