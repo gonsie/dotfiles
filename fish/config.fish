@@ -8,7 +8,7 @@ alias rm "rm -i"
 
 # navigation
 alias marco "pwd"
-alias polo "dirs"
+alias polo "cd -P ."
 alias cd.. "cd .."
 alias .. "cd .."
 alias ... "cd ../.."
