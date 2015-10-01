@@ -14,6 +14,10 @@ host ecse
 user gonsie
 HostName rs-01.ecse.rpi.edu
 
+host ecse3
+user gonsie
+HostName rs-03.ecse.rpi.edu
+
 host lp1
 user RSNTgons
 HostName lp01.ccni.rpi.edu
