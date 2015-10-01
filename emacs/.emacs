@@ -14,6 +14,9 @@
 (defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
 (add-hook 'shell-mode-hook 'remap-up-key-in-shell)
 
+;; Homebrew installed packages
+(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+    (normal-top-level-add-subdirs-to-load-path))
 
 ;; single files should be saved here
 (add-to-list 'load-path "~/.config/emacs/elisp")
