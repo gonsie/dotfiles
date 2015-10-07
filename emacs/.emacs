@@ -176,33 +176,6 @@ fonts."
 (require 'org-install)
 (add-hook 'org-mode-hook 'turn-on-font-lock)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-(setq org-log-done t)
-(transient-mark-mode 1)
-
-(setq org-default-notes-file "~/notes.org")
-(setq org-capture-templates
-  '(("t" "Todo" entry (file+headline "~/todo.org" "Tasks")
-        "* TODO %?%i\n  CREATED: %T")
-    ("l" "Linked Todo" entry (file+headline "~/todo.org" "Tasks")
-        "* TODO %?%i\n  CREATED: %T\n  %a")
-   )
-)
-
-(setq org-todo-keywords
-  '((sequence "TODO(t)" "SUBMIT(b)"
-	      "|"
-	      "CANCELLED(x!)" "DONE(d!)"))
-)
-
-(setq org-todo-keywords-faces
-  '(("TODO" . org-waiting)
-    ("SUBMIT" . "yellow")
-    ("CANCELLED" . (:forground "blue" :weight bold)))
-)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -211,23 +184,4 @@ fonts."
  ;; If there is more than one, they won't work right.
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
- '(org-agenda-custom-commands 
-   (quote (
-;           ("d" todo "DELEGATED" nil)
-           ("b" todo "SUBMIT" nil)
-           ("d" todo "DONE|CANCELLED" nil) 
-;           ("w" todo "WAITING" nil) 
-           ("W" agenda "" ((org-agenda-ndays 21))) 
-           ("A" agenda "" ((org-agenda-skip-function (lambda nil (org-agenda-skip-entry-if (quote notregexp) "\\=.*\\[#A\\]"))) (org-agenda-ndays 1) (org-agenda-overriding-header "Today's Priority #A tasks: "))) 
-           ("u" alltodo "" ((org-agenda-skip-function (lambda nil (org-agenda-skip-entry-if (quote scheduled) (quote deadline) (quote regexp) "
-]+>"))) (org-agenda-overriding-header "Unscheduled TODO entries: "))))))
- '(org-agenda-files (quote ("~/Projects/scheduler/scheduler.org" "~/Desktop/Reseach.org" "~/Desktop/Schedule.org")))
- '(org-agenda-ndays 7)
- '(org-agenda-show-all-dates t)
- '(org-agenda-skip-deadline-if-done t)
- '(org-agenda-skip-scheduled-if-done t)
- '(org-agenda-start-on-weekday nil)
- '(org-deadline-warning-days 14)
- '(org-default-notes-file "~/notes.org")
- '(org-fast-tag-selection-single-key (quote expert))
- '(org-reverse-note-order t))
+ )
