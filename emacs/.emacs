@@ -52,6 +52,9 @@
 (autoload 'ini-mode "ini-mode" "Major Mode for editing Ini files" t)
 (setq auto-mode-alist (cons '("\\.ini\\'" . ini-mode) auto-mode-alist))
 
+;; FISH
+(add-hook 'fish-mode-hook (lambda ()
+                             (add-hook 'before-save-hook 'fish_indent-before-save)))
 
 ;; Autopair
 (require 'autopair)
