@@ -21,8 +21,13 @@
 ;; single files should be saved here
 (add-to-list 'load-path "~/.config/emacs/elisp")
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+
+;; MELPA
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
 
 ;; Whitespace
 (require 'whitespace)
