@@ -17,6 +17,7 @@ alias ... "cd ../.."
 alias g "git"
 alias o "open"
 alias oo "open ."
+alias gits "git s"
 
 # http://defunkt.io/hub/
 alias git hub
