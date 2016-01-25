@@ -77,4 +77,4 @@ HostName charm.cs.illinois.edu
 
 host hss
 user gonsie
-HostName hss.cs.rpi.edu
+HostName submit.cs.rpi.edu
