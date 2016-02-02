@@ -19,7 +19,7 @@
         # fast commit
 	cm = commit -a -m
         # fast log
-	lg = log --oneline --decorate -n 
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n
         # fast branch (create)
         go = checkout -B
 
