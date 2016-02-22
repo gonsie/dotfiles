@@ -78,3 +78,7 @@ HostName charm.cs.illinois.edu
 host hss
 user gonsie
 HostName submit.cs.rpi.edu
+
+host ganxis
+user gonsie
+HostName ganxis.nest.rpi.edu
