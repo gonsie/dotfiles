@@ -69,6 +69,17 @@
 (setq wg-switch-on-load nil)
 (wg-load "~/.config/emacs/elisp/wg-saves")
 
+;; UNDO Chris's AutoFillText
+(defun unfill-paragraph ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
+(defun unfill-region ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-region (region-beginning) (region-end) nil)))
+
 ;; Color-Theme 6.6.0
 (add-to-list 'load-path "~/.config/emacs/elisp/color-theme-6.6.0/")
 (require 'color-theme)
