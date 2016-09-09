@@ -48,3 +48,13 @@
 : GIT_AUTHOR_EMAIL="elsa@example.com"
 : GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 : git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+** Setting up a new machine
+
+There are two kinds of new machines:
+
+- Brand-new front end systems
+- SSH-accessable servers 
+
+New front end systems require additional applicaitons and manual preference configuration.
+See the NewSystem.md file for more details.
