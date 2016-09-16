@@ -12,6 +12,8 @@
 
 # Installations
 
+- [Inconsolata](http://levien.com/type/myfonts/inconsolata.html)
+
 ## App Store
 
 - XCode
@@ -24,6 +26,7 @@
   - Configure prefs synching
   - Configure Package Control
   - Add `subl` to shell
+  `ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl`
 - [Alfred](https://www.alfredapp.com)
   - Configure prefs synching
 
@@ -56,3 +59,4 @@
 - emacs dusk theme
 - bashmarks
 - fishmarks
+- Terminal Theme
