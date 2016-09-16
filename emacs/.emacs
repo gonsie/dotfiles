@@ -13,6 +13,10 @@
 ;; remap of up key in shell mode
 (defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
 (add-hook 'shell-mode-hook 'remap-up-key-in-shell)
+;; remap delete key for non-unix machines
+(normal-erase-is-backspace-mode 0)
+;; delete selected region
+(delete-selection-mode 1)
 
 ;; Homebrew installed packages
 (let ((default-directory "/usr/local/share/emacs/site-lisp/"))
