@@ -19,8 +19,8 @@
 (delete-selection-mode 1)
 
 ;; Homebrew installed packages
-(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
-    (normal-top-level-add-subdirs-to-load-path))
+;;(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+;;    (normal-top-level-add-subdirs-to-load-path))
 
 ;; single files should be saved here
 (add-to-list 'load-path "~/.config/emacs/elisp")
@@ -28,10 +28,10 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; MELPA
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+;;(require 'package)
+;;(add-to-list 'package-archives
+;;             '("melpa" . "https://melpa.org/packages/"))
+;;(package-initialize)
 
 ;; Whitespace
 (require 'whitespace)
