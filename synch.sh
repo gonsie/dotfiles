@@ -24,6 +24,10 @@ if [ ! -e $install_dir ]; then
     echo "Creating $install_dir"
     mkdir $install_dir
     mkdir $install_dir/originals
+    # needed for current settings
+    if [ ! -e ~/.histories ]; then
+    	mkdir ~/.histories
+    fi
 fi
 
 for d in `ls -d */`; do
