@@ -67,12 +67,6 @@
 ;; WORD COUNT
 (load "wc")
 
-;; workgroups
-(require 'workgroups)
-(workgroups-mode 1)
-(setq wg-switch-on-load nil)
-(wg-load "~/.config/emacs/elisp/wg-saves")
-
 ;; UNDO Chris's AutoFillText
 (defun unfill-paragraph ()
   (interactive)
@@ -196,9 +190,9 @@ fonts."
 
 
 ;; ORG-MODE
-(require 'org-install)
-(add-hook 'org-mode-hook 'turn-on-font-lock)
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+;; (require 'org-install)
+;; (add-hook 'org-mode-hook 'turn-on-font-lock)
+;; (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -208,3 +202,4 @@ fonts."
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
  )
+(put 'upcase-region 'disabled nil)
