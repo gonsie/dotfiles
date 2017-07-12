@@ -9,7 +9,7 @@ export GREEN
 export WHITE
 
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' -e 's/$/ /'
 }
 
 PS1="${ORANGE}\t ${BLUE}\u@\h ${PINK}\W ${GREEN}\$(parse_git_branch) ${WHITE}$ "
