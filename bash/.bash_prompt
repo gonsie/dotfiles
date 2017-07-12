@@ -12,6 +12,12 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' -e 's/$/ /'
 }
 
-PS1="${ORANGE}\t ${BLUE}\u@\h ${PINK}\W ${GREEN}\$(parse_git_branch) ${WHITE}$ "
+function slurm_jobid {
+  if [[ $SLURM_JOBID ]]; then
+    echo "[$SLURM_JOBID] "
+  fi
+}
+
+PS1="${ORANGE}\t ${BLUE}\u@\h ${PINK}\W ${GREEN}\$(parse_git_branch)${WHITE}\$(slurm_jobid)$ "
 PS2="> "
 PS4="+ "
