@@ -3,21 +3,36 @@ BLUE="\[\033[0;34m\]"
 PINK="\[\033[0;35m\]"
 GREEN="\[\033[0;32m\]"
 WHITE="\[\033[0m\]"
+RED="\[\033[0;31m\]"
 
 export ORANGE
 export GREEN
 export WHITE
+export RED
+
 
 function parse_git_branch {
+  RC=$?
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' -e 's/$/ /'
+  exit $RC
 }
 
 function slurm_jobid {
+  RC=$?
   if [[ $SLURM_JOBID ]]; then
     echo "[$SLURM_JOBID] "
   fi
+  exit $RC
 }
 
-PS1="${ORANGE}\t ${BLUE}\u@\h ${PINK}\W ${GREEN}\$(parse_git_branch)${WHITE}\$(slurm_jobid)$ "
+function exit_code {
+  RC=$?
+  if [ $RC -ne 0 ]; then
+    echo "[$RC] "
+  fi
+  exit $RC
+}
+
+PS1="${ORANGE}\t ${BLUE}\u@\h ${PINK}\W ${GREEN}\$(parse_git_branch)${WHITE}\$(slurm_jobid)${RED}\$(exit_code)${WHITE}$ "
 PS2="> "
 PS4="+ "
