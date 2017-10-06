@@ -94,6 +94,13 @@
 
 ;; COLORS & THEME
 
+;; ;; base16-theme
+;; ;; this would work... if I didn't have a Terminal Profile already set up
+;; (use-package base16-theme
+;;  :ensure t
+;;  :config
+;;  (load-theme 'base16-xcode-dusk t))
+
 ;; Color-Theme 6.6.0
 (add-to-list 'load-path "~/.config/emacs/elisp/color-theme-6.6.0/")
 (require 'color-theme)
