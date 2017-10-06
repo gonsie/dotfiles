@@ -5,7 +5,22 @@
 (global-set-key (kbd "C-o") 'other-window)
 (setq gdb-gud-control-all-threads t)
 
-;; Key Bindings
+;; MY FUNCTIONS
+
+;; UNDO Chris's AutoFillText
+(defun unfill-paragraph ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
+
+(defun unfill-region ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-region (region-beginning) (region-end) nil)))
+
+
+;; KEY BINDINGS
+
 ;; NOTE: shift key generally doesn't work in terminal.app
 (define-key function-key-map "\e[Z" [S-tab])
 (setq mac-command-modifier 'super)
@@ -36,16 +51,7 @@
 ;; Linum
 (setq linum-format "%d ")
 
-;; UNDO Chris's AutoFillText
-(defun unfill-paragraph ()
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-paragraph nil)))
-
-(defun unfill-region ()
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-region (region-beginning) (region-end) nil)))
+;; COLORS & THEME
 
 ;; Color-Theme 6.6.0
 (add-to-list 'load-path "~/.config/emacs/elisp/color-theme-6.6.0/")
@@ -158,10 +164,7 @@ fonts."
 ))
 
 
-;; ORG-MODE
-;; (require 'org-install)
-;; (add-hook 'org-mode-hook 'turn-on-font-lock)
-;; (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+;; ORG
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
