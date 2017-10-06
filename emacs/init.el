@@ -35,20 +35,11 @@
 (defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
 (add-hook 'shell-mode-hook 'remap-up-key-in-shell)
 
-;; PACKAGE MANAGERS
-
-;; single files should be saved here
-(add-to-list 'load-path "~/.config/emacs/elisp")
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
-
-;; MELPA
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
 
 ;; PACKAGES
+
+;; Personally Included Packages
+(add-to-list 'load-path "~/.config/emacs/elisp")
 
 ;; Linum
 (setq linum-format "%d ")
