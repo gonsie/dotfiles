@@ -82,6 +82,26 @@
 
 ;; ORG
 
+(require 'ox-md)
+
+;; active Babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (emacs-lisp . t)
+   (shell . t)
+   (dot . t)
+   (org . t)
+   ))
+
+;; adding the <[TAB] shortcuts
+(eval-after-load 'org
+  '(progn
+     (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
+     (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
+     (add-to-list 'org-structure-template-alist '("t" "#+title:?\n#+subtitle:\n#+author:\n#+date:\n"))
+))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -90,6 +110,22 @@
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
  )
+(put 'upcase-region 'disabled nil)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#231e18" "#d35c5c" "#b7ba53" "#e0ac16" "#88a4d3" "#bb90e2" "#88a4d3" "#cabcb1"])
+ '(ansi-term-color-vector
+   [unspecified "#231e18" "#d35c5c" "#b7ba53" "#e0ac16" "#88a4d3" "#bb90e2" "#88a4d3" "#cabcb1"])
+ '(gud-gdb-command-name "gdb --annotate=1")
+ '(large-file-warning-threshold nil)
+ '(package-selected-packages
+   (quote
+    (xah-css-mode base16-theme neotree projectile autopair fish-mode cmake-mode use-package markdown-mode discover-my-major magit org))))
 (put 'upcase-region 'disabled nil)
 
 ;; COLORS & THEME
@@ -163,7 +199,7 @@ fonts."
     ;; line and column
     "(" ;; '%02' to set to 2 chars at least; prevents flickering
       (propertize "%02l" 'face 'font-lock-type-face) ","
-      (propertize "%02c" 'face 'font-lock-type-face) 
+      (propertize "%02c" 'face 'font-lock-type-face)
     ") "
 
     ;; relative position, size of file
@@ -197,7 +233,7 @@ fonts."
     '(:eval (when buffer-read-only
               (concat ","  (propertize "RO"
                              'face 'font-lock-type-face
-                             'help-echo "Buffer is read-only"))))  
+                             'help-echo "Buffer is read-only"))))
     "] "
 
     ;; add the time, with the date and the emacs uptime in the tooltip
@@ -210,3 +246,13 @@ fonts."
     ;; minor-mode-alist  ;; list of minor modes
     "%-" ;; fill with '-'
 ))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(neo-dir-link-face ((t (:foreground "yellow"))))
+ '(neo-file-link-face ((t (:foreground "color-255"))))
+ '(org-document-info ((t (:foreground "blue"))))
+ '(org-document-title ((t (:foreground "blue" :weight bold)))))
