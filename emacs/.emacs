@@ -53,6 +53,33 @@
 ;; Linum
 (setq linum-format "%d ")
 
+;; neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;; CMake
+(setq auto-mode-alist
+      (append
+       '(("CMakeLists\\.txt\\'" . cmake-mode))
+       '(("\\.cmake\\'" . cmake-mode))
+       auto-mode-alist))
+
+;; MAGIT
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;; Markdown
+(setq markdown-command "kramdown")
+;; (use-package markdown-mode
+;;   :ensure t
+;;   :commands (markdown-mode gfm-mode)
+;;   :mode (("README\\.md\\'" . gfm-mode)
+;;          ("\\.md\\'" . markdown-mode)
+;;          ("\\.markdown\\'" . markdown-mode))
+;;   :init (setq markdown-command "kramdown"))
+
+;; Word Count (dotfile copy)
+(load "wc")
+
 ;; ORG
 
 (custom-set-variables
