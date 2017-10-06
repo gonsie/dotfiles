@@ -19,4 +19,7 @@
 ;; - org
 
 ;; 3. Custom Variables
-;;    DO NOT EDIT BY HAND
+;;    Machine-specific, so keep in home dir
+
+(setq custom-file "~/.emacs-custom.el")
+     (load custom-file)
