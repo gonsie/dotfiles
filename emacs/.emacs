@@ -18,9 +18,7 @@
 ;; delete selected region
 (delete-selection-mode 1)
 
-;; Homebrew installed packages
-;;(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
-;;    (normal-top-level-add-subdirs-to-load-path))
+;; PACKAGE MANAGERS
 
 ;; single files should be saved here
 (add-to-list 'load-path "~/.config/emacs/elisp")
@@ -28,44 +26,15 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 ;; MELPA
-;;(require 'package)
-;;(add-to-list 'package-archives
-;;             '("melpa" . "https://melpa.org/packages/"))
-;;(package-initialize)
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
 
-;; Whitespace
-(require 'whitespace)
-(autoload 'whitespace-mode "whitespace" "Toggle whitespace visualization." t)
+;; PACKAGES
 
 ;; Linum
 (setq linum-format "%d ")
-
-;; CMake Syntax
-; Add cmake listfile names to the mode list.
-(setq auto-mode-alist
-        (append
-            '(("CMakeLists\\.txt\\'" . cmake-mode))
-            '(("\\.cmake\\'" . cmake-mode))
-            auto-mode-alist))
-
-(autoload 'cmake-mode "/usr/local/share/cmake/editors/emacs/cmake-mode.el" t)
-
-;; NEDfile Syntax
-(autoload 'ned-mode "ned-mode" "Major Mode for editing Ned files" t)
-(setq auto-mode-alist (cons '("\\.ned\\'" . ned-mode) auto-mode-alist))
-(autoload 'ini-mode "ini-mode" "Major Mode for editing Ini files" t)
-(setq auto-mode-alist (cons '("\\.ini\\'" . ini-mode) auto-mode-alist))
-
-;; FISH
-(add-hook 'fish-mode-hook (lambda ()
-                             (add-hook 'before-save-hook 'fish_indent-before-save)))
-
-;; Autopair
-(require 'autopair)
-(autopair-global-mode)
-
-;; WORD COUNT
-(load "wc")
 
 ;; UNDO Chris's AutoFillText
 (defun unfill-paragraph ()
