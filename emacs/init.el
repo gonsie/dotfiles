@@ -7,9 +7,14 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 (global-auto-revert-mode)
-(menu-bar-mode -1)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (autopair-global-mode)
+
+;; disable menu bar
+(menu-bar-mode -1)
+
+;; warn when opening files bigger than 100MB
+(setq large-file-warning-threshold 100000000)
 
 ;; MY FUNCTIONS
 
