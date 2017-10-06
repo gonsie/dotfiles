@@ -16,6 +16,10 @@
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
 
+;; shift-arrow to change windows
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 ;; MY FUNCTIONS
 
 ;; UNDO Chris's AutoFillText
@@ -31,7 +35,6 @@
 ;; KEY BINDINGS
 
 (define-key function-key-map "\e[Z" [S-tab])
-(global-set-key (kbd "C-o") 'other-window)
 (setq mac-command-modifier 'super)
 (setq mac-option-modifier 'meta)
 (normal-erase-is-backspace-mode 0)
