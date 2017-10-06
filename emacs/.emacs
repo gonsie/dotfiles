@@ -4,6 +4,12 @@
 (setq-default c-basic-offset 4)
 (setq gdb-gud-control-all-threads t)
 (delete-selection-mode 1)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+(global-auto-revert-mode)
+(menu-bar-mode -1)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(autopair-global-mode)
 
 ;; MY FUNCTIONS
 
