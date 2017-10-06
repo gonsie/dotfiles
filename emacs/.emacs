@@ -2,8 +2,8 @@
 (setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
-(global-set-key (kbd "C-o") 'other-window)
 (setq gdb-gud-control-all-threads t)
+(delete-selection-mode 1)
 
 ;; MY FUNCTIONS
 
@@ -21,17 +21,13 @@
 
 ;; KEY BINDINGS
 
-;; NOTE: shift key generally doesn't work in terminal.app
 (define-key function-key-map "\e[Z" [S-tab])
+(global-set-key (kbd "C-o") 'other-window)
 (setq mac-command-modifier 'super)
 (setq mac-option-modifier 'meta)
-;; remap of up key in shell mode
+(normal-erase-is-backspace-mode 0)
 (defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
 (add-hook 'shell-mode-hook 'remap-up-key-in-shell)
-;; remap delete key for non-unix machines
-(normal-erase-is-backspace-mode 0)
-;; delete selected region
-(delete-selection-mode 1)
 
 ;; PACKAGE MANAGERS
 
