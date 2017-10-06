@@ -52,6 +52,7 @@
 - dos2unix
 - mpich
 - graphviz
+- kramdown
 
 ## Repos to clone
 
