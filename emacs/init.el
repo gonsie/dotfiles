@@ -18,12 +18,10 @@
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
-
 (defun unfill-region ()
   (interactive)
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
-
 
 ;; KEY BINDINGS
 
@@ -34,7 +32,6 @@
 (normal-erase-is-backspace-mode 0)
 (defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
 (add-hook 'shell-mode-hook 'remap-up-key-in-shell)
-
 
 ;; PACKAGES
 
