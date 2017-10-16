@@ -77,9 +77,10 @@
 
 ;; multiple-cursors
 (use-package multiple-cursors
-  :bind (("<f2>" . mc/mark-next-like-this)
-         ("<f3>" . mc/mark-previous-like-this)
-         ("C-c <f2>" . mc/mark-all-like-this)))
+  :bind (("<f2>" . mc/mark-previous-like-this)
+         ("<f3>" . mc/mark-next-like-this)
+         ("C-c <f2>" . mc/mark-all-like-this)
+         ("<ESC> <ESC>" . mc/keyboard-quit)))
 
 ;; Word Count (dotfile copy)
 (load "wc")
