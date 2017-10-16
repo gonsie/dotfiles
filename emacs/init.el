@@ -6,9 +6,11 @@
 (delete-selection-mode 1)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
-(global-auto-revert-mode)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (autopair-global-mode)
+
+;; revert to disk
+(global-auto-revert-mode)
 
 ;; disable menu bar
 (menu-bar-mode -1)
