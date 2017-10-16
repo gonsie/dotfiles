@@ -105,7 +105,14 @@
      (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
      (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
      (add-to-list 'org-structure-template-alist '("t" "#+title:?\n#+subtitle:\n#+author:\n#+date:\n"))
-))
+     ))
+
+;; Add Org files to the agenda when we save them
+(defun to-agenda-on-save-org-mode-file()
+  (when (string= (message "%s" major-mode) "org-mode")
+    (org-agenda-file-to-front)))
+
+(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
 
 ;; COLORS & THEME
 
