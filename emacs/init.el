@@ -18,10 +18,6 @@
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
 
-;; shift-arrow to change windows
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings))
-
 ;; MY FUNCTIONS
 
 ;; UNDO Chris's AutoFillText
