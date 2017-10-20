@@ -106,7 +106,7 @@
   '(progn
      (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
      (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
-     (add-to-list 'org-structure-template-alist '("t" "#+title:?\n#+subtitle:\n#+author:\n#+date:\n"))
+     (add-to-list 'org-structure-template-alist '("t" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n"))
      ))
 
 ;; Add Org files to the agenda when we save them
