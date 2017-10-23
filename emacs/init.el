@@ -7,7 +7,10 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; autopair
 (autopair-global-mode)
+(diminish 'autopair-mode)
 
 ;; revert to disk
 (global-auto-revert-mode)
@@ -229,10 +232,9 @@ fonts."
               'help-echo
               (concat (format-time-string "%c; ")
                       (emacs-uptime "Uptime:%hh"))))
-    " --"
-    ;; i don't want to see minor-modes; but if you want, uncomment this:
-    ;; minor-mode-alist  ;; list of minor modes
-    "%-" ;; fill with '-'
+    " -- ("
+    minor-mode-alist  ;; list of minor modes
+    " ) %-" ;; fill with '-'
 ))
 
 (custom-set-faces
