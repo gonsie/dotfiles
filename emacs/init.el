@@ -53,7 +53,8 @@
 
 ;; neotree
 (use-package neotree
-  :bind ([f8] . neotree-toggle))
+  :bind ([f8] . neotree-toggle)
+  :config (setq neo-default-system-application "open"))
 
 ;; CMake
 (setq auto-mode-alist
