@@ -57,31 +57,31 @@
   :config (setq neo-default-system-application "open"))
 
 ;; CMake
-(setq auto-mode-alist
-      (append
-       '(("CMakeLists\\.txt\\'" . cmake-mode))
-       '(("\\.cmake\\'" . cmake-mode))
-       auto-mode-alist))
+(use-package cmake-mode
+  :mode ("\\.cmake\\'"
+         "CMakeLists\\.txt\\'")
+  :config (use-package cmake-font-lock))
 
 ;; MAGIT
-(global-set-key (kbd "C-x g") 'magit-status)
+(use-package magit
+  :bind ("C-x g" . magit-status)
+  :ensure t)
 
 ;; Markdown
-(setq markdown-command "kramdown")
-;; (use-package markdown-mode
-;;   :ensure t
-;;   :commands (markdown-mode gfm-mode)
-;;   :mode (("README\\.md\\'" . gfm-mode)
-;;          ("\\.md\\'" . markdown-mode)
-;;          ("\\.markdown\\'" . markdown-mode))
-;;   :init (setq markdown-command "kramdown"))
+(use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :config (setq markdown-command "kramdown"))
 
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("<f2>" . mc/mark-previous-like-this)
          ("<f3>" . mc/mark-next-like-this)
          ("C-c <f2>" . mc/mark-all-like-this)
-         ("<ESC> <ESC>" . mc/keyboard-quit)))
+         ("<ESC> <ESC>" . mc/keyboard-quit))
+  :ensure t)
 
 ;; Word Count (dotfile copy)
 (load "wc")
