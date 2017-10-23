@@ -33,14 +33,15 @@
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
 
+
 ;; KEY BINDINGS
 
 (define-key function-key-map "\e[Z" [S-tab])
 (setq mac-command-modifier 'super)
 (setq mac-option-modifier 'meta)
 (normal-erase-is-backspace-mode 0)
-(defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
-(add-hook 'shell-mode-hook 'remap-up-key-in-shell)
+;;(defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
+;;(add-hook 'shell-mode-hook 'remap-up-key-in-shell)
 
 ;; PACKAGES
 
