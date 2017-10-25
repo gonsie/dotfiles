@@ -54,7 +54,9 @@
 ;; neotree
 (use-package neotree
   :bind ([f8] . neotree-toggle)
-  :config (setq neo-default-system-application "open"))
+  :config ((setq neo-default-system-application "open")
+           (set-face-attribute 'neo-dir-link-face t :foreground "yellow")
+           (set-face-attribute 'neo-file-link-face t :foreground "color-255")))
 
 ;; CMake
 (use-package cmake-mode
@@ -65,6 +67,8 @@
 ;; MAGIT
 (use-package magit
   :bind ("C-x g" . magit-status)
+  :config ((set-face-attribute 'magit-diff-context-highlight t :background "grey45" :foreground "grey50")
+           (set-face-attribute 'magit-section-highlight t :background "grey45"))
   :ensure t)
 
 ;; Markdown
@@ -121,7 +125,14 @@
 
 (add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
 
+
 ;; COLORS & THEME
+
+;; Customize Face Manually
+(set-face-attribute 'org-table t :foreground "blue")
+(set-face-attribute 'org-document-info t :foreground "blue")
+(set-face-attribute 'org-document-title t :foreground "blue" :bold)
+(set-face-attribute 'widget-field t :background "navy")
 
 ;; ;; base16-theme
 ;; ;; this would work... if I didn't have a Terminal Profile already set up
@@ -238,15 +249,3 @@ fonts."
     minor-mode-alist  ;; list of minor modes
     " ) %-" ;; fill with '-'
 ))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(neo-dir-link-face ((t (:foreground "yellow"))))
- '(neo-file-link-face ((t (:foreground "color-255"))))
- '(org-document-info ((t (:foreground "blue"))))
- '(org-document-title ((t (:foreground "blue" :weight bold))))
- '(org-table ((t (:forground "blue"))))
- '(widget-field ((t (:background "navy")))))
