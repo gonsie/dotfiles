@@ -132,7 +132,7 @@
 (set-face-attribute 'org-table t :foreground "blue")
 (set-face-attribute 'org-document-info t :foreground "blue")
 (set-face-attribute 'org-document-title t :foreground "blue" :bold)
-(set-face-attribute 'widget-field t :background "navy")
+(set-face-attribute 'widget-field t :foreground "white" :background "navy")
 
 ;; ;; base16-theme
 ;; ;; this would work... if I didn't have a Terminal Profile already set up
