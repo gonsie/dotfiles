@@ -132,7 +132,6 @@
 (set-face-attribute 'org-table t :foreground "blue")
 (set-face-attribute 'org-document-info t :foreground "blue")
 (set-face-attribute 'org-document-title t :foreground "blue" :bold)
-(set-face-attribute 'widget-field t :foreground "white" :background "navy")
 
 ;; ;; base16-theme
 ;; ;; this would work... if I didn't have a Terminal Profile already set up
@@ -185,8 +184,8 @@ fonts."
      (region ((t (:background "grey15"))))
      (highlight ((t (:background "#919075"))))
      (secondary-selection ((t (:background "navy"))))
-     (widget-field-face ((t (:background "navy"))))
-     (widget-single-line-field-face ((t (:background "royalblue")))))) )
+     (widget-field-face ((t (:background "navy" :foreground "white"))))
+     (widget-single-line-field-face ((t (:background "royalblue" :foreground "white")))))) )
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
