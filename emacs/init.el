@@ -162,12 +162,10 @@ fonts."
      ((font . "fixed")
       (width . 130)
       (height . 50)
-      (background-color . "#282B35")
-      (foreground-color . "#FFFFFF")
       (background-mode . dark)
       (mouse-color . "#FFFFFF")
       (cursor-color . "#FFFFFF"))
-     (default ((t (:background "#282B35" :foreground "White" :height 150 :family "Inconsolata"))))
+     (default ((t (nill))))
      (font-lock-comment-face ((t (:italic t :foreground "#54BE5A"))))
      (font-lock-string-face ((t (:foreground "#E1404A"))))
      (font-lock-keyword-face ((t (:foreground "#BF369A"))))
@@ -189,10 +187,16 @@ fonts."
      (secondary-selection ((t (:background "navy"))))
      (widget-field-face ((t (:background "navy" :foreground "white"))))
      (widget-single-line-field-face ((t (:background "royalblue" :foreground "white")))))) )
+
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-dusk)))
+     (color-theme-dusk)
+     (when (display-graphic-p)
+       ;; settings for GUI emacs
+       (set-background-color "#282B35")
+       (set-foreground-color "White")
+       (set-frame-font "Inconsolata 14" nil t))))
 
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
