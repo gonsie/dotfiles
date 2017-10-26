@@ -68,8 +68,9 @@
 ;; MAGIT
 (use-package magit
   :bind ("C-x g" . magit-status)
-  :config ((set-face-attribute 'magit-diff-context-highlight t :background "grey45" :foreground "grey50")
-           (set-face-attribute 'magit-section-highlight t :background "grey45"))
+  :config
+  (set-face-attribute 'magit-diff-context-highlight t :background "grey45" :foreground "grey50")
+  (set-face-attribute 'magit-section-highlight t :background "grey45")
   :ensure t)
 
 ;; Markdown
