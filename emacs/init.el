@@ -90,6 +90,10 @@
          ("<ESC> <ESC>" . mc/keyboard-quit))
   :ensure t)
 
+;; rust
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode))
+
 ;; Word Count (dotfile copy)
 (load "wc")
 
