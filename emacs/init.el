@@ -190,6 +190,7 @@ fonts."
      (region ((t (:background "grey15"))))
      (highlight ((t (:background "#919075"))))
      (secondary-selection ((t (:background "navy"))))
+     (minibuffer-prompt ((t (:foreground "orange"))))
      (widget-field-face ((t (:background "navy" :foreground "white"))))
      (widget-single-line-field-face ((t (:background "royalblue" :foreground "white")))))) )
 
