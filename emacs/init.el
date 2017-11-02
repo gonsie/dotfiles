@@ -141,6 +141,13 @@
 (set-face-attribute 'org-document-info t :foreground "blue")
 (set-face-attribute 'org-document-title t :foreground "blue" :bold)
 
+;; ;; base16-theme
+;; ;; this would work... if I didn't have a Terminal Profile already set up
+;; (use-package base16-theme
+;;  :ensure t
+;;  :config
+;;  (load-theme 'base16-xcode-dusk t))
+
 ;; Color-Theme 6.6.0
 (add-to-list 'load-path "~/.config/emacs/elisp/color-theme-6.6.0/")
 (require 'color-theme)
@@ -188,16 +195,13 @@ fonts."
 
 (eval-after-load "color-theme"
   '(progn
-     (when (not (display-graphic-p))
-       (color-theme-initialize)
-       (color-theme-dusk))))
-
-;; base16-theme
-(use-package base16-theme
- :ensure t
- :config
- (when (display-graphic-p)
-   (load-theme 'base16-xcode-dusk t)))
+     (color-theme-initialize)
+     (color-theme-dusk)
+     (when (display-graphic-p)
+       ;; settings for GUI emacs
+       (set-background-color "#282B35")
+       (set-foreground-color "White")
+       (set-frame-font "Inconsolata 14" nil t))))
 
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
