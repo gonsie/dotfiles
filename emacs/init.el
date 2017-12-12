@@ -8,6 +8,7 @@
 (setq require-final-newline t)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(set-default 'cursor-type 'bar)
 
 ;; autopair
 (autopair-global-mode)
@@ -81,6 +82,7 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
+  :bind ("C-c C-e" . markdown-export-and-preview)
   :config (setq markdown-command "kramdown"))
 
 ;; multiple-cursors
@@ -93,7 +95,11 @@
 
 ;; rust
 (use-package rust-mode
-  :mode ("\\.rs\\'" . rust-mode))
+  :mode ("\\.rs\\'"))
+
+;; graphviz
+(use-package graphviz-dot-mode
+  :mode ("\\.gv\\'"))
 
 ;; Word Count (dotfile copy)
 (load "wc")
@@ -105,6 +111,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-iswitchb)
+;(setq org-default-notes-file (concat org-directory "/capture.org"))
 
 (require 'ox-md)
 
@@ -137,9 +144,9 @@
 ;; COLORS & THEME
 
 ;; Customize Face Manually
-(set-face-attribute 'org-table t :foreground "blue")
-(set-face-attribute 'org-document-info t :foreground "blue")
-(set-face-attribute 'org-document-title t :foreground "blue" :bold)
+(set-face-attribute 'org-table t :foreground "Blue")
+(set-face-attribute 'org-document-info t :foreground "Blue")
+(set-face-attribute 'org-document-title t :foreground "Blue" :bold)
 
 ;; ;; base16-theme
 ;; ;; this would work... if I didn't have a Terminal Profile already set up
@@ -177,7 +184,7 @@ fonts."
      (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
      (font-lock-constant-face ((t (:foreground "#8B86CE"))))
      (font-lock-type-face ((t (:foreground "#BF369A"))))
-     (font-lock-variable-name-face ((t (:foreground "#FFFFFF"))))
+     (font-lock-variable-name-face ((t (:foreground "Yellow"))))
      (font-lock-function-name-face ((t (:foreground "#95C76E"))))
      (font-lock-builtin-face ((t (:foreground "#D08E5D"))))  ;preprocessor stmts, brown
      (hl-line ((t (:background "#112233"))))
@@ -191,6 +198,7 @@ fonts."
      (highlight ((t (:background "#919075"))))
      (secondary-selection ((t (:background "navy"))))
      (minibuffer-prompt ((t (:foreground "orange"))))
+     (link ((t (:foreground "Blue" :underline t))))
      (widget-field-face ((t (:background "navy" :foreground "white"))))
      (widget-single-line-field-face ((t (:background "royalblue" :foreground "white")))))) )
 
@@ -200,9 +208,9 @@ fonts."
      (color-theme-dusk)
      (when (display-graphic-p)
        ;; settings for GUI emacs
-       (set-background-color "#282B35")
-       (set-foreground-color "White")
-       (set-frame-font "Inconsolata 14" nil t))))
+       (add-to-list 'default-frame-alist `(background-color . "#282B35"))
+       (add-to-list 'default-frame-alist `(foreground-color . "White"))
+       (set-frame-font "Inconsolata 18" nil t))))
 
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
