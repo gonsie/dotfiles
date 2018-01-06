@@ -210,7 +210,8 @@ fonts."
        ;; settings for GUI emacs
        (add-to-list 'default-frame-alist '(background-color . "#282B35"))
        (add-to-list 'default-frame-alist '(foreground-color . "White"))
-       (set-frame-font "Inconsolata 18" nil t))))
+       (set-frame-font "Inconsolata 18" nil t)
+       (put 'save-buffers-kill-terminal 'disabled t))))
 
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
