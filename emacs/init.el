@@ -60,13 +60,11 @@
 ;; Linum
 (setq linum-format "%d ")
 
-;; neotree
-(use-package neotree
-  :bind ([f8] . neotree-toggle)
-  :config
-  (setq neo-default-system-application "open")
-  (set-face-attribute 'neo-dir-link-face t :foreground "yellow")
-  (set-face-attribute 'neo-file-link-face t :foreground "color-255"))
+;; dired-sidebar
+(use-package dired-sidebar
+  :bind ([f8] . dired-sidebar-toggle-sidebar)
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar))
 
 ;; CMake
 (use-package cmake-mode
