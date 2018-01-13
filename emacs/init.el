@@ -117,6 +117,10 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 ;(setq org-default-notes-file (concat org-directory "/capture.org"))
 
+;; settings
+(setq org-adapt-indentation nil)
+
+;; org export
 (require 'ox-md)
 
 ;; active Babel languages
@@ -135,6 +139,7 @@
      (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
      (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
      (add-to-list 'org-structure-template-alist '("t" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n"))
+     (add-to-list 'org-structure-template-alist '("E" "#+END_EXAMPLE\n?\n#+BEGIN_EXAMPLE"))
      ))
 
 ;; Add Org files to the agenda when we save them
