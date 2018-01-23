@@ -46,11 +46,14 @@
 ;; KEY BINDINGS
 
 (define-key function-key-map "\e[Z" [S-tab])
-(setq mac-command-modifier 'super)
-(setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'super) ;; s
+(setq mac-option-modifier 'meta)   ;; M
 (normal-erase-is-backspace-mode 0)
 ;;(defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
 ;;(add-hook 'shell-mode-hook 'remap-up-key-in-shell)
+
+(global-set-key (kbd "s-}") 'other-frame)
+(global-set-key (kbd "s-{") 'other-frame)
 
 ;; PACKAGES
 
