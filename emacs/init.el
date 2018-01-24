@@ -9,6 +9,10 @@
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (set-default 'cursor-type 'bar)
+(setq-default truncate-lines t)
+
+;; never kill my frame (GUI window). CMD-w (s-w) on mac
+(put 'delete-frame 'disabled t)
 
 ;; autopair
 (autopair-global-mode)
@@ -95,10 +99,17 @@
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("<f2>" . mc/mark-previous-like-this)
+         ("S-<f2>" . mc/unmark-previous-like-this)
          ("<f3>" . mc/mark-next-like-this)
+         ("S-<f3>" . mc/unmark-next-like-this)
          ("C-c <f2>" . mc/mark-all-like-this)
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click)
          ("<ESC> <ESC>" . mc/keyboard-quit))
   :ensure t)
+
+(use-package expand-region
+  :ensure expand-region
+  :bind ("M-=" . er/expand-region))
 
 ;; rust
 (use-package rust-mode
@@ -150,15 +161,15 @@
   (when (string= (message "%s" major-mode) "org-mode")
     (org-agenda-file-to-front)))
 
-(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
+;;(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
 
 
 ;; COLORS & THEME
 
 ;; Customize Face Manually
-(set-face-attribute 'org-table t :foreground "Blue")
-(set-face-attribute 'org-document-info t :foreground "Blue")
-(set-face-attribute 'org-document-title t :foreground "Blue" :bold)
+(set-face-attribute 'org-table t :foreground "#536fd6")
+(set-face-attribute 'org-document-info t :foreground "#536fd6")
+(set-face-attribute 'org-document-title t :foreground "#536fd6" :bold)
 
 ;; ;; base16-theme
 ;; ;; this would work... if I didn't have a Terminal Profile already set up
@@ -210,7 +221,7 @@ fonts."
      (highlight ((t (:background "#919075"))))
      (secondary-selection ((t (:background "navy"))))
      (minibuffer-prompt ((t (:foreground "orange"))))
-     (link ((t (:foreground "Blue" :underline t))))
+     (link ((t (:foreground "#536fd6" :underline t))))
      (widget-field-face ((t (:background "navy" :foreground "white"))))
      (widget-single-line-field-face ((t (:background "royalblue" :foreground "white")))))) )
 
