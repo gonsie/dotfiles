@@ -1,6 +1,4 @@
-# my modified version
 function fish_prompt --description 'Write out the prompt'
-	
 	set -l last_status $status
 
 	# Just calculate these once, to save a few cycles when displaying the prompt
@@ -11,7 +9,7 @@ function fish_prompt --description 'Write out the prompt'
 	if not set -q __fish_prompt_normal
 		set -g __fish_prompt_normal (set_color normal)
 	end
-	
+
 	if not set -q -g __fish_classic_git_functions_defined
 		set -g __fish_classic_git_functions_defined
 
@@ -21,14 +19,14 @@ function fish_prompt --description 'Write out the prompt'
 				commandline -f repaint ^/dev/null
 			end
 		end
-		
+
 		function __fish_repaint_host --on-variable fish_color_host --description "Event handler, repaint when fish_color_host changes"
 			if status --is-interactive
 				set -e __fish_prompt_host
 				commandline -f repaint ^/dev/null
 			end
 		end
-		
+
 		function __fish_repaint_status --on-variable fish_color_status --description "Event handler; repaint when fish_color_status changes"
 			if status --is-interactive
 				set -e __fish_prompt_status
@@ -73,13 +71,13 @@ function fish_prompt --description 'Write out the prompt'
 	if not set -q __fish_prompt_host
 		set -g __fish_prompt_host (set_color $fish_color_host)
 	end
-        
+
         if not set -q __fish_prompt_git
                 set -g __fish_prompt_git (set_color green)
         end
-        
+
         if not set -q __fish_prompt_time
-                set -g __fish_prompt_time (set_color brown)
+                set -g __fish_prompt_time (set_color ffaf5f)
         end
 
 	echo -n -s "$__fish_prompt_time" (date +%T) " $__fish_prompt_user" "$USER" "$__fish_prompt_normal" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ' ' "$__fish_prompt_cwd" (basename (prompt_pwd)) "$__fish_prompt_git" (__fish_git_prompt) "$__fish_prompt_normal" "$prompt_status" "$delim" ' '

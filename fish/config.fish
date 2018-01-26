@@ -29,3 +29,8 @@ function fish_user_key_bindings
          bind -k right nextd-or-forward-word
          bind -k left prevd-or-backward-word
 end
+
+# setup default colors
+set -g fish_color_cwd f56dca
+set -g fish_color_user blue
+set -g fish_color_host blue
