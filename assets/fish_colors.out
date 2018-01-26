@@ -1,0 +1,33 @@
+[100m *These colors are defined by the Terminal Application* [30m(B[m
+[30m black 		 [90m brblack
+[31m red 		 [91m brred
+[32m green 		 [92m brgreen
+[33m yellow 	 [93m bryellow
+[34m blue 		 [94m brblue
+[35m magenta 	 [95m brmagenta
+[36m cyan 		 [96m brcyan
+[37m white 		 [97m brwhite
+[33m brown
+[30m(B[m normal
+[100m *These colors are defined in Fish (fish_color_x)* [30m(B[m
+[38;5;246m autosuggestion 969896 [30m(B[m
+[38;5;231m command 	 ffffff [30m(B[m
+[38;5;40m comment 	 00d700 [30m(B[m
+[38;5;206m cwd 		 f56dca [30m(B[m
+[31m cwd_root 	 red [30m(B[m
+[38;5;231m end 		 ffffff [30m(B[m
+[38;5;196m error 		 ff0000 [30m(B[m
+[36m escape 	 cyan [30m(B[m
+[36m history_current cyan [30m(B[m
+[34m host 		 blue [30m(B[m
+[36m match 		 cyan [30m(B[m
+[30m(B[m normal 	 normal [30m(B[m
+[36m operator 	 cyan [30m(B[m
+[38;5;120m param 		 87ff87 [30m(B[m
+[38;5;215m quote 		 ffaf5f [30m(B[m
+[38;5;215m redirection 	 ffaf5f [30m(B[m
+[45m search_match 	 --background=purple [30m(B[m
+[45m selection 	 --background=purple [30m(B[m
+[31m status 	 red [30m(B[m
+[34m user 		 blue [30m(B[m
+[4m vaild_path 	 --underline [30m(B[m
