@@ -63,7 +63,13 @@
 (when (< 24 emacs-major-version)
   (load "~/.config/emacs/init.el"))
 
-;; 3. Custom Variables
+;; 3. Colors & Theme
+;;    Should work for all versions / configurations
+;;    may include package specific settings
+
+(load "~/.config/emacs/theme.el")
+
+;; 4. Custom Variables
 ;;    Machine-specific, so keep in home dir
 
 (setq custom-file "~/.emacs-custom.el")
