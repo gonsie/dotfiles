@@ -19,19 +19,28 @@ function diffIt() {
 
 # create install_dir if it doesn't exist
 if [ ! -e $install_dir ]; then
-    echo "Welcome, I assume it's your first time here?"
+    echo "* Welcome *"
     first_time=true
-    echo "Creating $install_dir"
+    echo "I assume it's your first time here: Creating $install_dir"
     mkdir $install_dir
     mkdir $install_dir/originals
-    # needed for current settings
+
+    # touch things needed for current settings
     if [ ! -e ~/.histories ]; then
     	mkdir ~/.histories
     fi
+    touch ~/.emacs-custom.el
 fi
 
 for d in `ls -d */`; do
     d=`basename $d`
+    # don't install if links file DNE
+    if [ ! -e $d/$link_file ]; then
+        continue
+    fi
+
+    CAP=`echo "${d}" | tr '[a-z]' '[A-Z]'`
+    echo -ne "\n** $CAP **\n"
     # move files to install dir
     if [ -e $install_dir/$d ]; then
         for f in `ls -A $d`; do
@@ -72,13 +81,27 @@ for d in `ls -d */`; do
 done
 
 if [ "$first_time" = true ]; then
-    echo "Installing Bashmarks"
+    echo "** Installing Bashmarks **"
     cd ../
-    git clone git@github.com:gonsie/bashmarks.git
+    git clone https://github.com/gonsie/bashmarks.git
     cd bashmarks
     make install
-    
-    echo "Setup Complete."
+
+    echo "** Installing Fishmarks **"
+    cd ../
+    git clone https://github.com/gonsie/fishmarks.git
+    cd fishmarks
+    make install
+
+    echo "** Setting up Git **"
+    echo -ne "Enter user.name: "
+    read username
+    echo -ne "Enter user.email: "
+    read useremail
+    git config --global user.name "$username"
+    git config --global user.email "$useremail"
+
+    echo "* Setup Complete *"
     echo "Please review the files saved in $install_dir/originals"
 fi
 
