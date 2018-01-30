@@ -8,10 +8,11 @@
 
 
 ;; Customize Face Manually
-(when (reqire 'org nil 'noerror)
+(when (require 'org nil 'noerror)
   (set-face-attribute 'org-table t :foreground "#536fd6")
   (set-face-attribute 'org-document-info t :foreground "#536fd6")
-  (set-face-attribute 'org-document-title t :foreground "#536fd6" :bold))
+  (set-face-attribute 'org-document-title t :foreground "#536fd6" :bold)
+)
 
 ;; ;; base16-theme
 ;; ;; this would work... if I didn't have a Terminal Profile already set up
