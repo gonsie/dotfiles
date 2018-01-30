@@ -9,7 +9,7 @@ function diffIt() {
         cat tmp
         echo -ne "\nUse < (c)loud or > (l)ocal copy or (n)either? "
         read copy
-        if [ $copy == "c" ]; then 
+        if [ $copy == "c" ]; then
             cp $1 $install_dir/$1
         elif [ $copy == "l" ]; then
             cp $install_dir/$1 $1
