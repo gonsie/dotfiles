@@ -1,6 +1,9 @@
 ;; 1. Presonal Preferences
 ;;    These settings should work in all versions of emacs
 
+;; package.el will insert this, but I call it from init.el
+;; (package-initialize)
+
 (setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
