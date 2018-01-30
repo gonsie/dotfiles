@@ -3,7 +3,7 @@
 	st = status
         s = status -sb
 	ls = ls-files
-        # quick and dirty push/pull to origin   
+        # quick and dirty push/pull to origin
         put = push origin master
 	pul = pull --rebase origin master
 	# oops
@@ -30,7 +30,7 @@
         # use custom .gitignore and .gitattributes
 	excludesfile = ~/.config/git/.gitignore
         attributiesfile = ~/.config/git/.gitattributes
-        editor = subl -nw
+        editor = emacs -nw
 
 [color]
         # use colors in commands capable of colored output
