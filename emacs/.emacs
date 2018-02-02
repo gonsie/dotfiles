@@ -15,6 +15,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (set-default 'cursor-type 'bar)
 (setq-default truncate-lines t)
+(show-paren-mode 1)
 
 ;; never kill my frame (GUI window). CMD-w (s-w) on mac
 (put 'delete-frame 'disabled t)

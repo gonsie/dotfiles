@@ -22,7 +22,6 @@
 ;; autopair
 ;; (autopair-global-mode)
 ;; (diminish 'autopair-mode)
-;; (show-paren-mode 1)
 (electric-pair-mode)
 
 ;; Linum
