@@ -17,6 +17,10 @@
 (setq-default truncate-lines t)
 (show-paren-mode 1)
 
+;; scrolling
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
+
 ;; never kill my frame (GUI window). CMD-w (s-w) on mac
 (put 'delete-frame 'disabled t)
 
