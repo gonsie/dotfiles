@@ -14,7 +14,7 @@
   (let* ((title (read-string "Slug: "))
          (slug (replace-regexp-in-string "[^a-z0-9]+" "-" (downcase title))))
     (expand-file-name
-     (format "~/Projects/blorg/drafts/%s.org" slug))))
+     (format "~/Projects/blorg/blog/drafts/%s.org" slug))))
 
 (setq org-capture-templates
       '(("b" "Blog Post" plain
