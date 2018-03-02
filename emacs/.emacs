@@ -63,7 +63,12 @@
 
 (global-set-key (kbd "s-}") 'other-frame)
 (global-set-key (kbd "s-{") 'other-frame)
-
+(global-set-key '[(kp-delete)] 'delete-char)
+(global-set-key '[(delete)] 'delete-char)
+(global-set-key '[(meta delete)] 'kill-word)
+(global-set-key '[(meta kp-delete)] 'kill-word)
+(global-set-key '[(control delete)] 'kill-word)
+(global-set-key '[(control kp-delete)] 'kill-word)
 
 ;; 2. Package Stuff
 ;;    kept in a separate file, reqires v24+
