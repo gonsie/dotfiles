@@ -21,6 +21,8 @@ function slurm_jobid {
   RC=$?
   if [[ $SLURM_JOBID ]]; then
     echo "[$SLURM_JOBID] "
+  elif [[ $LSB_JOBID ]]; then
+    echo "[$LSB_JOBID] "
   fi
   exit $RC
 }
