@@ -7,7 +7,7 @@ alias mv "mv -i"
 alias rm "rm -i"
 
 # navigation
-alias marco "pwd"
+alias marco "hostname -s | tr '\n' ' ' ; pwd"
 alias polo "cd -P ."
 alias cd.. "cd .."
 alias .. "cd .."

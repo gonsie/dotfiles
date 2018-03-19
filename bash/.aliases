@@ -9,7 +9,7 @@ alias rm="rm -i"
 # navigation
 alias la="ls -AFGhl"
 alias cdp="cd -P"
-alias marco="pwd"
+alias marco="hostname -s | tr '\n' ' ' ; pwd"
 alias polo="cd -P ."
 alias cd..="cd .."
 alias ..="cd .."
