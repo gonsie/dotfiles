@@ -9,5 +9,3 @@ export HISTFILE=~/.histories/.bash_history
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
-# Make some commands not show up in history
-export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help:la:ca:marco:polo"
