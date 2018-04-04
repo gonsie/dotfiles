@@ -51,7 +51,6 @@
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
 
-
 ;; KEY BINDINGS
 
 (define-key function-key-map "\e[Z" [S-tab])
@@ -63,12 +62,39 @@
 
 (global-set-key (kbd "s-}") 'other-frame)
 (global-set-key (kbd "s-{") 'other-frame)
-(global-set-key '[(kp-delete)] 'delete-char)
-(global-set-key '[(delete)] 'delete-char)
-(global-set-key '[(meta delete)] 'kill-word)
-(global-set-key '[(meta kp-delete)] 'kill-word)
-(global-set-key '[(control delete)] 'kill-word)
-(global-set-key '[(control kp-delete)] 'kill-word)
+
+;; MY KEY BOUND FUNCTIONS
+
+;; DELETE v KILL
+
+;; from https://stackoverflow.com/a/12990359/1160876
+(defun delete-word (arg)
+  "Delete characters backward until encountering the beginning of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (backward-word arg) (point))))
+
+(defun kp-delete-word (arg)
+  "Delete characters forwards until encountering the beginning of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
+
+;; from https://stackoverflow.com/a/35711240/1160876
+(defun delete-current-line (arg)
+  "Delete (not kill) the current line."
+  (interactive "p")
+  (save-excursion
+    (delete-region
+     (progn (forward-visible-line 0) (point))
+     (progn (forward-visible-line arg) (point)))))
+
+(global-set-key (kbd "<M-delete>") 'backward-kill-word)
+(global-set-key (kbd "<M-kp-delete>") 'kill-word)
+(global-set-key (kbd "<M-S-backspace>") 'delete-word)
+(global-set-key (kbd "M-S-<kp-delete>") 'kp-delete-word)
+(global-set-key (kbd "<C-backspace>") 'kill-whole-line)
+(global-set-key (kbd "<C-S-backspace>") 'delete-current-line)
 
 ;; 2. Package Stuff
 ;;    kept in a separate file, reqires v24+
