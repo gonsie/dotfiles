@@ -70,6 +70,22 @@
   (load-file buffer-file-name))
 (global-set-key (kbd "C-c C-l") 'load-current-file)
 
+;; https://truongtx.me/2013/09/13/emacs-dired-new-terminal-window-at-current-directory-on-macos
+;; default terminal application path
+(defvar tmtxt/macos-default-terminal-app-path
+  "/Applications/Utilities/Terminal.app" "The default path to terminal application in MacOS")
+;;; function to open new terminal window at current directory
+(defun tmtxt/open-current-dir-in-terminal ()
+  "Open current directory in dired mode in terminal application.
+For MacOS only"
+  (interactive)
+  (shell-command (concat "open -a "
+                         (shell-quote-argument tmtxt/macos-default-terminal-app-path)
+                         " "
+                         (shell-quote-argument (file-truename default-directory)))))
+
+(define-key dired-mode-map (kbd "C-c C-o") 'tmtxt/open-current-dir-in-terminal)
+
 ;; DELETE v KILL
 
 ;; from https://stackoverflow.com/a/12990359/1160876
