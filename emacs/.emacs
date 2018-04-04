@@ -65,6 +65,11 @@
 
 ;; MY KEY BOUND FUNCTIONS
 
+(defun load-current-file ()
+  (interactive)
+  (load-file buffer-file-name))
+(global-set-key (kbd "C-c C-l") 'load-current-file)
+
 ;; DELETE v KILL
 
 ;; from https://stackoverflow.com/a/12990359/1160876
