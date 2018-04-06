@@ -80,6 +80,19 @@
 (use-package graphviz-dot-mode
   :mode ("\\.gv\\'"))
 
+;; swiper pop-up search
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)
+         ("C-c C-r" . ivy-resume))
+  :init
+  (ivy-mode 1)
+  :config
+  (setq ivy-use-virutal-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-display-style 'fancy)
+  (setq ivy-count-format "(%d/%d) "))
+
 ;; Word Count (dotfile copy)
 (load "wc")
 
