@@ -13,6 +13,9 @@ function diffIt() {
             cp $1 $install_dir/$1
         elif [ $copy == "l" ]; then
             cp $install_dir/$1 $1
+        elif [ $copy == "q" ]; then
+            rm tmp
+            exit 0
         fi
     fi
 }
