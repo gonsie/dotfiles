@@ -83,8 +83,8 @@ For MacOS only"
                          (shell-quote-argument tmtxt/macos-default-terminal-app-path)
                          " "
                          (shell-quote-argument (file-truename default-directory)))))
-
-(define-key dired-mode-map (kbd "C-c C-o") 'tmtxt/open-current-dir-in-terminal)
+(eval-after-load "dired"
+  '(progn (define-key dired-mode-map (kbd "C-c C-o") 'tmtxt/open-current-dir-in-terminal)))
 
 ;; DELETE v KILL
 
