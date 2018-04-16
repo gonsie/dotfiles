@@ -110,6 +110,7 @@ With argument ARG, do this that many times."
      (progn (forward-visible-line 0) (point))
      (progn (forward-visible-line arg) (point)))))
 
+(global-set-key (kbd "<kp-delete>") 'delete-forward-char)
 (global-set-key (kbd "<M-delete>") 'backward-kill-word)
 (global-set-key (kbd "<M-kp-delete>") 'kill-word)
 (global-set-key (kbd "<M-S-backspace>") 'delete-word)
