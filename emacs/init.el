@@ -116,9 +116,10 @@
  'org-babel-load-languages
  '((python . t)
    (emacs-lisp . t)
-   (sh . t)
+   (shell . t)
    (dot . t)
    (org . t)
+   (applescript . t)
    ))
 
 ;; adding the <[TAB] shortcuts
