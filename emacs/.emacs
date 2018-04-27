@@ -118,6 +118,11 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "<C-backspace>") 'kill-whole-line)
 (global-set-key (kbd "<C-S-backspace>") 'delete-current-line)
 
+;; ibuffer
+(require 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq ibuffer-default-sorting-mode 'major-mode)
+
 ;; 2. Package Stuff
 ;;    kept in a separate file, reqires v24+
 
