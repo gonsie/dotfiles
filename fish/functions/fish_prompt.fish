@@ -52,7 +52,7 @@ function fish_prompt --description 'Write out the prompt'
 	case '*'
 
 		if not set -q __fish_prompt_color_cwd
-			set -g __fish_prompt_color_cwd OD(set_color $fish_color_cwd)
+			set -g __fish_prompt_color_cwd (set_color $fish_color_cwd)
 		end
 
 	end
