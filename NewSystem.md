@@ -39,10 +39,13 @@
 
 - [Fish](http://fishshell.com)
 - bash
-- emacs
+- `emacs --with-cocoa`
 - git
 - hub
-- ssh-id-copy
+- ssh-copy-id
+- aspell
+  Link this into emacs with:
+  `(setq ispell-program-name "/path")` and `(setq ispell-list-command "--list")`.
 
 ### Optional Brew Packages
 
@@ -57,7 +60,6 @@
 ## Repos to clone
 
 - dot files
-- emacs dusk theme
 - bashmarks
 - fishmarks
 - Terminal Theme
