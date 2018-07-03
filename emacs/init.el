@@ -97,6 +97,8 @@
 (load "wc")
 
 ;; ORG
+(use-package ob-applescript
+  :ensure t)
 
 ;; keybindings
 (global-set-key "\C-cl" 'org-store-link)

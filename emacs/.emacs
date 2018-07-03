@@ -4,6 +4,12 @@
 ;; package.el will insert this, but I call it from init.el
 ;; (package-initialize)
 
+;; minimal UI
+(scroll-bar-mode -1)
+(tool-bar-mode   -1)
+(tooltip-mode    -1)
+(menu-bar-mode   -1)
+
 (setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
