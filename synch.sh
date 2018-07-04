@@ -20,6 +20,16 @@ function diffIt() {
     fi
 }
 
+function fileLoop() {
+    for f in `ls -A $1`; do
+        if [ -d $1/$f ]; then
+            fileLoop $1/$f
+        elif [ $f != $link_file ]; then
+            diffIt $1/$f
+        fi
+    done
+}
+
 # create install_dir if it doesn't exist
 if [ ! -e $install_dir ]; then
     echo "* Welcome *"
@@ -51,18 +61,9 @@ for d in `ls -d */`; do
 
     CAP=`echo "${d}" | tr '[a-z]' '[A-Z]'`
     echo -ne "\n** $CAP **\n"
-    # move files to install dir
+    # recursively diff and move files to install dir
     if [ -e $install_dir/$d ]; then
-        for f in `ls -A $d`; do
-            if [ -d $d/$f ]; then
-                # search one level down
-                for df in `ls -A $d/$f`; do
-                    diffIt $d/$f/$df
-                done
-            elif [ $f != $link_file ]; then
-                diffIt $d/$f
-            fi
-        done
+        fileLoop $d
     else
         echo "Creating $install_dir/$d"
         cp -r $d $install_dir/$d
