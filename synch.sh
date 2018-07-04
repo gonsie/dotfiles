@@ -37,6 +37,9 @@ if [ ! -e $install_dir ]; then
     	mkdir ~/.histories
     fi
     touch ~/.emacs-custom.el
+    if [ ! -e ~/.ssh ]; then
+        mkdir ~/.ssh
+    fi
 fi
 
 for d in `ls -d */`; do
