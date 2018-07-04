@@ -28,6 +28,10 @@ if [ ! -e $install_dir ]; then
     mkdir $install_dir
     mkdir $install_dir/originals
 
+    # make sure submodules are loaded
+    git submodule init
+    git submodule update
+
     # touch things needed for current settings
     if [ ! -e ~/.histories ]; then
     	mkdir ~/.histories

@@ -1,0 +1,3 @@
+[submodule "emacs/elisp/ox-jekyll"]
+	path = emacs/elisp/ox-jekyll
+	url = https://github.com/gonsie/ox-jekyll.git
