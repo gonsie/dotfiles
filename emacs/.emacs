@@ -9,6 +9,7 @@
 (tool-bar-mode   -1)
 (tooltip-mode    -1)
 (menu-bar-mode   -1)
+(global-display-line-numbers-mode t)
 
 (setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
@@ -32,9 +33,6 @@
 
 ;; revert to disk
 (global-auto-revert-mode)
-
-;; disable menu bar
-(menu-bar-mode -1)
 
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
