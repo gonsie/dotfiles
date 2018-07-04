@@ -140,5 +140,8 @@
 (defun to-agenda-on-save-org-mode-file()
   (when (string= (message "%s" major-mode) "org-mode")
     (org-agenda-file-to-front)))
-
 ;;(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
+
+;; load ox-jekyll
+(add-to-list 'load-path "~/.config/emacs/elisp/ox-jekyll/")
+(require 'ox-jekyll)
