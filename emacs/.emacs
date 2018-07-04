@@ -95,17 +95,35 @@ For MacOS only"
 ;; DELETE v KILL
 
 ;; from https://stackoverflow.com/a/12990359/1160876
-(defun delete-word (arg)
+(defun backward-delete-word (arg)
   "Delete characters backward until encountering the beginning of a word.
 With argument ARG, do this that many times."
   (interactive "p")
   (delete-region (point) (progn (backward-word arg) (point))))
 
-(defun kp-delete-word (arg)
+(defun delete-word (arg)
   "Delete characters forwards until encountering the beginning of a word.
 With argument ARG, do this that many times."
   (interactive "p")
   (delete-region (point) (progn (forward-word arg) (point))))
+
+(defun backward-delete-line (arg)
+  "Delete (not kill) the current line, backwards from cursor.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (beginning-of-visual-line arg) (point))))
+
+(defun delete-line (arg)
+  "Delete (not kill) the current line, forwards from cursor.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (end-of-visual-line arg) (point))))
+
+(defun backward-kill-line (arg)
+  "Kill the current line, backwards from cursor.
+With argument ARG, do this that many tmies."
+  (interactive "p")
+  (kill-region (point) (progn (beginning-of-visual-line arg) (point))))
 
 ;; from https://stackoverflow.com/a/35711240/1160876
 (defun delete-current-line (arg)
@@ -116,13 +134,20 @@ With argument ARG, do this that many times."
      (progn (forward-visible-line 0) (point))
      (progn (forward-visible-line arg) (point)))))
 
+(global-set-key (kbd "<M-delete>") 'backward-delete-word)
+(global-set-key (kbd "<M-S-backspace>") 'backward-kill-word)
+(global-set-key (kbd "<C-backspace>") 'backward-delete-line)
+(global-set-key (kbd "<C-S-backspace>") 'backward-kill-line)
+(global-set-key (kbd "<s-backspace>") 'delete-current-line)
+(global-set-key (kbd "<s-S-backspace>") 'kill-whole-line)
 (global-set-key (kbd "<kp-delete>") 'delete-forward-char)
-(global-set-key (kbd "<M-delete>") 'backward-kill-word)
-(global-set-key (kbd "<M-kp-delete>") 'kill-word)
-(global-set-key (kbd "<M-S-backspace>") 'delete-word)
-(global-set-key (kbd "M-S-<kp-delete>") 'kp-delete-word)
-(global-set-key (kbd "<C-backspace>") 'kill-whole-line)
-(global-set-key (kbd "<C-S-backspace>") 'delete-current-line)
+(global-set-key (kbd "<M-kp-delete>") 'delete-word)
+(global-set-key (kbd "<M-S-kp-delete>") 'kill-word)
+(global-set-key (kbd "<C-kp-delete>") 'delete-line)
+(global-set-key (kbd "<C-S-kp-delete>") 'kill-line)
+(global-set-key (kbd "<s-kp-delete>") 'delete-current-line)
+(global-set-key (kbd "<s-S-kp-delete>") 'kill-whole-line)
+
 
 ;; ibuffer
 (require 'ibuffer)
