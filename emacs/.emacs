@@ -11,6 +11,12 @@
 (menu-bar-mode   -1)
 (global-display-line-numbers-mode t)
 
+;; Fancy titlebar for MacOS
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+(setq ns-use-proxy-icon  nil)
+(setq frame-title-format nil)
+
 (setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
