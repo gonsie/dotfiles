@@ -1,26 +1,9 @@
 ;; COLORS & THEME
 ;;
 ;; This file should work for any configuration of emacs
-;;
-;; - mode-specific colors
 ;; - Dusk Color Theme (for color-theme 6.6.0)
 ;; - Mode line
 
-
-;; Customize Face Manually
-(when (require 'org nil 'noerror)
-  (set-face-attribute 'org-document-info t :inherit 'shadow)
-  (set-face-attribute 'org-document-info-keyword t :foreground "peru")
-  (set-face-attribute 'org-document-title t :inherit 'shadow)
-  (set-face-attribute 'org-level-1 t :inherit 'outline-1)
-  (set-face-attribute 'org-level-4 t :foreground "SkyBlue2")
-  (set-face-attribute 'org-level-5 t :inherit 'org-level-1)
-  (set-face-attribute 'org-level-6 t :inherit 'org-level-2)
-  (set-face-attribute 'org-level-7 t :inherit 'org-level-3)
-  (set-face-attribute 'org-level-8 t :inherit 'org-level-4)
-  (set-face-attribute 'org-meta-line t :foreground "peru")
-  (set-face-attribute 'org-special-keyword t :inherit 'outline-4)
-)
 
 ;; ;; base16-theme
 ;; ;; this would work... if I didn't have a Terminal Profile already set up
