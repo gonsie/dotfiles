@@ -9,7 +9,8 @@
 (tool-bar-mode   -1)
 (tooltip-mode    -1)
 (menu-bar-mode   -1)
-(global-display-line-numbers-mode t)
+(when (< 25 emacs-major-version)
+  (global-display-line-numbers-mode t))
 
 ;; Fancy titlebar for MacOS
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
@@ -158,20 +159,26 @@ With argument ARG, do this that many tmies."
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-default-sorting-mode 'major-mode)
 
-;; 2. Package Stuff
-;;    kept in a separate file, reqires v24+
 
+;; Load Additional Files
+
+
+;; 2. Colors & Theme
+;;    Should work for all versions / configurations
+;;    shold not depend on any packages
+(load "~/.config/emacs/theme.el")
+
+;; 3. Package Stuff
+;;    kept in a separate file, reqires v24+
 (when (< 24 emacs-major-version)
   (load "~/.config/emacs/init.el"))
 
-;; 3. Colors & Theme
-;;    Should work for all versions / configurations
-;;    may include package specific settings
+;; 4. Org-mode stuff
+;;    Since it is so special
+(when (< 24 emacs-major-version)
+  (load "~/.config/emacs/org-config.el"))
 
-(load "~/.config/emacs/theme.el")
-
-;; 4. Custom Variables
+;; 5. Custom Variables
 ;;    Machine-specific, so keep in home dir
-
 (setq custom-file "~/.emacs-custom.el")
      (load custom-file)
