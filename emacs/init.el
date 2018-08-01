@@ -95,6 +95,13 @@
   (setq ivy-display-style 'fancy)
   (setq ivy-count-format "(%d/%d) "))
 
+;; dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (setq dashboard-startup-banner 'nil)
+  (dashboard-setup-startup-hook))
+
 ;; Word Count (dotfile copy)
 (load "wc")
 
