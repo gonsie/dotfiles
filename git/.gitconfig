@@ -1,23 +1,23 @@
 [alias]
         # svn like aliases
-	st = status
+        st = status
         s = status -sb
-	ls = ls-files
+        ls = ls-files
         # quick and dirty push/pull to origin
         put = push origin master
-	pul = pull --rebase origin master
-	# oops
+        pul = pull --rebase origin master
+        # oops
         fix = commit --amend -C HEAD
         undopush = push -f origin HEAD^:master
         # where am i?
-	marco = branch --merged
-	polo = branch -a
+        marco = branch --merged
+        polo = branch -a
         # Open ended commands
-	ci = commit -m
-	co = checkout
-	br = branch
+        ci = commit -m
+        co = checkout
+        br = branch
         # fast commit
-	cm = commit -a -m
+        cm = commit -a -m
         # fast log
         lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n
         # fast branch (create)
@@ -28,7 +28,7 @@
         whitespace = fix
 [core]
         # use custom .gitignore and .gitattributes
-	excludesfile = ~/.config/git/.gitignore
+        excludesfile = ~/.config/git/.gitignore
         attributiesfile = ~/.config/git/.gitattributes
         editor = emacs -nw
 
