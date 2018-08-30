@@ -21,6 +21,7 @@
  '((python . t)
    (emacs-lisp . t)
    (shell . t)
+   (awk . t)
    (dot . t)
    (org . t)
    (applescript . t)
