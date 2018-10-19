@@ -74,12 +74,16 @@
 (global-set-key (kbd "s-}") 'other-frame)
 (global-set-key (kbd "s-{") 'other-frame)
 
+(global-set-key (kbd "C-c g") 'revert-buffer)
+(global-set-key (kbd "C-c /") 'comment-or-uncomment-region)
+
 ;; MY KEY BOUND FUNCTIONS
 
 (defun load-current-file ()
   (interactive)
   (load-file buffer-file-name))
 (global-set-key (kbd "C-c C-l") 'load-current-file)
+
 
 ;; https://truongtx.me/2013/09/13/emacs-dired-new-terminal-window-at-current-directory-on-macos
 ;; default terminal application path
