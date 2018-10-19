@@ -72,9 +72,8 @@ function fish_prompt --description 'Write out the prompt'
 	set -g __fish_prompt_color_host (set_color $fish_color_host)
     end
 
-    if not set -q __fish_prompt_color_git
-        set -g __fish_prompt_color_git (set_color green)
-    end
+    set -g __fish_git_prompt_showcolorhints 1
+    set -g __fish_git_prompt_color_stagedstate brown
 
     if not set -q __fish_prompt_color_time
         set -g __fish_prompt_color_time (set_color ffaf5f)
@@ -87,5 +86,5 @@ function fish_prompt --description 'Write out the prompt'
         set prompt_venv " $__fish_prompt_color_venv("(basename "$VIRTUAL_ENV")")$__fish_prompt_color_normal"
     end
 
-    echo -n -s "$__fish_prompt_color_time" (date +%T) " $__fish_prompt_color_user" "$USER" "$__fish_prompt_color_normal" @ "$__fish_prompt_color_host" "$__fish_prompt_hostname" "$__fish_prompt_color_normal" ' ' "$__fish_prompt_color_cwd" (basename (prompt_pwd)) "$__fish_prompt_color_git" (__fish_git_prompt) "$__fish_prompt_color_normal" "$prompt_venv" "$prompt_status" "$delim" ' '
+    echo -n -s "$__fish_prompt_color_time" (date +%T) " $__fish_prompt_color_user" "$USER" "$__fish_prompt_color_normal" @ "$__fish_prompt_color_host" "$__fish_prompt_hostname " "$__fish_prompt_color_cwd" (basename (prompt_pwd)) "$__fish_prompt_color_normal" (__fish_git_prompt) "$__fish_prompt_color_normal" "$prompt_venv" "$prompt_status" "$delim" ' '
 end
