@@ -84,7 +84,6 @@
   (load-file buffer-file-name))
 (global-set-key (kbd "C-c C-l") 'load-current-file)
 
-
 ;; https://truongtx.me/2013/09/13/emacs-dired-new-terminal-window-at-current-directory-on-macos
 ;; default terminal application path
 (defvar tmtxt/macos-default-terminal-app-path
@@ -166,23 +165,26 @@ With argument ARG, do this that many tmies."
 
 ;; Load Additional Files
 
-
 ;; 2. Colors & Theme
 ;;    Should work for all versions / configurations
 ;;    shold not depend on any packages
 (load "~/.config/emacs/theme.el")
 
-;; 3. Package Stuff
-;;    kept in a separate file, reqires v24+
-(when (< 24 emacs-major-version)
-  (load "~/.config/emacs/init.el"))
+;; ONLY ON MACS / MY FRONTEND MACHINES
+(when (eq system-type 'darwin)
+  ;; 3. Package Stuff
+  ;;    kept in a separate file, reqires v24+
+  (when (< 24 emacs-major-version)
+    (load "~/.config/emacs/init.el"))
 
-;; 4. Org-mode stuff
-;;    Since it is so special
-(when (< 24 emacs-major-version)
-  (load "~/.config/emacs/org-config.el"))
+  ;; 4. Org-mode stuff
+  ;;    Since it is so special
+  (when (< 24 emacs-major-version)
+    (load "~/.config/emacs/org-config.el")))
+
 
 ;; 5. Custom Variables
 ;;    Machine-specific, so keep in home dir
-(setq custom-file "~/.emacs-custom.el")
-     (load custom-file)
+(setq cursys (getenv "LCSCHEDCLUSTER"))
+(setq custom-file (concat "~/.emacs.d/custom-" cursys ".el"))
+(load custom-file 'noerror)
