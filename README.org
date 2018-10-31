@@ -26,6 +26,10 @@
     - https://github.com/tlh/workgroups.el
     - http://autopair.googlecode.com
 
+** =.extra= file example
+
+: source ~/.config/bash/bashmarks.sh
+
 ** =.extra.fish= file example
 
 : # local homebrew settings
