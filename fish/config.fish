@@ -34,3 +34,5 @@ end
 set -g fish_color_cwd f56dca
 set -g fish_color_user blue
 set -g fish_color_host blue
+
+source ~/.extra.fish
