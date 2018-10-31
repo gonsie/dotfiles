@@ -1,15 +1,16 @@
 function fish_colors --description 'Show Colors'
         echo (set_color "--background=brblack") "*These colors are defined by the Terminal Application*" (set_color normal)
-        echo -e (set_color black) black \t\t (set_color brblack) brblack
-        echo -e (set_color red) red \t\t (set_color brred) brred
-        echo -e (set_color green) green \t\t (set_color brgreen) brgreen
-        echo -e (set_color yellow) yellow \t (set_color bryellow) bryellow
-        echo -e (set_color blue) blue \t\t (set_color brblue) brblue
-        echo -e (set_color magenta) magenta \t (set_color brmagenta) brmagenta
-        echo -e (set_color cyan) cyan \t\t (set_color brcyan) brcyan
-        echo -e (set_color white) white \t\t (set_color brwhite) brwhite
+        echo -e (set_color black) black \t\t (set_color brblack) brblack \t\t (set_color normal) (set_color "--background=brblack") brblack (set_color normal)
+        echo -e (set_color red) red \t\t (set_color brred) brred \t\t (set_color normal) (set_color "--background=brred") brred (set_color normal)
+        echo -e (set_color green) green \t\t (set_color brgreen) brgreen \t\t (set_color normal) (set_color "--background=brgreen") brgreen (set_color normal)
+        echo -e (set_color yellow) yellow \t (set_color bryellow) bryellow \t\t (set_color normal) (set_color "--background=bryellow") bryellow (set_color normal)
+        echo -e (set_color blue) blue \t\t (set_color brblue) brblue \t\t (set_color normal) (set_color "--background=brblue") brblue (set_color normal)
+        echo -e (set_color magenta) magenta \t (set_color brmagenta) brmagenta \t\t (set_color normal) (set_color "--background=brmagenta") brmagenta (set_color normal)
+        echo -e (set_color cyan) cyan \t\t (set_color brcyan) brcyan \t\t (set_color normal) (set_color "--background=brcyan") brcyan (set_color normal)
+        echo -e (set_color white) white \t\t (set_color brwhite) brwhite \t\t (set_color normal) (set_color "--background=brwhite") brwhite (set_color normal)
         echo -e (set_color brown) brown
         echo -e (set_color normal) normal
+        echo ""
         echo (set_color "--background=brblack") "*These colors are defined in Fish (fish_color_x)*" (set_color normal)
         echo (set_color "$fish_color_autosuggestion") autosuggestion  $fish_color_autosuggestion (set_color normal)
         echo -e (set_color "$fish_color_command") command \t $fish_color_command (set_color normal)
