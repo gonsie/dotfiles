@@ -1,9 +1,9 @@
 * Gonsie's homedir settings files
-  These files are organized by type. Using the =synch.sh= script, local changes can be pulled. 
+  These files are organized by type. Using the =synch.sh= script, local changes can be pulled.
   Private info is stored in the =~/.extra= file on each local machine. Sorce'd by bash.
 
 ** Setup
-   All config files are located in ~/.config/ directory and are grouped into sub-directories by type. 
+   All config files are located in ~/.config/ directory and are grouped into sub-directories by type.
    From here, all dot file expected in different locations by the operating system are sym-linked.
    These are listed in the =links= file of each directory.
 
@@ -25,7 +25,7 @@
    Or install without git (does this still work??)
    : cd; curl -#L https://github.com/gonsie/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README,synch.sh}
 
-** Inspiration stolen from 
+** Inspiration stolen from
 
 *** Other dotfile repositories
    - https://github.com/mathiasbynens/dotfiles
@@ -54,7 +54,7 @@
 There are two kinds of new machines:
 
 - Brand-new front end systems
-- SSH-accessable servers 
+- SSH-accessable servers
 
 New front end systems require additional applicaitons and manual preference configuration.
 See the NewSystem.md file for more details.
