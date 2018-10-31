@@ -26,12 +26,14 @@
     - https://github.com/tlh/workgroups.el
     - http://autopair.googlecode.com
 
-** =.extra= file example
+** =.extra.fish= file example
 
-: # local exports
-: export SNPSLMD_LICENSE_FILE=f@file.com
-: export CDPATH=".:..:~:~/Documents/School/Rensselaer/"
-: 
+: # local homebrew settings
+: set -x PATH /Users/elsa/homebrew/bin $PATH
+:
+: # if vf is installed
+: #eval (python3 -m virtualfish)
+:
 : # local git settings
 : GIT_AUTHOR_NAME="Elsa"
 : GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
