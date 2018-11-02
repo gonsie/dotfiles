@@ -158,35 +158,24 @@ With argument ARG, do this that many tmies."
 (global-set-key (kbd "<s-kp-delete>") 'delete-current-line)
 (global-set-key (kbd "<s-S-kp-delete>") 'kill-whole-line)
 
-
 ;; ibuffer
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-default-sorting-mode 'major-mode)
 
-
-;; Load Additional Files
-
-;; 2. Colors & Theme
-;;    Should work for all versions / configurations
-;;    shold not depend on any packages
-(load "~/.config/emacs/theme.el")
-
-;; ONLY ON MACS / MY FRONTEND MACHINES
+;; Load Packages if on a Mac
 (when (eq system-type 'darwin)
-  ;; 3. Package Stuff
-  ;;    kept in a separate file, reqires v24+
+  ;; ensure running latest emacs
   (when (< 24 emacs-major-version)
-    (load "~/.config/emacs/init.el"))
-
-  ;; 4. Org-mode stuff
-  ;;    Since it is so special
-  (when (< 24 emacs-major-version)
+    (load "~/.config/emacs/init.el")
+    ;; org-mode stuff gets its own file
     (load "~/.config/emacs/org-config.el")))
 
+;; Load colors & theme
+;; must come after init.el to ensure packages for guis
+(load "~/.config/emacs/theme.el")
 
-;; 5. Custom Variables
-;;    Machine-specific, so keep in home dir
+;; Machine-specific configs
 (setq cursys (getenv "LCSCHEDCLUSTER"))
 (setq custom-file (concat "~/.emacs.d/custom-" cursys ".el"))
 (load custom-file 'noerror)
