@@ -63,11 +63,13 @@ fonts."
   '(progn
      (color-theme-initialize)
      (color-theme-dusk)
+     (set-frame-font "Inconsolata 14" nil t)
      (when (display-graphic-p)
        ;; settings for GUI emacs
        (add-to-list 'default-frame-alist '(background-color . "#282B35"))
        (add-to-list 'default-frame-alist '(foreground-color . "White"))
-       (set-frame-font "Inconsolata 18" nil t)
+       (set-frame-font "Fira Code 14" nil t)
+       (load-file "~/.config/emacs/fira-code.el")
        (put 'save-buffers-kill-terminal 'disabled t))))
 
 ;; Mode line settings
