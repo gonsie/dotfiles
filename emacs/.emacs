@@ -9,8 +9,10 @@
 (tool-bar-mode   -1)
 (tooltip-mode    -1)
 (menu-bar-mode   -1)
-(when (< 25 emacs-major-version)
-  (global-display-line-numbers-mode t))
+
+(if (<= 26 emacs-major-version)
+    (global-display-line-numbers-mode t)
+  (setq linum-format "%d "))
 
 ;; Fancy titlebar for MacOS
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))

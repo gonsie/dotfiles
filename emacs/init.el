@@ -27,9 +27,6 @@
 ;; (diminish 'autopair-mode)
 (electric-pair-mode)
 
-;; Linum
-(setq linum-format "%d ")
-
 ;; dired-sidebar
 (use-package dired-sidebar
   :bind ([f8] . dired-sidebar-toggle-sidebar)
