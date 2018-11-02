@@ -83,7 +83,8 @@
 (use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
-         ("C-c C-r" . ivy-resume))
+         ("C-c C-r" . ivy-resume)
+         ("C-c j" . ivy-immediate-done))
   :init
   (ivy-mode 1)
   :config
