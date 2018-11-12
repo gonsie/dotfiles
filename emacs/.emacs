@@ -176,6 +176,8 @@ With argument ARG, do this that many tmies."
 (load "~/.config/emacs/theme.el")
 
 ;; Machine-specific configs
-(setq cursys (getenv "LCSCHEDCLUSTER"))
+(if (eq system-type 'darwin)
+    (setq cursys (car (split-string (system-name) "\\." t)))
+  (setq cursys (getenv "LCSCHEDCLUSTER")))
 (setq custom-file (concat "~/.emacs.d/custom-" cursys ".el"))
 (load custom-file 'noerror)
