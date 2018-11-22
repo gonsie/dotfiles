@@ -63,7 +63,6 @@ fonts."
   '(progn
      (color-theme-initialize)
      (color-theme-dusk)
-     (set-frame-font "Inconsolata 14" nil t)
      (when (display-graphic-p)
        ;; settings for GUI emacs
        (add-to-list 'default-frame-alist '(background-color . "#282B35"))
