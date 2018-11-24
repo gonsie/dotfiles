@@ -14,6 +14,11 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'eldoc-mode))
+
 ;; Install by hand:
 ;; - org
 
@@ -82,6 +87,7 @@
 ;; swiper pop-up search
 (use-package swiper
   :ensure t
+  :diminish ivy-mode
   :bind (("C-s" . swiper)
          ("C-c C-r" . ivy-resume)
          ("C-c j" . ivy-immediate-done))
@@ -96,6 +102,7 @@
 ;; dashboard
 (use-package dashboard
   :ensure t
+  :diminish page-break-lines-mode
   :config
   (setq dashboard-startup-banner 'nil)
   (dashboard-setup-startup-hook))
