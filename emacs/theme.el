@@ -40,12 +40,11 @@ fonts."
      (font-lock-keyword-face ((t (:foreground "#BF369A"))))
      (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
      (font-lock-constant-face ((t (:foreground "#8B86CE"))))
-     (font-lock-type-face ((t (:foreground "#BF369A"))))
+     (font-lock-type-face ((t (:foreground "#f56dca"))))
      (font-lock-variable-name-face ((t (:foreground "Yellow"))))
      (font-lock-function-name-face ((t (:foreground "#95C76E"))))
      (font-lock-builtin-face ((t (:foreground "#D08E5D"))))  ;preprocessor stmts, brown
      (hl-line ((t (:background "#112233"))))
-     (mode-line ((t (:foreground "#ffffff" :background "#333333"))))
      (region ((t (:foreground nil :background "#555555"))))
      (show-paren-match-face ((t (:bold t :foreground "#ffffff" :background "#050505"))))
      (highline-face ((t (:background "#919075")))) ;919075
@@ -67,64 +66,54 @@ fonts."
        ;; settings for GUI emacs
        (add-to-list 'default-frame-alist '(background-color . "#282B35"))
        (add-to-list 'default-frame-alist '(foreground-color . "White"))
-       (set-frame-font "Fira Code 14" nil t)
+       (set-frame-font "Fira Code 18" nil t)
        (load-file "~/.config/emacs/fira-code.el")
        (put 'save-buffers-kill-terminal 'disabled t))))
 
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
+
 (setq-default mode-line-format
-  (list
-    ;; the buffer name; the file name as a tool tip
-    '(:eval (propertize "%b " 'face 'font-lock-keyword-face
-        'help-echo (buffer-file-name)))
+              (list
+               ;; day and time
+               '(:eval (propertize (format-time-string " %b %d %H:%M ")
+                                   'face 'font-lock-builtin-face))
 
-    ;; line and column
-    "(" ;; '%02' to set to 2 chars at least; prevents flickering
-      (propertize "%02l" 'face 'font-lock-type-face) ","
-      (propertize "%02c" 'face 'font-lock-type-face)
-    ") "
+               ;; the buffer name; the file name as a tool tip
+               '(:eval (propertize " %b " 'face
+                                   (let ((face (buffer-modified-p)))
+                                     (if face 'font-lock-warning-face
+                                       'font-lock-type-face))
+                                   'help-echo (buffer-file-name)))
 
-    ;; relative position, size of file
-    "["
-    (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-    "/"
-    (propertize "%I" 'face 'font-lock-constant-face) ;; size
-    "] "
+               '(:eval (propertize (concat "git" (vc-mode-line (buffer-file-name))) 'face 'font-lock-comment-face))
+               ;; line and column
+               " (" ;; '%02' to set to 2 chars at least; prevents flickering
+               (propertize "%02l" 'face 'font-lock-keyword-face) ","
+               (propertize "%02c" 'face 'font-lock-keyword-face)
+               ") "
 
-    ;; the current major mode for the buffer.
-    "["
+               ;; relative position, size of file
+               " ["
+               (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+               "/"
+               (propertize "%I" 'face 'font-lock-constant-face) ;; size
+               "] "
+               ;; the current major mode
+               (propertize " %m " 'face 'font-lock-string-face)
+               minor-mode-alist
+               ))
 
-    '(:eval (propertize "%m" 'face 'font-lock-string-face
-              'help-echo buffer-file-coding-system))
-    "] "
+(set-face-attribute 'mode-line nil
+                    :background "grey20"
+                    :foreground "white"
+                    :box '(:line-width 6 :color "grey20")
+                    :overline nil
+                    :underline nil)
 
-
-    "[" ;; insert vs overwrite mode, input-method in a tooltip
-    '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
-              'face 'font-lock-preprocessor-face
-              'help-echo (concat "Buffer is in "
-                           (if overwrite-mode "overwrite" "insert") " mode")))
-
-    ;; was this buffer modified since the last save?
-    '(:eval (when (buffer-modified-p)
-              (concat ","  (propertize "Mod"
-                             'face 'font-lock-warning-face
-                             'help-echo "Buffer has been modified"))))
-
-    ;; is this buffer read-only?
-    '(:eval (when buffer-read-only
-              (concat ","  (propertize "RO"
-                             'face 'font-lock-type-face
-                             'help-echo "Buffer is read-only"))))
-    "] "
-
-    ;; add the time, with the date and the emacs uptime in the tooltip
-    '(:eval (propertize (format-time-string "%H:%M")
-              'help-echo
-              (concat (format-time-string "%c; ")
-                      (emacs-uptime "Uptime:%hh"))))
-    " -- ("
-    minor-mode-alist  ;; list of minor modes
-    " ) %-" ;; fill with '-'
-))
+(set-face-attribute 'mode-line-inactive nil
+                    :background "grey35"
+                    :foreground "white"
+                    :box '(:line-width 6 :color "grey35")
+                    :overline nil
+                    :underline nil)
