@@ -113,5 +113,13 @@
   (display-buffer (get-buffer "*dashboard*") '(display-buffer-pop-up-frame . nil)))
 (global-set-key (kbd "C-c n") #'my/new-frame-dashboard)
 
+(use-package auto-dim-other-buffers
+  :ensure t
+  :diminish auto-dim-other-buffers-mode
+  :init (auto-dim-other-buffers-mode t)
+  :config
+  (set-face-attribute 'auto-dim-other-buffers-face nil
+                      :background "#42444C"))
+
 ;; Word Count (dotfile copy)
 (load "wc")
