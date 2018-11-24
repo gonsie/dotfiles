@@ -26,6 +26,7 @@
 
 ;; Personally Included Packages
 (add-to-list 'load-path "~/.config/emacs/elisp")
+(load "wc")
 
 ;; autopair
 ;; (autopair-global-mode)
@@ -115,6 +116,3 @@
   :config
   (set-face-attribute 'auto-dim-other-buffers-face nil
                       :background "#42444C"))
-
-;; Word Count (dotfile copy)
-(load "wc")
