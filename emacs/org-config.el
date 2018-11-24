@@ -3,7 +3,7 @@
 
 ;; Settings
 (setq org-adapt-indentation nil)
-
+(setq org-highlight-latex-and-related '(latex))
 
 ;; Packages
 (use-package ob-applescript
