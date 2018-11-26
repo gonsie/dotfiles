@@ -4,6 +4,12 @@
   (display-buffer (get-buffer "*dashboard*") '(display-buffer-pop-up-frame . nil)))
 (global-set-key (kbd "C-c n") #'my/new-frame-dashboard)
 
+(defun my/switch-to-dashboard ()
+  "Switch to the dashboard buffer"
+  (interactive)
+  (switch-to-buffer "*dashboard*"))
+(global-set-key (kbd "C-c d") #'my/switch-to-dashboard)
+
 (defun dashboard-insert-project-list (list-display-name list)
   "Render LIST-DISPLAY-NAME title and items of LIST."
   (when (car list)
