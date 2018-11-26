@@ -81,14 +81,18 @@ fonts."
                '(:eval (propertize (format-time-string " %b %d %H:%M ")
                                    'face 'font-lock-builtin-face))
 
+
+               '(:eval (propertize (substring vc-mode 5)
+                                   'face 'font-lock-comment-face))
+
                ;; the buffer name; the file name as a tool tip
-               '(:eval (propertize " %b " 'face
+               '(:eval (propertize " %b "
+                                   'face
                                    (let ((face (buffer-modified-p)))
                                      (if face 'font-lock-warning-face
                                        'font-lock-type-face))
                                    'help-echo (buffer-file-name)))
 
-               '(:eval (propertize (concat "git" (vc-mode-line (buffer-file-name))) 'face 'font-lock-comment-face))
                ;; line and column
                " (" ;; '%02' to set to 2 chars at least; prevents flickering
                (propertize "%02l" 'face 'font-lock-keyword-face) ","
@@ -101,21 +105,28 @@ fonts."
                "/"
                (propertize "%I" 'face 'font-lock-constant-face) ;; size
                "] "
+
+               ;; spaces to align right
+               '(:eval (propertize
+                " " 'display
+                `((space :align-to (- (+ right right-fringe right-margin)
+                                      ,(+ 3 (string-width mode-name)))))))
+
                ;; the current major mode
                (propertize " %m " 'face 'font-lock-string-face)
-               minor-mode-alist
+               ;;minor-mode-alist
                ))
 
 (set-face-attribute 'mode-line nil
-                    :background "grey20"
+                    :background "#353644"
                     :foreground "white"
-                    :box '(:line-width 6 :color "grey20")
+                    :box '(:line-width 8 :color "#353644")
                     :overline nil
                     :underline nil)
 
 (set-face-attribute 'mode-line-inactive nil
-                    :background "grey35"
+                    :background "#565063"
                     :foreground "white"
-                    :box '(:line-width 6 :color "grey35")
+                    :box '(:line-width 8 :color "#565063")
                     :overline nil
                     :underline nil)
