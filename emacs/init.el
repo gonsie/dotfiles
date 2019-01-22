@@ -6,7 +6,7 @@
 (setq package-archives '(("org"   . "http://orgmode.org/elpa/")
 			 ("gnu"   . "http://elpa.gnu.org/packages/")
 			 ("melpa" . "https://melpa.org/packages/")))
-(unless package--initialized (package-initialize t))
+(unless package--initialized (package-initialize))
 
 ;; Bootstrap `use-package`
 (unless (package-installed-p 'use-package)
