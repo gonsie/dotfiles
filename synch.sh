@@ -69,7 +69,7 @@ for d in `ls -d */`; do
         cp -r $d $install_dir/$d
     fi
     # ensure links are properly set
-    for l in `sed "s.~.$HOME." $d/$link_file`; do
+    for l in `sed "s#~#$HOME#" $d/$link_file`; do
         if [ ! -e $l ]; then # file doesn't exist
             ln -s $install_dir/$d/`basename $l` $l
         elif [ ! -h $l ]; then # file exists and isn't a link
