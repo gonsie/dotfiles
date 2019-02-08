@@ -1,5 +1,5 @@
 # cd, then la
-if [[ $- == *i* ]]; then 
+if [[ $- == *i* ]]; then
     ca() {
          builtin cd "$@" && la
     }
@@ -13,7 +13,7 @@ function md() {
 # Use Git’s colored diff when available
 hash git &>/dev/null
 if [ $? -eq 0 ]; then
-   function diff() {
+   function gdiff() {
             git diff --no-index --color-words "$@"
             }
 fi
@@ -45,4 +45,3 @@ function mva() {
 function catl() {
          cat $2 | head -$1 | tail -1
 }
-
