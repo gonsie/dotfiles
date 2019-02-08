@@ -49,6 +49,7 @@
 
 (global-set-key (kbd "C-c g") 'revert-buffer)
 (global-set-key (kbd "M-RET") 'newline-and-indent)
+(global-set-key (kbd "M-q") 'query-replace)
 
 ;; override html mode
 (define-key my-keys-mode-map (kbd "C-c /") #'comment-or-uncomment-region)
