@@ -42,7 +42,9 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
 
 ;; never kill my frame (GUI window). CMD-w (s-w) on mac
-(put 'delete-frame 'disabled t)
+(when (display-graphic-p)
+  (put 'delete-frame 'disabled t)
+  (put 'save-buffers-kill-terminal 'disabled t))
 
 ;; revert to disk
 (global-auto-revert-mode)
