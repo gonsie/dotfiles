@@ -18,6 +18,7 @@ alias -- -="cd -"
 
 # shortcuts
 alias g="git"
+alias gits="git s"
 alias o="open"
 alias oo="open ."
 
