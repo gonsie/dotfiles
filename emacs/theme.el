@@ -66,11 +66,11 @@ fonts."
        ;; settings for GUI emacs
        (add-to-list 'default-frame-alist '(background-color . "#282B35"))
        (add-to-list 'default-frame-alist '(foreground-color . "White"))
-       (if (< 24 emacs-major-version)
-           (set-frame-font "Fira Code 18" nil t)
-         (set-frame-font "Fira Code"))
-       (load-file "~/.config/emacs/fira-code.el")
-       (put 'save-buffers-kill-terminal 'disabled t))))
+       (when (member "Fira Code" (font-family-list))
+         (if (< 24 emacs-major-version)
+             (set-frame-font "Fira Code 18" nil t)
+           (set-frame-font "Fira Code"))
+         (load-file "~/.config/emacs/fira-code.el")))))
 
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
