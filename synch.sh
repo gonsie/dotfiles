@@ -2,20 +2,42 @@
 install_dir=~/.config
 link_file=links
 
+# takes one argument:
+# a filepath to diff between repo and $install_dir
 function diffIt() {
-    diff $1 $install_dir/$1 > tmp
+    # run diff silently
+    diff -N $1 $install_dir/$1 > tmp
+
     if [ $? -ne 0 ]; then
-        echo "diff $1"
-        cat tmp
-        echo -ne "\nUse < (c)loud or > (l)ocal copy or (n)either? "
-        read copy
-        if [ $copy == "c" ]; then
-            cp $1 $install_dir/$1
-        elif [ $copy == "l" ]; then
-            cp $install_dir/$1 $1
-        elif [ $copy == "q" ]; then
-            rm tmp
-            exit 0
+        echo -e "\n==> $1\n"
+
+        if [ -e $install_dir/$1 ]; then
+            # differences found
+            cat tmp
+
+            echo -ne "\n<(c)loud >(l)ocal (n)either (q)uit : "
+            read copy
+            if [ $copy == "c" ]; then
+                cp $1 $install_dir/$1
+            elif [ $copy == "l" ]; then
+                cp $install_dir/$1 $1
+            elif [ $copy == "q" ]; then
+                rm tmp
+                exit 0
+            fi
+        else
+            # file DNE at destination
+            echo "ALERT: $i does not exist in destination"
+            cat tmp
+
+            echo -ne "\n(i)install (s)kip (q)uit : "
+            read cmd
+            if [ $cmd == "i" ]; then
+                mkdir -p $install_dir/`dirname $1`
+                cp $1 $install_dir/$1
+            elif [ $cmd == "q" ]; then
+                exit 0
+            fi
         fi
     fi
 }
