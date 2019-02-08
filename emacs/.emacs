@@ -13,7 +13,9 @@
 
 (if (<= 26 emacs-major-version)
     (global-display-line-numbers-mode t)
-  (setq linum-format "%d "))
+  (if (fboundp 'linum-mode)
+      ((setq linum-format "%d ")
+       (linum-mode))))
 
 ;; Fancy titlebar for MacOS
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
