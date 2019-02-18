@@ -1,7 +1,7 @@
 (defun my/new-frame-dashboard ()
   "Create a new frame showing the dashboard"
   (interactive)
-  (display-buffer (get-buffer "*dashboard*") '(display-buffer-pop-up-frame . nil)))
+  (display-buffer "*dashboard*" '(display-buffer-pop-up-frame . nil)))
 (global-set-key (kbd "C-c n") #'my/new-frame-dashboard)
 
 (defun my/switch-to-dashboard ()
