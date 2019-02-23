@@ -9,15 +9,10 @@
 (unless package--initialized (package-initialize))
 
 ;; Bootstrap `use-package`
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-
-(use-package diminish
-  :ensure t
-  :config
-  (diminish 'eldoc-mode))
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
 
 ;; Install by hand:
 ;; - org
