@@ -36,6 +36,7 @@
 (set-default 'cursor-type 'bar)
 (setq-default truncate-lines t)
 (show-paren-mode 1)
+(setq inhibit-splash-screen t)
 
 ;; scrolling
 (setq mouse-wheel-progressive-speed nil)
