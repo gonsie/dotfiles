@@ -79,6 +79,31 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-default-sorting-mode 'major-mode)
 
+;; Scratch
+;; from https://www.emacswiki.org/emacs/RecreateScratchBuffer
+(defun unkillable-scratch-buffer ()
+  (if (equal (buffer-name (current-buffer)) "*scratch*")
+      (progn
+	(delete-region (point-min) (point-max))
+        (insert initial-scratch-message)
+        nil)
+    t))
+(add-hook 'kill-buffer-query-functions 'unkillable-scratch-buffer)
+(defun switch-to-scratch-and-back ()
+  "Toggle between *scratch* buffer and the current buffer.
+If the *scratch* buffer does not exist, create it."
+  (interactive)
+  (let ((scratch-buffer-name (get-buffer-create "*scratch*")))
+    (if (equal (current-buffer) scratch-buffer-name)
+        (switch-to-buffer (other-buffer))
+      (switch-to-buffer scratch-buffer-name (lisp-interaction-mode)))))
+(global-set-key (kbd "C-c s") 'switch-to-scratch-and-back)
+(set-variable 'initial-scratch-message
+";; This buffer is for text that is not saved, and for Lisp evaluation.
+;; Run lisp code by going to end-of-line and typing C-j
+
+")
+
 ;; Load Packages if on a Mac
 (when (eq system-type 'darwin)
   ;; ensure running latest emacs
