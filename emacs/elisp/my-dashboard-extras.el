@@ -1,3 +1,14 @@
+;; Config
+(setq dashboard-startup-banner 'nil)
+(dashboard-setup-startup-hook)
+;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+
+;; Quick keys
+(dashboard-insert-shortcut "f" "Recent Files:")
+(dashboard-insert-shortcut "a" "Agenda for today:")
+
+;; Key-bound functions for dashboards
+
 (defun my/new-frame-dashboard ()
   "Create a new frame showing the dashboard"
   (interactive)
@@ -9,6 +20,9 @@
   (interactive)
   (switch-to-buffer "*dashboard*"))
 (global-set-key (kbd "C-c d") #'my/switch-to-dashboard)
+
+
+;; Insert Project list
 
 (defun dashboard-insert-project-list (list-display-name list)
   "Render LIST-DISPLAY-NAME title and items of LIST."
@@ -41,3 +55,26 @@
 
 (add-to-list 'dashboard-item-generators  '(projects . dashboard-insert-projects))
 (add-to-list 'dashboard-items '(projects . 10) t)
+
+
+;; Insert *scratch* link
+
+(defun dashboard-insert-scratch (list-size)
+  (dashboard-insert-heading "Scratch:")
+  (insert "\n    ")
+  (widget-create 'push-button
+                 :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*scratch*")))
+                 :mouse-face 'highlight
+                 :follow-link "\C-m"
+                 :button-prefix ""
+                 :button-suffix ""
+                 :format "%[%t%]"
+                 (princ "*scratch*"))
+  (dashboard-insert-shortcut "s" "Scratch:"))
+(add-to-list 'dashboard-item-generators  '(scratch . dashboard-insert-scratch))
+(add-to-list 'dashboard-items '(scratch) t)
+
+;; Define items to show
+(setq dashboard-items '((recents  . 5)
+                        (scratch . 1)
+                        (projects . 10)))

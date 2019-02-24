@@ -104,8 +104,6 @@
   :ensure t
   :diminish page-break-lines-mode
   :config
-  (setq dashboard-startup-banner 'nil)
-  (dashboard-setup-startup-hook)
   (load "my-dashboard-extras"))
 
 (use-package auto-dim-other-buffers
