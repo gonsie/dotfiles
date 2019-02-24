@@ -37,8 +37,12 @@
 ;; CMake
 (use-package cmake-mode
   :mode ("\\.cmake\\'"
-         "CMakeLists\\.txt\\'")
-  :config (use-package cmake-font-lock))
+         "CMakeLists\\.txt\\'"))
+
+(use-package cmake-font-lock
+  :init
+  (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
+  :hook ('cmake-mode-hook 'cmake-font-lock-activate))
 
 ;; MAGIT
 (use-package magit
