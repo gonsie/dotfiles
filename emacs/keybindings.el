@@ -52,6 +52,8 @@
 (global-set-key (kbd "M-q") 'query-replace)
 (global-set-key (kbd "C-c v") 'toggle-truncate-lines)
 
+(global-set-key (kbd "M-SPC") 'cycle-spacing)
+
 ;; override html mode
 (define-key my-keys-mode-map (kbd "C-c /") #'comment-or-uncomment-region)
 
