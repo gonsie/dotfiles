@@ -15,6 +15,7 @@ function diffIt() {
             # differences found
             cat tmp
 
+            echo -e "\n<== $1"
             echo -ne "\n<(c)loud >(l)ocal (n)either (q)uit : "
             read copy
             if [ $copy == "c" ]; then
@@ -30,6 +31,7 @@ function diffIt() {
             echo "ALERT: $i does not exist in destination"
             cat tmp
 
+            echo -e "\n<== $1"
             echo -ne "\n(i)install (s)kip (q)uit : "
             read cmd
             if [ $cmd == "i" ]; then
