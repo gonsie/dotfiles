@@ -42,7 +42,10 @@
 (use-package cmake-font-lock
   :init
   (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
-  :hook ('cmake-mode-hook 'cmake-font-lock-activate))
+  :hook (cmake-mode . cmake-font-lock-activate))
+
+(use-package eldoc-cmake
+  :hook (cmake-mode . eldoc-cmake-enable))
 
 ;; MAGIT
 (use-package magit
