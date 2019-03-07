@@ -54,6 +54,10 @@
 
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 
+;; defaults overridden by multiple cursors
+(global-set-key (kbd "M-<f2>") 'kmacro-start-macro)
+(global-set-key (kbd "M-<f3>") 'kmacro-end-macro)
+
 ;; override html mode
 (define-key my-keys-mode-map (kbd "C-c /") #'comment-or-uncomment-region)
 
