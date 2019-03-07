@@ -51,9 +51,9 @@
                                               (format-time-string "%s" (file-attribute-access-time (cdr dirl))))))))
     (setq proj-list (sort proj-list (lambda (a b) (string> (cdr a) (cdr b)))))
     (when (dashboard-insert-project-list
-	   "Recent Projects:"
+	   "[R]ecent Projects:"
 	   (dashboard-subseq proj-list 0 list-size))
-      (dashboard-insert-shortcut "p" "Recent Projects:"))))
+      (dashboard-insert-shortcut "r" "[R]ecent Projects:"))))
 
 (add-to-list 'dashboard-item-generators  '(projects . dashboard-insert-projects))
 (add-to-list 'dashboard-items '(projects . 10) t)
@@ -61,8 +61,8 @@
 
 ;; Insert *scratch* link
 
-(defun dashboard-insert-scratch (list-size)
-  (dashboard-insert-heading "Scratch:")
+(defun dashboard-insert-freqs (list-size)
+  (dashboard-insert-heading "Frequent[s]:")
   (insert "\n    ")
   (widget-create 'push-button
                  :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*scratch*")))
@@ -72,11 +72,38 @@
                  :button-suffix ""
                  :format "%[%t%]"
                  (princ "*scratch*"))
-  (dashboard-insert-shortcut "s" "Scratch:"))
-(add-to-list 'dashboard-item-generators  '(scratch . dashboard-insert-scratch))
-(add-to-list 'dashboard-items '(scratch) t)
+  (insert "\n    ")
+  (widget-create 'push-button
+                 :action `(lambda (&rest ignore) (find-file-existing "~/.config/emacs"))
+                 :mouse-face 'highlight
+                 :follow-link "\C-m"
+                 :button-prefix ""
+                 :button-suffix ""
+                 :format "%[%t%]"
+                 (princ ".config/emacs"))
+  (insert "\n    ")
+  (widget-create 'push-button
+                 :action `(lambda (&rest ignore) (find-file-existing "~/Projects/dotfiles"))
+                 :mouse-face 'highlight
+                 :follow-link "\C-m"
+                 :button-prefix ""
+                 :button-suffix ""
+                 :format "%[%t%]"
+                 (princ "dotfiles"))
+  (insert "\n    ")
+  (widget-create 'push-button
+                 :action `(lambda (&rest ignore) (find-file-existing "~/Projects"))
+                 :mouse-face 'highlight
+                 :follow-link "\C-m"
+                 :button-prefix ""
+                 :button-suffix ""
+                 :format "%[%t%]"
+                 (princ "Projects"))
+    (dashboard-insert-shortcut "s" "Frequent[s]:"))
+(add-to-list 'dashboard-item-generators  '(freqs . dashboard-insert-freqs))
+(add-to-list 'dashboard-items '(freqs) t)
 
 ;; Define items to show
 (setq dashboard-items '((recents  . 5)
-                        (scratch . 1)
+                        (freqs . 1)
                         (projects . 10)))
