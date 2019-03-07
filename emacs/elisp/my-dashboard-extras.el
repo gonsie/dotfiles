@@ -6,6 +6,8 @@
 ;; Quick keys
 (dashboard-insert-shortcut "f" "Recent Files:")
 (dashboard-insert-shortcut "a" "Agenda for today:")
+(define-key dashboard-mode-map (kbd "n") 'next-line)
+(define-key dashboard-mode-map (kbd "p") 'previous-line)
 
 ;; Key-bound functions for dashboards
 
