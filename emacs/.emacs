@@ -79,6 +79,10 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-default-sorting-mode 'major-mode)
 
+;; line mode
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+;(global-set-key (kbd "C-c v") 'cycle-line-mode)
+
 ;; Scratch
 ;; from https://www.emacswiki.org/emacs/RecreateScratchBuffer
 (defun unkillable-scratch-buffer ()
