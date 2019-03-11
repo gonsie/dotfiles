@@ -41,7 +41,18 @@
   (set-face-attribute 'org-level-8 t :inherit 'org-level-4)
   (set-face-attribute 'org-meta-line t :foreground "peru")
   (set-face-attribute 'org-special-keyword t :inherit 'outline-4)
-)
+  )
+
+(defun org-add-my-extra-fonts ()
+  "Add highlight emphasis."
+  (add-to-list 'org-font-lock-extra-keywords
+               '("\\(:\\)\\([^\n\r\t]+\\)\\(:\\)"
+                 (1 '(face highlight invisible nil))
+                 (2 '(face highlight invisible nil))
+                 (3 '(face highlight invisible nil)))))
+
+(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
+
 
 
 ;; Keybindings
