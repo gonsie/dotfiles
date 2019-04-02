@@ -46,6 +46,7 @@
 
 (global-set-key (kbd "s-}") 'other-frame)
 (global-set-key (kbd "s-{") 'other-frame)
+(global-set-key (kbd "M-g") 'goto-line)
 
 (global-set-key (kbd "C-c g") 'revert-buffer)
 (global-set-key (kbd "M-RET") 'newline-and-indent)
