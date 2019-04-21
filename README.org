@@ -1,42 +1,46 @@
-* Gonsie's homedir settings files
-  These files are organized by type. Using the =synch.sh= script, local changes can be pulled.
-  Private info is stored in the =~/.extra= file on each local machine. Sorce'd by bash.
+** Quick Start
 
-** Setup
-   All config files are located in ~/.config/ directory and are grouped into sub-directories by type.
-   From here, all dot file expected in different locations by the operating system are sym-linked.
-   These are listed in the =links= file of each directory.
+: mkdir Projects & cd Projects
+: git clone https://github.com/gonsie/dotfiles.git
+: cd dotfiles
+: ./synch.sh
 
-** Installation
-   Get the git repo, then update homedir
-   : git clone git@github.com:gonsie/dotfiles.git
-   : cd dotfiles
-   : ./synch.sh
+/Return later and change the remote to use ssh protocol/.
 
-   Or install without git (does this still work??)
-   : cd; curl -#L https://github.com/gonsie/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README,synch.sh}
+*** Details: How to use this repo
 
-** Inspiration stolen from
+All the magic of this setup is in the ~synch.sh~ script.
+This script will install the dotfiles the first time through.
+Subsequent runs will perform a diff between the installed files and the repo copy of the files.
 
-*** Other dotfile repositories
-   - https://github.com/mathiasbynens/dotfiles
-   - https://github.com/necolas/dotfiles
+1. Clone this repo into a projects directory (I use ~~/Projects~).
+2. Run =synch.sh=.
+   If ~$install_dir~ does not exist, the script will create it and install all of the dot files, essentially mirroring this repo.
+   Any items listed in a ~$link_file~ file are sym-linked to ~~~.
+3. Any machine-specific configurations (or private information) should be stored in a ~.extra~ file outside of this repo or the ~$install_dir~ hierarchy.
+   Be sure to source the extra files from appropriate place.
+4. Make changes to the locally installed configuration files (stored in ~$install_dir~).
+   To synchronize changes back to the repo, rerun the =synch.sh= script.
+   The script will present diffs between the local install and the cloud (repo) versions of the files.
+   It will not make any commits, just move changed files into place.
 
-*** Emacs addons
-    - https://github.com/tlh/workgroups.el
-    - http://autopair.googlecode.com
+These settings can be changed at the top of the =synch.sh= script:
+- ~install_dir=~/.config~
+- ~link_file=links~
 
-** =.extra= file example
+** Emacs
+My emacs configuration uses a hierarchy of files, as described in [[http://www.gonsie.com/blorg/emacs-v22.html][this blog post]].
 
+** =.extra= files
+*** Bash:
 : source ~/.config/bash/bashmarks.sh
 
-** =.extra.fish= file example
-
+*** Fish (~.extra.fish~)
 : # local homebrew settings
 : set -x PATH /Users/elsa/homebrew/bin $PATH
 :
 : # if vf is installed
-: #eval (python3 -m virtualfish)
+: eval (python3 -m virtualfish)
 :
 : # local git settings
 : GIT_AUTHOR_NAME="Elsa"
@@ -54,4 +58,16 @@ There are two kinds of new machines:
 - SSH-accessable servers
 
 New front end systems require additional applicaitons and manual preference configuration.
-See the NewSystem.md file for more details.
+See the [[NewSystem.md][~NewSystem.md~]] file for more details.
+
+** Inspiration
+
+There are a ton of great dotfiles repos out there, but here were the ones I found that originally inspired this repo.
+
+*** Other dotfile repositories
+   - https://github.com/mathiasbynens/dotfiles
+   - https://github.com/necolas/dotfiles
+
+*** Emacs addons
+    - https://github.com/tlh/workgroups.el
+    - http://autopair.googlecode.com
