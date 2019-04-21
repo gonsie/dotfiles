@@ -55,3 +55,23 @@ There are two kinds of new machines:
 
 New front end systems require additional applicaitons and manual preference configuration.
 See the NewSystem.md file for more details.
+
+
+* ~snych.sh~
+
+My synch.sh script copies all the files from the git repo to a ~/.config directory. It then creates symlinks to the top level home directly for files that are expected to be there. 
+
+For emacs in particular, the synch.sh should:
+- Copy everything in dotfiles/emacs to ~/.config/emacs
+- create a symlink from ~/.emacs pointing to ~/.config/emacs/.emacs
+((In my .emacs file I then call other .el files, all of which are expected to be under ~/.config/emacs))
+
+The synch script has different behavior if the ~/.config directly does not exist (it assume that this is a new system and just does a clean copy. (and maybe try to download some things?)) 
+If ~/.config does exist, it will run diffs between what is in ~/.config and in the local directory (assuming it’s a checkout of the git repo). 
+
+I keep my dotfiles repo and and the ~/.config directory separate to allow for system-local configurations. I keep the structure of these two directories the same so that diffs between local configs and the git repo can be easily done by the synch script.  
+
+I have further refactored my emacs config into a hierarchy of files, which I somewhat describe here: http://www.gonsie.com/blorg/emacs-v22.html
+
+
+Please let me know if you have any further questions or if I haven’t explained things very well. I am very excited that you’ve found my configs useful!!
