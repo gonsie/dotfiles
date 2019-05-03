@@ -13,10 +13,10 @@ All the magic of this setup is in the ~synch.sh~ script.
 This script will install the dotfiles the first time through.
 Subsequent runs will perform a diff between the installed files and the repo copy of the files.
 
-1. Clone this repo into a projects directory (I use ~~/Projects~).
+1. Clone this repo into a projects directory (I use =~/Projects=).
 2. Run =synch.sh=.
    If ~$install_dir~ does not exist, the script will create it and install all of the dot files, essentially mirroring this repo.
-   Any items listed in a ~$link_file~ file are sym-linked to ~~~.
+   Any items listed in a ~$link_file~ file are sym-linked to =~=.
 3. Any machine-specific configurations (or private information) should be stored in a ~.extra~ file outside of this repo or the ~$install_dir~ hierarchy.
    Be sure to source the extra files from appropriate place.
 4. Make changes to the locally installed configuration files (stored in ~$install_dir~).
@@ -25,8 +25,8 @@ Subsequent runs will perform a diff between the installed files and the repo cop
    It will not make any commits, just move changed files into place.
 
 These settings can be changed at the top of the =synch.sh= script:
-- ~install_dir=~/.config~
-- ~link_file=links~
+- =install_dir=~/.config=
+- =link_file=links=
 
 ** Emacs
 My emacs configuration uses a hierarchy of files, as described in [[http://www.gonsie.com/blorg/emacs-v22.html][this blog post]].
