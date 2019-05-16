@@ -81,7 +81,8 @@
 
 ;; line mode
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-;(global-set-key (kbd "C-c v") 'cycle-line-mode)
+(when (< 23 emacs-major-version)
+  (add-hook 'prog-mode-hook #'hs-minor-mode))
 
 ;; Scratch
 ;; from https://www.emacswiki.org/emacs/RecreateScratchBuffer
