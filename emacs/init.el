@@ -116,3 +116,15 @@
   :config
   (set-face-attribute 'auto-dim-other-buffers-face nil
                       :background "#42444C"))
+
+;; Python development
+(use-package elpy
+  :defer t
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
+(use-package flycheck
+  :after elpy
+  :hook (elpy-mode . flycheck-mode))
+(use-package py-autopep8
+  :after elpy
+  :hook (elpy-mode . py-autopep8-enable-on-save))
