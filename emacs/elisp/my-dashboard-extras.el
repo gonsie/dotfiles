@@ -106,4 +106,4 @@
 ;; Define items to show
 (setq dashboard-items '((recents  . 5)
                         (freqs . 1)
-                        (projects . 10)))
+                        (projects . 20)))
