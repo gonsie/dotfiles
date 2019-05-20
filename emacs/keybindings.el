@@ -48,12 +48,12 @@
 (global-set-key (kbd "s-{") 'other-frame)
 (global-set-key (kbd "M-g") 'goto-line)
 
-(global-set-key (kbd "C-c g") 'revert-buffer)
 (global-set-key (kbd "M-RET") 'newline-and-indent)
-(global-set-key (kbd "M-q") 'query-replace)
-(global-set-key (kbd "C-c v") 'toggle-truncate-lines)
-
+(global-set-key (kbd "M-q")   'query-replace)
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
+
+(global-set-key (kbd "C-c g") 'revert-buffer)
+(global-set-key (kbd "C-c v") 'toggle-truncate-lines)
 
 (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 
@@ -63,6 +63,8 @@
 
 ;; override html mode
 (define-key my-keys-mode-map (kbd "C-c /") #'comment-or-uncomment-region)
+;; override elpy mode
+(define-key my-keys-mode-map (kbd "C-c C-t") #'hs-show-all)
 
 ;; My Key Bound Functions
 
