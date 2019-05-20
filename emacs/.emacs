@@ -17,26 +17,29 @@
     (setq linum-format "%d ")
     (global-linum-mode 1)))
 
+(set-default 'cursor-type 'bar)
+(show-paren-mode 1)
+
 ;; Fancy titlebar for MacOS
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 (setq ns-use-proxy-icon  nil)
 (setq frame-title-format nil)
 
-;; random global settings
+;; emacs behaviour settings
 (setq make-backup-files nil)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(delete-selection-mode 1)
+(setq inhibit-splash-screen t)
+(global-auto-revert-mode)
+
+;; file settings
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
 (setq gdb-gud-control-all-threads t)
-(delete-selection-mode 1)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq require-final-newline t)
-(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
-(defalias 'yes-or-no-p 'y-or-n-p)
-(set-default 'cursor-type 'bar)
 (setq-default truncate-lines t)
-(show-paren-mode 1)
-(setq inhibit-splash-screen t)
+(setq large-file-warning-threshold 100000000)
 
 ;; scrolling
 (setq mouse-wheel-progressive-speed nil)
@@ -47,11 +50,9 @@
   (put 'delete-frame 'disabled t)
   (put 'save-buffers-kill-terminal 'disabled t))
 
-;; revert to disk
-(global-auto-revert-mode)
-
-;; warn when opening files bigger than 100MB
-(setq large-file-warning-threshold 100000000)
+;; hooks
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 
 ;; spell check all the time
 (dolist (hook '(text-mode-hook))
