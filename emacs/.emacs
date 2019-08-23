@@ -121,6 +121,7 @@ If the *scratch* buffer does not exist, create it."
 ;; Load colors & theme
 ;; must come after init.el to ensure packages for guis
 (load "~/.config/emacs/theme.el")
+(load "~/.config/emacs/eshell.el")
 
 ;; Machine-specific configs
 (if (eq system-type 'darwin)

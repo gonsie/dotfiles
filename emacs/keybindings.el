@@ -90,6 +90,8 @@ For MacOS only"
                          (shell-quote-argument (file-truename default-directory)))))
 (eval-after-load "dired"
   '(progn (define-key dired-mode-map (kbd "C-c C-o") 'tmtxt/open-current-dir-in-terminal)))
+;; (eval-after-load "eshell"
+;;   '(progn (define-key eshell-mode-map (kbd "C-c C-o") 'tmtxt/open-current-dir-in-terminal)))
 
 
 ;; DELETE v KILL
