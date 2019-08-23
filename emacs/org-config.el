@@ -6,6 +6,7 @@
 ;; Settings
 (setq org-adapt-indentation nil)
 (setq org-highlight-latex-and-related '(latex))
+(setq org-catch-invisible-edits 'show-and-error)
 
 ;; Packages
 (use-package ob-applescript
