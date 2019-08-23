@@ -44,17 +44,19 @@
 ;;(defun remap-up-key-in-shell () (local-set-key (kbd "<up>") 'comint-previous-input))
 ;;(add-hook 'shell-mode-hook 'remap-up-key-in-shell)
 
+(global-set-key (kbd "C-<tab>") 'other-window)
+
 (global-set-key (kbd "s-}") 'other-frame)
 (global-set-key (kbd "s-{") 'other-frame)
 (global-set-key (kbd "M-g") 'goto-line)
 
 (global-set-key (kbd "M-RET") 'newline-and-indent)
 (global-set-key (kbd "M-q")   'query-replace)
-(global-set-key (kbd "M-SPC") 'cycle-spacing)
+(global-set-key (kbd "M-SPC") 'execute-extended-command)
 
 (global-set-key (kbd "C-c g") 'revert-buffer)
 (global-set-key (kbd "C-c v") 'toggle-truncate-lines)
-
+(global-set-key (kbd "C-c w") 'whitespace-mode)
 (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 
 ;; defaults overridden by multiple cursors
@@ -64,7 +66,7 @@
 ;; override html mode
 (define-key my-keys-mode-map (kbd "C-c /") #'comment-or-uncomment-region)
 ;; override elpy mode
-(define-key my-keys-mode-map (kbd "C-c C-t") #'hs-show-all)
+(define-key my-keys-mode-map (kbd "C-c T") #'hs-show-all)
 
 ;; My Key Bound Functions
 
