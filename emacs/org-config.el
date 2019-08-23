@@ -45,15 +45,13 @@
   (set-face-attribute 'org-special-keyword t :inherit 'outline-4)
   )
 
-(defun org-add-my-extra-fonts ()
+(defun org-add-my-extra-markup ()
   "Add highlight emphasis."
   (add-to-list 'org-font-lock-extra-keywords
-               '("\\(:\\)\\([^\n\r\t]+\\)\\(:\\)"
-                 (1 '(face highlight invisible nil))
-                 (2 '(face highlight invisible nil))
-                 (3 '(face highlight invisible nil)))))
+               '("[^\\w]\\(:\\[^\n\r\t]+:\\)[^\\w]"
+                 (1 '(face highlight invisible nil)))))
 
-(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
+(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-markup)
 
 
 
