@@ -87,15 +87,24 @@
 (use-package graphviz-dot-mode
   :mode ("\\.gv\\'"))
 
-;; swiper pop-up search
-(use-package swiper
+;; counsel -> swiper -> ivy
+;; thanks abo-abo
+(use-package counsel
   :ensure t
   :diminish ivy-mode
+;;  )
+
+;; ;; swiper pop-up search
+;; (use-package swiper
+;;   :ensure t
+;;   :diminish ivy-mode
   :bind (("C-s" . swiper)
          ("C-c C-r" . ivy-resume)
-         ("C-c j" . ivy-immediate-done))
+         ("C-c j" . ivy-immediate-done)
+         ("M-C-s" . counsel-git-grep))
   :init
   (ivy-mode 1)
+  (counsel-mode 1)
   :config
   (setq ivy-use-virutal-buffers t)
   (setq enable-recursive-minibuffers t)
