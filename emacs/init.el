@@ -11,7 +11,6 @@
 ;; Bootstrap `use-package`
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
 (require 'bind-key)
 
 ;; Install by hand:
