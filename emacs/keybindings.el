@@ -59,6 +59,8 @@
 (global-set-key (kbd "C-c w") 'whitespace-mode)
 (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 
+(global-set-key (kbd "<f5>") 'compile)
+
 ;; defaults overridden by multiple cursors
 (global-set-key (kbd "M-<f2>") 'kmacro-start-macro)
 (global-set-key (kbd "M-<f3>") 'kmacro-end-macro)
