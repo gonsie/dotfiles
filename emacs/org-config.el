@@ -1,7 +1,7 @@
 ;; This is called from .emacs and assumes v24+
 
 
-(advice-add 'org-edit-src-code :after #'delete-other-windows)
+;(advice-add 'org-edit-src-code :after #'delete-other-windows)
 
 ;; Settings
 (setq org-adapt-indentation nil)
