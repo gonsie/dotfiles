@@ -64,16 +64,45 @@
 ;(setq org-default-notes-file (concat org-directory "/capture.org"))
 
 
-;; adding the <[TAB] shortcuts
-(eval-after-load 'org
-  '(progn
-     (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
-     (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
-     (add-to-list 'org-structure-template-alist '("t" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n"))
-     (add-to-list 'org-structure-template-alist '("T" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n\n#+property: exported:nil\n#+options: toc:nil date:nil\n"))
-     (add-to-list 'org-structure-template-alist '("E" "#+END_EXAMPLE\n?\n#+BEGIN_EXAMPLE"))
-     ))
+;;; ORG TEMPLATES
+;; as of 9.2 the org easy templates have changed
+;; (0) fix the behavior
+(require 'org-tempo)
+(add-hook 'org-mode-hook
+          (lambda () (setq-local electric-pair-inhibit-predicate
+                                `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+;; (1) recove the old templates
+(tempo-define-template "org-title-block"
+                       '("#+title: " (p "Title: ") n
+                         "#+author: Elsa Gonsiorowski" n
+                         (concat "#+date: " (format-time-string "%B %e, %Y")) n%))
+(tempo-define-template "org-properties-block"
+                       '(":PROPERTIES:" n
+                         (p) n
+                         ":END:" n%))
+(tempo-define-template "org-title-options-block"
+                       '("#+title: " (p "Title: ") n
+                         "#+author: Elsa Gonsiorowski" n
+                         (concat "#+date: " (format-time-string "%B %e, %Y")) n
+                         n
+                         "#+property: exported:nil" n
+                         "#+options: toc:nil date:nil" n%))
+(tempo-define-template "org-name"
+                       '("#+NAME: " n%))
+;(tempo-define-template "org-")
 
+;; (2) get the <[TAB] shortcuts
+
+;; (3) keep the old <[TAB] shortcuts
+(when (string< org-version "9.2")
+  (eval-after-load 'org
+    '(progn
+       (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
+       (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
+       (add-to-list 'org-structure-template-alist '("t" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n"))
+       (add-to-list 'org-structure-template-alist '("T" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n\n#+property: exported:nil\n#+options: toc:nil date:nil\n"))
+       (add-to-list 'org-structure-template-alist '("E" "#+END_EXAMPLE\n?\n#+BEGIN_EXAMPLE"))
+       (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_?\n\n#+END_")))))
 
 ;; Functions
 
