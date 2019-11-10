@@ -1,6 +1,7 @@
 #!/bin/bash
 install_dir=~/.config
 link_file=links
+diffs=""
 
 # takes one argument:
 # a filepath to diff between repo and $install_dir
@@ -25,6 +26,8 @@ function diffIt() {
             elif [ $copy == "q" ]; then
                 rm tmp
                 exit 0
+            else
+                diffs="$diffs $1"
             fi
         else
             # file DNE at destination
@@ -115,6 +118,11 @@ for d in `ls -d */`; do
     done
 done
 
+echo "Differences Remaining:"
+for i in `echo $diffs`; do
+    echo "- $i"
+done
+
 if [ "$first_time" = true ]; then
     echo "** Installing Bashmarks **"
     cd ../
@@ -143,6 +151,7 @@ fi
 unset install_dir
 unset first_time
 unset link_file
+unset diffs
 unset diffIt
 rm tmp
 
