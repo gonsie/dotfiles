@@ -58,8 +58,18 @@
 (add-to-list 'dashboard-item-generators  '(projects . dashboard-insert-projects))
 (add-to-list 'dashboard-items '(projects . 10) t)
 
-
-;; Insert *scratch* link
+;; helper function
+(defun dashboard-widget-create-existing-file (path name)
+  "Helper function to create a widget for existing files"
+  (insert "\n    ")
+  (widget-create 'push-button
+                 :action `(lambda (&rest ignore) (find-file-existing ,path))
+                 :mouse-face 'highlight
+                 :follow-link "\C-m"
+                 :button-prefix ""
+                 :button-suffix ""
+                 :format "%[%t%]"
+                 (princ name)))
 
 (defun dashboard-insert-freqs (list-size)
   (dashboard-insert-heading "Frequent[s]:")
@@ -72,34 +82,12 @@
                  :button-suffix ""
                  :format "%[%t%]"
                  (princ "*scratch*"))
-  (insert "\n    ")
-  (widget-create 'push-button
-                 :action `(lambda (&rest ignore) (find-file-existing "~/.config/emacs"))
-                 :mouse-face 'highlight
-                 :follow-link "\C-m"
-                 :button-prefix ""
-                 :button-suffix ""
-                 :format "%[%t%]"
-                 (princ ".config/emacs"))
-  (insert "\n    ")
-  (widget-create 'push-button
-                 :action `(lambda (&rest ignore) (find-file-existing "~/Projects/dotfiles"))
-                 :mouse-face 'highlight
-                 :follow-link "\C-m"
-                 :button-prefix ""
-                 :button-suffix ""
-                 :format "%[%t%]"
-                 (princ "dotfiles"))
-  (insert "\n    ")
-  (widget-create 'push-button
-                 :action `(lambda (&rest ignore) (find-file-existing "~/Projects"))
-                 :mouse-face 'highlight
-                 :follow-link "\C-m"
-                 :button-prefix ""
-                 :button-suffix ""
-                 :format "%[%t%]"
-                 (princ "Projects"))
-    (dashboard-insert-shortcut "s" "Frequent[s]:"))
+  (dashboard-widget-create-existing-file "~/.config/emacs" ".config/emacs")
+  (dashboard-widget-create-existing-file "~/Projects/dotfiles" "dotfiles")
+  (dashboard-widget-create-existing-file "~/Projects" "Projects")
+  (dashboard-widget-create-existing-file "~/ORG/" "~/ORG/"))
+
+(dashboard-insert-shortcut "s" "Frequent[s]:")
 (add-to-list 'dashboard-item-generators  '(freqs . dashboard-insert-freqs))
 (add-to-list 'dashboard-items '(freqs) t)
 
