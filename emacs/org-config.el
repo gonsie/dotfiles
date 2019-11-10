@@ -119,8 +119,8 @@
   (org-global-prop-set "exported:" (format-time-string (car org-time-stamp-formats) (current-time)))
   (org-export-dispatch))
 
-(add-hook 'org
-          '(local-set-key (kbd "C-c C-e") 'my/org-export-dispatch))
+;; (add-hook 'org
+;;           '(local-set-key (kbd "C-c C-e") 'my/org-export-dispatch))
 
 ;; blog post capturing
 (defun capture-blog-post-file ()
@@ -132,4 +132,9 @@
 (setq org-capture-templates
       '(("b" "Blog Post" plain
          (file capture-blog-post-file)
-         (file "templates/blog-post.org"))))
+         (file "templates/blog-post.org"))
+        ("j" "Journal" entry (file+datetree "~/ORG/journal.org")
+         "* %?\nEntered on %U\n %i\n %a")))
+
+;; Time tracking
+(setq org-time-stamp-rounding-minutes (quote (0 30)))
