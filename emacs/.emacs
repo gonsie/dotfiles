@@ -5,11 +5,10 @@
 ;; (package-initialize)
 
 ;; minimal UI
-(when (< 24 emacs-major-version)
-  (scroll-bar-mode -1)
-  (tool-bar-mode   -1)
-  (tooltip-mode    -1)
-  (menu-bar-mode   -1))
+(scroll-bar-mode -1)
+(tool-bar-mode   -1)
+(tooltip-mode    -1)
+(menu-bar-mode   -1)
 
 (if (<= 26 emacs-major-version)
     (global-display-line-numbers-mode t)
