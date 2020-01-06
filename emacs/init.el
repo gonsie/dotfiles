@@ -140,10 +140,11 @@
 ;; window management
 (use-package win-switch
   :load-path "~/.config/emacs/elisp/win-switch"
+  :ensure t
   :config
   (win-switch-setup-keys-ijkl-dvorak "\C-xo")
   (win-switch-add-key "o" 'next-window)
   (setq win-switch-idle-time 2.0)
-  (setq win-switch-threshold 2)
+  (setq win-switch-window-threshold 2)
   (setq win-switch-other-window-first nil)
   (setq win-switch-feedback-background-color "#536fd6"))
