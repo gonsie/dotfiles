@@ -115,7 +115,7 @@
   :ensure t
   :diminish page-break-lines-mode
   :config
-  (load "my-dashboard-extras"))
+  (load "~/.config/emacs/my-dashboard-extras.el"))
 
 (use-package auto-dim-other-buffers
   :ensure t
