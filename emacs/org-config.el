@@ -14,8 +14,8 @@
 
 (require 'ox-md)
 
-(add-to-list 'load-path "~/.config/emacs/elisp/ox-jekyll/")
-(require 'ox-jekyll)
+(add-to-list 'load-path "~/.config/emacs/elisp/ox-jekyll-md/")
+(require 'ox-jekyll-md)
 
 
 ;; Babel
