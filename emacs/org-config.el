@@ -75,7 +75,7 @@
 (tempo-define-template "org-title-block"
                        '("#+title: " (p "Title: ") n
                          "#+author: Elsa Gonsiorowski" n
-                         (concat "#+date: " (format-time-string "%B %e, %Y")) n%))
+                         (concat "#+date: " (format-time-string "%B %e, %Y")) n))
 (tempo-define-template "org-properties-block"
                        '(":PROPERTIES:" n
                          (p) n
@@ -86,9 +86,9 @@
                          (concat "#+date: " (format-time-string "%B %e, %Y")) n
                          n
                          "#+property: exported:nil" n
-                         "#+options: toc:nil date:nil" n%))
+                         "#+options: toc:nil date:nil" n))
 (tempo-define-template "org-name"
-                       '("#+NAME: " n%))
+                       '("#+NAME: " n))
 ;(tempo-define-template "org-")
 
 ;; (2) get the <[TAB] shortcuts
