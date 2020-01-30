@@ -81,6 +81,14 @@
   :ensure expand-region
   :bind ("M-=" . er/expand-region))
 
+;; csv
+(use-package csv-mode
+  :mode ("\\.csv\\'"))
+
+;; json
+(use-package json-mode
+  :mode ("\\.json\\'"))
+
 ;; rust
 (use-package rust-mode
   :mode ("\\.rs\\'"))
