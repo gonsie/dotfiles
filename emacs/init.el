@@ -54,6 +54,9 @@
   (set-face-attribute 'magit-section-highlight t :background "grey45")
   :ensure t)
 
+(use-package forge
+  :after magit)
+
 ;; Markdown
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
