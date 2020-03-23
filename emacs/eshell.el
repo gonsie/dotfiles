@@ -23,7 +23,7 @@
 ;; FUNCTIONS
 
 ;; implementation of bashmarks / fishmarks
-(defun eshell/c (arg)
+(defun eshell/c (&optional arg)
   "Change to bookmark'd directory"
   (if (= (length arg) 0)
       (eshell/cd)
