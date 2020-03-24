@@ -43,6 +43,11 @@
 ;; scrolling
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
+;; ;; keep currently line vertically centered
+;; (setq scroll-preserve-screen-position t
+;;       scroll-conservatively 0
+;;       maximum-scroll-margin 0.5
+;;       scroll-margin 99999)
 
 ;; never kill my frame (GUI window). CMD-w (s-w) on mac
 (when (display-graphic-p)
