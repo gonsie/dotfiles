@@ -1,4 +1,4 @@
-[submodule "emacs/elisp/win-switch"]
+[submodule "win-switch"]
 	path = emacs/elisp/win-switch
 	url = git@github.com:gonsie/win-switch
 [submodule "ox-jekyll-md"]

@@ -79,6 +79,15 @@ if [ ! -e $install_dir ]; then
     fi
 fi
 
+# setup submodule symlinks
+for m in `grep 'path' .gitmodules | cut -d' ' -f3`; do
+    echo "creating submodule symlink $install_dir/$m"
+    if [ ! -e $install_dir/$m ]; then
+        ln -s `pwd`/$m $install_dir/$m
+    fi
+done
+
+# main loop
 for d in `ls -d */`; do
     d=`basename $d`
     # don't install if links file DNE
