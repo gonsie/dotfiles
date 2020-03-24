@@ -82,6 +82,15 @@
                  :button-suffix ""
                  :format "%[%t%]"
                  (princ "*scratch*"))
+  (insert "\n    ")
+  (widget-create 'push-button
+                 :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*eshell*")))
+                 :mouse-face 'highlight
+                 :follow-link "\C-m"
+                 :button-prefix ""
+                 :button-suffix ""
+                 :format "%[%t%]"
+                 (princ "*eshell*"))
   (dashboard-widget-create-existing-file "~/.config/emacs" ".config/emacs")
   (dashboard-widget-create-existing-file "~/Projects/dotfiles" "dotfiles")
   (dashboard-widget-create-existing-file "~/Projects" "Projects")
