@@ -1,5 +1,3 @@
-;; This is called from .emacs and assumes v24+
-
 
 ;(advice-add 'org-edit-src-code :after #'delete-other-windows)
 
@@ -52,6 +50,8 @@
   (set-face-attribute 'org-special-keyword t :inherit 'outline-4)
   )
 
+;; My :highlighting: syntax ond export
+
 (defun org-add-my-extra-markup ()
   "Add highlight emphasis."
   (add-to-list 'org-font-lock-extra-keywords
@@ -60,6 +60,13 @@
 
 (add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-markup)
 
+(defun my-html-mark-tag (text backend info)
+  "Transcode :blah: into <mark>blah</mark> in body text."
+  (when (org-export-derived-backend-p backend 'html)
+    (let ((text (replace-regexp-in-string "[^\\w]\\(:\\)[^\n\t\r]+\\(:\\)[^\\w]" "<mark>"  text nil nil 1 nil)))
+      (replace-regexp-in-string "[^\\w]\\(<mark>\\)[^\n\t\r]+\\(:\\)[^\\w]" "</mark>" text nil nil 2 nil))))
+
+(add-to-list 'org-export-filter-plain-text-functions 'my-html-mark-tag)
 
 
 ;; Global Keybindings
@@ -116,21 +123,12 @@
 
 ;; Functions
 
-;; Add Org files to the agenda when we save them
-(defun to-agenda-on-save-org-mode-file()
-  (when (string= (message "%s" major-mode) "org-mode")
-    (org-agenda-file-to-front)))
-;;(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
+;; my preferred plain-text timestamps
+(defun my/current-timestamp nil
+    (interactive)
+  (format-time-string "%Y-%m-%d" (current-time)))
 
-;; add exported: property with date to org files when exporting
-(defun my/org-export-dispatch ()
-  "updateds the exported: property before opening the dispatch"
-  (interactive)
-  (org-global-prop-set "exported:" (format-time-string (car org-time-stamp-formats) (current-time)))
-  (org-export-dispatch))
-
-;; (add-hook 'org
-;;           '(local-set-key (kbd "C-c C-e") 'my/org-export-dispatch))
+;; Capturing
 
 ;; blog post capturing
 (defun capture-blog-post-file ()
@@ -140,11 +138,70 @@
      (format "~/Projects/blorg/blog/drafts/%s.org" slug))))
 
 (setq org-capture-templates
-      '(("b" "Blog Post" plain
-         (file capture-blog-post-file)
-         (file "templates/blog-post.org"))
-        ("j" "Journal" entry (file+datetree "~/ORG/journal.org")
-         "* %?\nEntered on %U\n %i\n %a")))
+      '(("b" "Blog Post" plain (file capture-blog-post-file) (file "templates/blog-post.org"))
+        ("j" "Journal" entry (file+datetree "~/ORG/journal.org") "* %?\nEntered on %U\n %i\n %a")
+        ("n" "Notes" entry (file "~/ORG/notes.org") "* %(my/current-timestamp) %?\n")
+        ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n%a\n")))
 
 ;; Time tracking
 (setq org-time-stamp-rounding-minutes (quote (0 30)))
+
+
+;; Archive
+(setq org-archive-location "~/ORG/archive.org::* From %s")
+
+
+;; Refile
+;; refile targets to any ~/Projects/XXXX/notes.org location
+(defun my/org-project-notes ()
+  (let (proj-list)
+    (dolist (dirl (directory-files "~/Projects" nil "^[^.]+.*"))
+      (setq proj-list (append proj-list
+                              (directory-files (concat "~/Projects/" dirl) t "^notes.org" nil))))
+    (remove nil proj-list)))
+
+(setq org-refile-targets
+      `((nil :maxlevel . 9)
+        (my/org-project-notes :maxlevel . 3)
+        ("~/ORG/projects.org" :maxlevel . 9)))
+
+
+;; Agenda
+(setq org-agenda-files '("~/ORG/projects.org"))
+(setq org-agenda-use-time-grid nil)
+(setq org-agenda-window-setup (quote current-window))
+(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-todo-ignore-deadlines (quote all))
+(setq org-agenda-todo-ignore-scheduled (quote all))
+(setq org-agenda-remove-tags t)
+(setq org-agenda-sorting-strategy
+  (quote
+   ((agenda deadline-up priority-down)
+    (todo priority-down category-keep)
+    (tags priority-down category-keep)
+    (search category-keep))))
+(setq org-agenda-custom-commands
+      '(("x" "Agenda & TODOs"
+         ((agenda "")
+          (alltodo "")))))
+
+;; Add Org files to the agenda when we save them
+(defun to-agenda-on-save-org-mode-file()
+  (when (string= (message "%s" major-mode) "org-mode")
+    (org-agenda-file-to-front)))
+;;(add-hook 'after-save-hook 'to-agenda-on-save-org-mode-file)
+
+;; Copy Completed Items to Journal
+(defun org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from
+           (org-element-property :begin (org-element-at-point)))) "/DONE" 'tree))
+
+(defun my/org-copy-done-tasks ()
+  (interactive)
+  (org-map-entries (org-copy nil "journal.org") "DONE" 'file 'comment))
