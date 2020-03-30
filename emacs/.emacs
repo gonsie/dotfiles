@@ -118,9 +118,7 @@ If the *scratch* buffer does not exist, create it."
 (when (eq system-type 'darwin)
   ;; ensure running latest emacs
   (when (< 24 emacs-major-version)
-    (load "~/.config/emacs/init.el")
-    ;; org-mode stuff gets its own file
-    (load "~/.config/emacs/org-config.el")))
+    (load "~/.config/emacs/init.el")))
 
 ;; Load colors & theme
 ;; must come after init.el to ensure packages for guis

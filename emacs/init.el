@@ -15,6 +15,10 @@
 
 ;; Install by hand:
 ;; - org
+(use-package org
+  :ensure t
+  :config
+  (load "~/.config/emacs/org-config.el"))
 
 ;; PACKAGES
 
