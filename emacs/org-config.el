@@ -8,6 +8,8 @@
 (setq org-highlight-latex-and-related '(latex))
 (setq org-catch-invisible-edits 'show-and-error)
 
+(setq org-ellipsis "⤵")
+
 ;; Packages
 (use-package ob-applescript
   :ensure t)
@@ -17,6 +19,10 @@
 (add-to-list 'load-path "~/.config/emacs/elisp/ox-jekyll-md/")
 (require 'ox-jekyll-md)
 
+(require 'ox-latex)
+(setq org-latex-listings t)
+(add-to-list 'org-latex-packages-alist '("" "listings"))
+(add-to-list 'org-latex-packages-alist '("" "color"))
 
 ;; Babel
 (org-babel-do-load-languages
@@ -56,13 +62,17 @@
 
 
 
-;; Keybindings
+;; Global Keybindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-iswitchb)
-;(setq org-default-notes-file (concat org-directory "/capture.org"))
 
+;; Org Mode Keybindings
+(add-hook 'org-mode
+          (lambda () (local-set-key (kbd "C-c C-x C-r") #'org-clock-report)))
+(add-hook 'org-clock-in-hook  'save-buffer)
+(add-hook 'org-clock-out-hook 'save-buffer)
 
 ;;; ORG TEMPLATES
 ;; as of 9.2 the org easy templates have changed
