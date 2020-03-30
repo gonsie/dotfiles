@@ -134,6 +134,7 @@
   :config
   (load "~/.config/emacs/my-dashboard-extras.el"))
 
+;; auto dim / dimmer
 (use-package auto-dim-other-buffers
   :ensure t
   :diminish auto-dim-other-buffers-mode
