@@ -90,6 +90,9 @@
 ;; Org Mode Keybindings
 (add-hook 'org-mode
           (lambda () (local-set-key (kbd "C-c C-x C-r") #'org-clock-report)))
+(add-hook 'org-agenda-mode-hook
+          (lambda () (local-set-key (kbd "h") #'(lambda () (interactive)(Info-goto-node "(org) Agenda Views")))))
+
 (add-hook 'org-clock-in-hook  'save-buffer)
 (add-hook 'org-clock-out-hook 'save-buffer)
 
