@@ -93,8 +93,11 @@
 (add-hook 'org-agenda-mode-hook
           (lambda () (local-set-key (kbd "h") #'(lambda () (interactive)(Info-goto-node "(org) Agenda Views")))))
 
+;; always save the damn file
 (add-hook 'org-clock-in-hook  'save-buffer)
 (add-hook 'org-clock-out-hook 'save-buffer)
+(add-hook 'org-after-todo-state-change-hook 'save-buffer)
+(add-hook 'org-after-refile-insert-hook 'save-buffer)
 
 ;;; ORG TEMPLATES
 ;; as of 9.2 the org easy templates have changed
