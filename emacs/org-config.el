@@ -27,6 +27,12 @@
 (add-to-list 'org-latex-packages-alist '("" "listings"))
 (add-to-list 'org-latex-packages-alist '("" "color"))
 
+(use-package org-ref
+  :init
+  (setq org-ref-completion-library 'org-ref-ivy-cite)
+  :config
+  (setq org-ref-bibliography-notes "~/ORG/refs.org"))
+
 ;; Babel
 (org-babel-do-load-languages
  'org-babel-load-languages
