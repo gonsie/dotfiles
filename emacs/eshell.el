@@ -63,18 +63,21 @@
 
 (defun my-prompt/jobid ()
   "Return job id if within an allocation."
-  (cond ((getenv "SLURM_JOBID") (setq jobid (getenv "SLURM_JOBID")))
-        ((getenv "LSB_JOBID") (setq jobid (getenv "LSB_JOBID")))
-        (setq jobid nil))
-  (when jobid
-      (concat " [" jobid "]")))
+  (cond ((getenv "SLURM_JOBID") (concat " [" (getenv "SLURM_JOBID") "]"))
+        ((getenv "LSB_JOBID") (concat "[" (getenv "LSB_JOBID") "]"))
+        ("")))
 
 (defun my-prompt/hostname ()
-  "Return hostname.")
+  "Return hostname."
+  (let ((hostname (split-string (system-name) "\\.")))
+    (if (> (length hostname) 1)
+        (concat " " (car hostname) " ")
+      (concat " " hostname " "))))
 
 (setq eshell-prompt-function
       (lambda ()
         (concat
+         (propertize (my-prompt/hostname) 'face 'font-lock-constant-face)
          (propertize (my-prompt/directory-name) 'face 'font-lock-type-face)
          (propertize (my-prompt/jobid) 'face 'default)
          (propertize " $ " 'face 'default))))
