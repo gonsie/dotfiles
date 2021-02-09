@@ -43,7 +43,7 @@
 ;; PROMPT
 
 
-(defun my/git-branch-string (pwd)
+(defun my-prompt/git-branch-string (pwd)
   "Returns current git branch as string."
   (when (and (not (file-remote-p pwd))
              (eshell-search-path "git"))
@@ -54,18 +54,29 @@
     ;;   (string-match "\\* \\(.*\\)" git-branches)
     ;;   (match-string 1 git-branches))))
 
-(defun my/directory-name (&optional path)
+(defun my-prompt/directory-name (&optional path)
   "Get last directory in a path"
   (let ((path (if path
                   path
                 (concat (eshell/pwd) "/"))))
     (file-name-nondirectory (directory-file-name (file-name-directory path)))))
 
+(defun my-prompt/jobid ()
+  "Return job id if within an allocation."
+  (cond ((getenv "SLURM_JOBID") (setq jobid (getenv "SLURM_JOBID")))
+        ((getenv "LSB_JOBID") (setq jobid (getenv "LSB_JOBID")))
+        (setq jobid nil))
+  (when jobid
+      (concat " [" jobid "]")))
+
+(defun my-prompt/hostname ()
+  "Return hostname.")
 
 (setq eshell-prompt-function
       (lambda ()
         (concat
-         (propertize (my/directory-name) 'face 'font-lock-type-face)
+         (propertize (my-prompt/directory-name) 'face 'font-lock-type-face)
+         (propertize (my-prompt/jobid) 'face 'default)
          (propertize " $ " 'face 'default))))
 
 (setq eshell-highlight-prompt nil)
