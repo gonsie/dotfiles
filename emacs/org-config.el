@@ -1,4 +1,3 @@
-
 ;(advice-add 'org-edit-src-code :after #'delete-other-windows)
 
 ;; Settings
@@ -8,6 +7,9 @@
 
 (setq org-ellipsis "⤵")
 
+;; Modules
+
+
 ;; Packages
 (use-package ob-applescript
   :ensure t)
@@ -16,6 +18,9 @@
 
 (add-to-list 'load-path "~/.config/emacs/elisp/ox-jekyll-md/")
 (require 'ox-jekyll-md)
+
+;; beamer notes
+
 
 (require 'ox-latex)
 (setq org-latex-listings t)
@@ -48,6 +53,7 @@
   (set-face-attribute 'org-level-8 t :inherit 'org-level-4)
   (set-face-attribute 'org-meta-line t :foreground "peru")
   (set-face-attribute 'org-special-keyword t :inherit 'outline-4)
+  (set-face-attribute 'org-hide t :foreground "#686a71")
   )
 
 ;; My :highlighting: syntax ond export
