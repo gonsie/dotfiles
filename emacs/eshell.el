@@ -7,13 +7,13 @@
 
 
 ;; ALIASES
-(add-hook
- 'eshell-mode-hook (lambda ()
-                     (eshell/alias "marco" "pwd")
-                     (eshell/alias "em" "find-file $1")
-                     (eshell/alias "eo" "find-file-other-window $1")
-                     (eshell/alias "la" "ls -AFGhl $1")
-                     (eshell/alias "d" "dired $1")))
+(add-hook 'eshell-mode-hook (lambda ()
+  (eshell/alias "marco" "pwd")
+  (eshell/alias "em" "find-file $1")
+  (eshell/alias "eo" "find-file-other-window $1")
+  (eshell/alias "la" "ls -AFGhl $1")
+  (eshell/alias "d" "dired $1")))
+
 
 ;; alias ideas:
 ;;   - magit shortcut
