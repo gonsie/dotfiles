@@ -31,8 +31,8 @@ These settings can be changed at the top of the =synch.sh= script:
 ** Emacs
 My emacs configuration uses a hierarchy of files, as described in [[http://www.gonsie.com/blorg/emacs-v22.html][this blog post]].
 
-** =.extra= files
-*** Bash:
+** Machine-Specific Settings
+*** Bash (~.extra~)
 : source ~/.config/bash/bashmarks.sh
 
 *** Fish (~.extra.fish~)
@@ -49,6 +49,13 @@ My emacs configuration uses a hierarchy of files, as described in [[http://www.g
 : GIT_AUTHOR_EMAIL="elsa@example.com"
 : GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 : git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+*** Eshell (~.emacs.d/custom-MACHINE.el~)
+: (setq shell-command-switch "-C")
+: (setq ispell-program-name "/opt/homebrew/bin/aspell")
+: (setq ispell-list-command "--list")
+: (add-hook 'eshell-mode-hook (lambda () (eshell/addpath "/opt/homebrew/bin")))
+: (setq shell-file-name "/opt/homebrew/bin/fish")
 
 ** Setting up a new machine
 
