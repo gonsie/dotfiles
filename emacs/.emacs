@@ -5,10 +5,9 @@
 ;; (package-initialize)
 
 ;; minimal UI
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
 (tooltip-mode    -1)
 (menu-bar-mode   -1)
 
@@ -33,6 +32,8 @@
 (delete-selection-mode 1)
 (setq inhibit-splash-screen t)
 (global-auto-revert-mode)
+(when (display-graphic-p)
+  (setq default-directory (concat (getenv "HOME") "/")))
 
 ;; file settings
 (setq-default indent-tabs-mode nil)
