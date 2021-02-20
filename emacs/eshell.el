@@ -15,12 +15,15 @@
   (eshell/alias "d" "dired $1")))
 
 
-;; alias ideas:
-;;   - magit shortcut
-;;   - dired shortcut
-
-
 ;; FUNCTIONS
+
+;; open file and magit shortcut
+(defun eshell/mg (&optional arg)
+  "Change to file and magit window. Default show current directory."
+  (if (= (length arg) 0)
+      (find-file ".")
+    (find-file arg))
+  (magit))
 
 ;; implementation of bashmarks / fishmarks
 (defun eshell/c (&optional arg)
@@ -40,8 +43,8 @@
     (erase-buffer)
     (eshell-send-input)))
 
-;; PROMPT
 
+;; PROMPT
 
 (defun my-prompt/git-branch-string (pwd)
   "Returns current git branch as string."
