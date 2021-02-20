@@ -4,7 +4,7 @@
 ;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
 ;; Quick keys
-(dashboard-insert-shortcut "f" "Recent Files:")
+(dashboard-insert-shortcut "f" "Recent [F]iles:")
 (dashboard-insert-shortcut "a" "Agenda for today:")
 (define-key dashboard-mode-map (kbd "n") 'next-line)
 (define-key dashboard-mode-map (kbd "p") 'previous-line)
@@ -75,26 +75,29 @@
   (dashboard-insert-heading "Frequent[s]:")
   (insert "\n    ")
   (widget-create 'push-button
-                 :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*scratch*")))
-                 :mouse-face 'highlight
-                 :follow-link "\C-m"
-                 :button-prefix ""
-                 :button-suffix ""
-                 :format "%[%t%]"
-                 (princ "*scratch*"))
-  (insert "\n    ")
-  (widget-create 'push-button
-                 :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*eshell*")))
+                 :action `(lambda (&rest ignore) (progn
+                                                   (switch-to-buffer (get-buffer-create "*eshell*"))
+                                                   (eshell)))
                  :mouse-face 'highlight
                  :follow-link "\C-m"
                  :button-prefix ""
                  :button-suffix ""
                  :format "%[%t%]"
                  (princ "*eshell*"))
+  (dashboard-widget-create-existing-file "~/ORG/" "~/ORG/")
   (dashboard-widget-create-existing-file "~/.config/emacs" ".config/emacs")
+  (dashboard-widget-create-existing-file custom-file ".emacs.d/custom")
   (dashboard-widget-create-existing-file "~/Projects/dotfiles" "dotfiles")
   (dashboard-widget-create-existing-file "~/Projects" "Projects")
-  (dashboard-widget-create-existing-file "~/ORG/" "~/ORG/"))
+  (insert "\n    ")
+  (widget-create 'push-button
+                 :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*scratch*")))
+                 :mouse-face 'highlight
+                 :follow-link "\C-m"
+                 :button-prefix ""
+                 :button-suffix ""
+                 :format "%[%t%]"
+                 (princ "*scratch*")))
 
 (dashboard-insert-shortcut "s" "Frequent[s]:")
 (add-to-list 'dashboard-item-generators  '(freqs . dashboard-insert-freqs))
