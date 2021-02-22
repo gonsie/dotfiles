@@ -30,6 +30,7 @@
 (setq make-backup-files nil)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (delete-selection-mode 1)
+(setq delete-by-moving-to-trash 1)
 (setq inhibit-splash-screen t)
 (global-auto-revert-mode)
 (when (display-graphic-p)

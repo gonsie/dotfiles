@@ -31,6 +31,10 @@
 ;; (diminish 'autopair-mode)
 (electric-pair-mode)
 
+(use-package osx-trash
+  :if (eq system-type 'darwin)
+  :ensure t)
+
 ;; dired-sidebar
 (use-package dired-sidebar
   :bind ([f8] . dired-sidebar-toggle-sidebar)
