@@ -1,3 +1,5 @@
+*Originally from https://github.com/cabellwg/exit-vim*
+
 # `exit-vim`
 
 A Vim plugin that will automatically close Vim on startup.
