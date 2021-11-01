@@ -110,10 +110,7 @@ fonts."
                '(:eval (propertize
                 " " 'display
                 `((space :align-to (- (+ right right-fringe right-margin)
-                                      ,(+ (string-width org-mode-line-string) (+ 3 (string-width mode-name)))
-                                      )))))
-
-               (propertize org-mode-line-string 'face '(:foreground "#5DD8FF"))
+                                      ,(+ 3 (string-width mode-name)))))))
 
                ;; the current major mode
                (propertize " %m " 'face 'font-lock-string-face)
