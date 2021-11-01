@@ -1,12 +1,12 @@
-source_dir=~/Projects/CLONES
+source_dir=~/.config/zsh/plugins
 
-source $source_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $source_dir/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source $source_dir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source $source_dir/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # bind UP and DOWN arrow keys
 for keycode in '[' 'O'; do
-  bindkey "^[${keycode}A" history-substring-search-up
-  bindkey "^[${keycode}B" history-substring-search-down
+  bindkey "^[${keycode}A" history-beginning-search-backward
+  bindkey "^[${keycode}B" history-beginning-search-forward
 done
 unset keycode
 
