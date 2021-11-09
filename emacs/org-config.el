@@ -1,4 +1,5 @@
-;(advice-add 'org-edit-src-code :after #'delete-other-windows)
+
+(advice-add 'org-edit-src-code :after #'delete-other-windows)
 
 ;; Settings
 (setq org-adapt-indentation nil)
@@ -6,9 +7,6 @@
 (setq org-catch-invisible-edits 'show-and-error)
 
 (setq org-ellipsis "⤵")
-
-;; Modules
-
 
 ;; Packages
 (use-package ob-applescript
@@ -19,13 +17,12 @@
 (add-to-list 'load-path "~/.config/emacs/elisp/ox-jekyll-md/")
 (require 'ox-jekyll-md)
 
-;; beamer notes
-
-
 (require 'ox-latex)
 (setq org-latex-listings t)
 (add-to-list 'org-latex-packages-alist '("" "listings"))
 (add-to-list 'org-latex-packages-alist '("" "color"))
+
+(require 'ox-reveal)
 
 (use-package org-ref
   :init
@@ -59,18 +56,17 @@
   (set-face-attribute 'org-level-8 t :inherit 'org-level-4)
   (set-face-attribute 'org-meta-line t :foreground "peru")
   (set-face-attribute 'org-special-keyword t :inherit 'outline-4)
-  (set-face-attribute 'org-hide t :foreground "#686a71")
   )
 
-;; My :highlighting: syntax ond export
+;; My :highlighting: syntax and export
 
-(defun org-add-my-extra-markup ()
+(defun org-add-my-extra-fonts ()
   "Add highlight emphasis."
   (add-to-list 'org-font-lock-extra-keywords
-               '("[^\\w]\\(:\\[^\n\r\t]+:\\)[^\\w]"
+               '("[^\\w]\\(\\^\\[^\n\r\t]+\\^\\)[^\\w]"
                  (1 '(face highlight invisible nil)))))
 
-(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-markup)
+;;(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-fonts)
 
 (defun my-html-mark-tag (text backend info)
   "Transcode :blah: into <mark>blah</mark> in body text."
@@ -106,33 +102,82 @@
 (add-hook 'org-mode-hook
           (lambda () (setq-local electric-pair-inhibit-predicate
                                 `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
-;; (1) recove the old templates
+
+(add-to-list 'org-tempo-keywords-alist '("N" . "name"))
+
+
+;; (1) recover the old templates
 (tempo-define-template "org-title-block"
-                       '("#+title: " (p "Title: ") n
+                       '("#+title: " (p) n
                          "#+author: Elsa Gonsiorowski" n
-                         (concat "#+date: " (format-time-string "%B %e, %Y")) n))
+                         (concat "#+date: " (format-time-string "%B %e, %Y")) n %))
+(add-to-list 'org-tempo-tags '("<t" . tempo-template-org-title-block))
 (tempo-define-template "org-properties-block"
                        '(":PROPERTIES:" n
                          (p) n
-                         ":END:" n%))
+                         ":END:" n %))
+(add-to-list 'org-tempo-tags '("<p" . tempo-template-org-properties-block))
 (tempo-define-template "org-title-options-block"
-                       '("#+title: " (p "Title: ") n
+                       '("#+title: " (p) n
                          "#+author: Elsa Gonsiorowski" n
                          (concat "#+date: " (format-time-string "%B %e, %Y")) n
                          n
                          "#+property: exported:nil" n
-                         "#+options: toc:nil date:nil" n))
-(tempo-define-template "org-name"
-                       '("#+NAME: " n))
-;(tempo-define-template "org-")
+                         "#+options: toc:nil date:nil" n %))
+(add-to-list 'org-tempo-tags '("<to" . tempo-template-org-title-options-block))
+(tempo-define-template "org-begin-end-block"
+                       '("#+begin_" (p) n
+                         "#+end_" n %))
+(add-to-list 'org-tempo-tags '("<b" . tempo-template-org-begin-end-block))
 
-;; (2) get the <[TAB] shortcuts
+;; ;; ;; (tempo-define-template "org-name"
+;; ;; ;;                        '("#+NAME: " n%))
+
+;; ;; ;; (2) get the <[TAB] shortcuts by hooking to abbrev-mode
+;; ;; ;; (defun expand-tempo-tag-interactive ()
+;; ;; ;;   "Expand the tempo-tag before point by calling the template."
+;; ;; ;;   (interactive)
+;; ;; ;;   (let (match templ)
+;; ;; ;;     (undo-boundary)
+;; ;; ;;     (if (dolist (tags tempo-local-tags)
+;; ;; ;;           (when (setq match (tempo-find-match-string (or (cdr tags)
+;; ;; ;;                                                          tempo-match-finder)))
+;; ;; ;;             (when (setq templ (assoc (car match) (symbol-value (car tags))))
+;; ;; ;;               (delete-region (cdr match) (point))
+;; ;; ;;               (funcall (cdr templ))
+;; ;; ;;               (return t))))
+;; ;; ;;         ;; Return a function with 'no-self-insert to stop input.
+;; ;; ;;         'expand-tempo-tag-alias
+;; ;; ;;       (funcall expand-function))))
+
+
+;; ;; ;; (defun expand-tempo-tag (expand-function)
+;; ;; ;;   "Expand the tempo-tag before point by calling the template."
+;; ;; ;;   (let (match templ)
+;; ;; ;;     (undo-boundary)
+;; ;; ;;     (if (dolist (tags tempo-local-tags)
+;; ;; ;;           (when (setq match (tempo-find-match-string (or (cdr tags)
+;; ;; ;;                                                          tempo-match-finder)))
+;; ;; ;;             (when (setq templ (assoc (car match) (symbol-value (car tags))))
+;; ;; ;;               (delete-region (cdr match) (point))
+;; ;; ;;               (funcall (cdr templ))
+;; ;; ;;               (return t))))
+;; ;; ;;         ;; Return a function with 'no-self-insert to stop input.
+;; ;; ;;         'expand-tempo-tag-alias
+;; ;; ;;       (funcall expand-function))))
+;; ;; ;;(fset 'expand-tempo-tag-alias 'expand-tempo-tag)
+;; ;; ;;(put 'expand-tempo-tag 'no-self-insert t)
+;; ;; ;;(add-hook 'abbrev-expand-function 'expand-tempo-tag)
+;; ;; ;; (add-hook 'org-mode
+;; ;; ;;           (lambda ()
+;; ;; ;;             (add-function :around (local 'abbrev-expand-function)
+;; ;; ;;                           #'expand-tempo-tag)))
 
 ;; (3) keep the old <[TAB] shortcuts
 (when (string< org-version "9.2")
   (eval-after-load 'org
     '(progn
-       (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
+       (add-to-list 'org-structure-template-alist '("N" "#+NAME: "))
        (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
        (add-to-list 'org-structure-template-alist '("t" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n"))
        (add-to-list 'org-structure-template-alist '("T" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n\n#+property: exported:nil\n#+options: toc:nil date:nil\n"))
@@ -148,7 +193,7 @@
 
 ;; Capturing
 
-;; blog post capturing
+;; blog post template
 (defun capture-blog-post-file ()
   (let* ((title (read-string "Slug: "))
          (slug (replace-regexp-in-string "[^a-z0-9]+" "-" (downcase title))))
@@ -159,9 +204,9 @@
       '(("b" "Blog Post" plain (file capture-blog-post-file) (file "templates/blog-post.org"))
         ("j" "Journal" entry (file+datetree "~/ORG/journal.org") "* %?\nEntered on %U\n %i\n %a")
         ("n" "Notes" entry (file "~/ORG/notes.org") "* %(my/current-timestamp) %?\n")
-        ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n%a\n")))
+        ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n")))
 
-;; Time tracking
+;; Time Tracking
 (setq org-time-stamp-rounding-minutes (quote (0 30)))
 
 
@@ -189,6 +234,7 @@
 (setq org-agenda-use-time-grid nil)
 (setq org-agenda-window-setup (quote current-window))
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+(setq org-deadline-warning-days 7)
 (setq org-agenda-skip-deadline-if-done t)
 (setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-todo-ignore-deadlines (quote all))
@@ -218,7 +264,7 @@
    (lambda ()
      (org-archive-subtree)
      (setq org-map-continue-from
-           (org-element-property :begin (org-element-at-point)))) "/DONE" 'tree))
+           (org-element-property :begin (org-element-at-point)))) "/DONE" 'file))
 
 (defun my/org-copy-done-tasks ()
   (interactive)

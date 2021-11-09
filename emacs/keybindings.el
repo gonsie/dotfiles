@@ -1,4 +1,4 @@
-;; My Keys Mode
+;;; My Keys Mode
 
 ;; https://emacs.stackexchange.com/questions/352/how-to-override-major-mode-bindings/360#360
 ;; Create a minor mode to ensure some binidings override all others
@@ -35,7 +35,7 @@
 ;; Minor mode tutorial: http://nullprogram.com/blog/2013/02/06/
 
 
-;; My Bindings
+;;; My Bindings
 
 (define-key function-key-map "\e[Z" [S-tab])
 (setq mac-command-modifier 'super) ;; s
@@ -71,7 +71,7 @@
 ;; override elpy mode
 (define-key my-keys-mode-map (kbd "C-c T") #'hs-show-all)
 
-;; My Key Bound Functions
+;;; My Key Bound Functions
 
 (defun load-current-file ()
   (interactive)
@@ -99,7 +99,7 @@ For MacOS only"
 ;;   '(progn (define-key eshell-mode-map (kbd "C-c C-o") 'tmtxt/open-current-dir-in-terminal)))
 
 
-;; DELETE v KILL
+;;; DELETE v KILL
 ;; from https://stackoverflow.com/a/12990359/1160876
 (defun backward-delete-word (arg)
   "Delete characters backward until encountering the beginning of a word.

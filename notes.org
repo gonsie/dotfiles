@@ -1,0 +1,16 @@
+#+title:  Notes about working on my config
+#+author: Elsa Gonsiorowski
+#+date:   April 20, 2021
+
+
+* 2021-09-20 bicycle / outline-minor-mode
+- use outline-minor-mode for config files
+- use bicycle package to overload tab
+- want to include hideshow mode
+- is there an HPC-compatible way to use use-package?
+  I want to use it do set options for outline-minor-mode
+** .emacs file hierarchy
+Since outline mode has a hierarchy, I should create one.
+Also, =use-package= is useful for more than just installed packages, you can use it with built-in packages as well!
+** .dir-locals.el file
+This can set up your outline-minor-mode settings on a per-directory basis.

@@ -1,4 +1,4 @@
-;; 1. Connect to MELPA
+;;; 1. Setup
 
 ;; Package configs
 (require 'package)
@@ -20,9 +20,9 @@
   :config
   (load "~/.config/emacs/org-config.el"))
 
-;; PACKAGES
+;;; 2. PACKAGES
 
-;; Personally Included Packages
+;;; * Personally Included Packages
 (add-to-list 'load-path "~/.config/emacs/elisp")
 (load "wc")
 
@@ -144,8 +144,7 @@
   :diminish auto-dim-other-buffers-mode
   :init (auto-dim-other-buffers-mode t)
   :config
-  (set-face-attribute 'auto-dim-other-buffers-face nil
-                      :background "#42444C"))
+  (set-face-attribute 'auto-dim-other-buffers-face nil :background "#42444C"))
 
 ;; Python development
 (use-package elpy
@@ -170,3 +169,15 @@
   (setq win-switch-window-threshold 2)
   (setq win-switch-other-window-first nil)
   (setq win-switch-feedback-background-color "#536fd6"))
+
+;; Keybindings
+(use-package bicycle
+  :after outline
+  :bind (:map outline-minor-mode-map
+              ([C-tab] . bicycle-cycle)
+              ([S-tab] . bicycle-cycle-global)))
+
+(use-package prog-mode
+  :config
+  (add-hook 'prog-mode-hook 'outline-minor-mode)
+  (add-hook 'prog-mode-hook 'hs-minor-mode))

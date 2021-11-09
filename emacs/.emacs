@@ -1,10 +1,10 @@
-;; 1. Presonal Preferences
-;;    These settings should work in all versions of emacs
+;;; 1. Presonal Preferences
+;; These settings should work in all versions of emacs
 
 ;; package.el will insert this, but I call it from init.el
 ;; (package-initialize)
 
-;; minimal UI
+;;;; UI
 (when (display-graphic-p)
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
@@ -26,23 +26,38 @@
 (setq ns-use-proxy-icon  nil)
 (setq frame-title-format nil)
 
-;; emacs behaviour settings
+;; pulse
+(defun pulse-line (&rest _)
+      "Pulse the current line."
+      (pulse-momentary-highlight-one-line (point)))
+
+(dolist (command '(scroll-up-command scroll-down-command
+                                     recenter-top-bottom other-window))
+  (advice-add command :after #'pulse-line))
+(setq pulse-flag nil)
+
+;;;; Behavior
+;; startup
 (setq make-backup-files nil)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (delete-selection-mode 1)
 (setq delete-by-moving-to-trash 1)
 (setq inhibit-splash-screen t)
-(global-auto-revert-mode)
 (when (display-graphic-p)
   (setq default-directory (concat (getenv "HOME") "/")))
 
-;; file settings
+;; files settings
+(global-auto-revert-mode)
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
 (setq gdb-gud-control-all-threads t)
 (setq require-final-newline t)
 (setq-default truncate-lines t)
 (setq large-file-warning-threshold 100000000)
+
+;; hooks
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
 
 ;; scrolling
 (setq mouse-wheel-progressive-speed nil)
@@ -58,30 +73,11 @@
   (put 'delete-frame 'disabled t)
   (put 'save-buffers-kill-terminal 'disabled t))
 
-;; hooks
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
-
 ;; spell check all the time
 (dolist (hook '(text-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
   (add-hook hook (lambda () (flyspell-mode -1))))
-
-;; KEYBINDINGS
-(load "~/.config/emacs/keybindings.el")
-
-;; MY FUNCTIONS
-
-;; UNDO Chris's AutoFillText
-(defun unfill-paragraph ()
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-paragraph nil)))
-(defun unfill-region ()
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-region (region-beginning) (region-end) nil)))
 
 ;; ibuffer
 (require 'ibuffer)
@@ -118,6 +114,15 @@ If the *scratch* buffer does not exist, create it."
 
 ")
 
+
+;;; 4. Alternate Load Files
+
+;; KEYBINDINGS
+(load "~/.config/emacs/keybindings.el")
+
+;; MY FUNCTIONS & Packages
+(add-to-list 'load-path "~/.config/emacs/elisp")
+
 ;; Load Packages if on a Mac
 (when (eq system-type 'darwin)
   ;; ensure running latest emacs
@@ -129,7 +134,7 @@ If the *scratch* buffer does not exist, create it."
 (load "~/.config/emacs/theme.el")
 (load "~/.config/emacs/eshell.el")
 
-;; Machine-specific configs
+;;; 5. Machine-specific configs
 (if (eq system-type 'darwin)
     (setq cursys (car (split-string (system-name) "\\." t)))
   (setq cursys (getenv "LCSCHEDCLUSTER")))
