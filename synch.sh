@@ -57,7 +57,7 @@ function fileLoop() {
     done
 }
 
-# create install_dir if it doesn't exist
+# First Time Setup
 if [ ! -e $install_dir ]; then
     echo "* Welcome *"
     first_time=true
@@ -65,18 +65,24 @@ if [ ! -e $install_dir ]; then
     mkdir $install_dir
     mkdir $install_dir/originals
 
-    # make sure submodules are loaded
-    git submodule init
-    git submodule update
-
     # touch things needed for current settings
     if [ ! -e ~/.histories ]; then
     	mkdir ~/.histories
     fi
-    touch ~/.emacs-custom.el
+    touch ~/.emacs.d/custom-`hostname -s`.el
     if [ ! -e ~/.ssh ]; then
         mkdir ~/.ssh
+        echo ""
+        echo "WARNING : submodules require ssh-keys"
+        echo "set up keys with github, then init git submodules"
+        echo ""
+    else
+        # assuming ssh-keys are set up
+        # make sure submodules are loaded
+        git submodule init
+        git submodule update
     fi
+
 fi
 
 # setup submodule symlinks
