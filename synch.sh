@@ -132,7 +132,9 @@ for d in `ls -d */`; do
         fi
     done
 done
-
+echo ""
+echo "** Synchronization Complete **"
+echo ""
 echo "Differences Remaining:"
 for i in `echo $diffs`; do
     echo "- $i"
