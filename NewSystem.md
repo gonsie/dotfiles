@@ -12,42 +12,35 @@
 
 # Installations
 
-- [Inconsolata](http://levien.com/type/myfonts/inconsolata.html)
-
-## App Store
-
-- XCode
-- [PopClip](http://pilotmoon.com/popclip/)
+- [Homebrew](https://brew.sh)
 
 ## Applications
 
-- [Dropbox](http://dropbox.com)
-- [SublimeText](http://sublimetext.com)
-  - Configure prefs synching
-  - Configure Package Control
-  - Add `subl` to shell
-  `ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl`
+- XCode / Developers Tools
+- [PopClip](http://pilotmoon.com/popclip/)
 - [Alfred](https://www.alfredapp.com)
   - Configure prefs synching
+- Bartender
+- [Dropbox](http://dropbox.com)
 
-## Command Line Tools
+## Fonts & Text Tools
 
-- [Homebrew](http://brew.sh)
-- [TeX](https://www.tug.org/mactex/)
+- [font-inconsolata](http://levien.com/type/myfonts/inconsolata.html)
+- font-fira-code
+- font-jetbrains-mono
+- aspell
+- pandoc
 
-### Brew Packages
+## Terminal Packages
 
 - [Fish](http://fishshell.com)
 - bash
-- `emacs --with-cocoa`
+- `--cask emacs`
 - git
 - hub
 - ssh-copy-id
-- aspell
-  Link this into emacs with:
-  `(setq ispell-program-name "/path")` and `(setq ispell-list-command "--list")`.
 
-### Optional Brew Packages
+### Optional Packages
 
 - GCC
 - GDB
@@ -57,9 +50,6 @@
 - graphviz
 - kramdown
 
-## Repos to clone
+# Repos
 
-- dot files
-- bashmarks
-- fishmarks
-- Terminal Theme
+- ORG, requires GPG setup for full file access

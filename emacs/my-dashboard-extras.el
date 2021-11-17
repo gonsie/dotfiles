@@ -1,5 +1,9 @@
 ;; Config
-(setq dashboard-startup-banner 'nil)
+(setq dashboard-startup-banner t)
+(setq dashboard-show-shortcuts 'nil)
+(setq dashboard-item-names '(("Recent Files:" . "Recent [F]iles:")
+                             ("Agenda for today:" . "Today:")
+                             ("Agenda for the coming week:" . "Agenda:")))
 (dashboard-setup-startup-hook)
 ;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 

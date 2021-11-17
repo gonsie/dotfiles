@@ -4,16 +4,7 @@
 (setq eshell-save-history-on-exit t)
 (setq eshell-prefer-lisp-functions nil)
 (setq eshell-destroy-buffer-when-process-dies t)
-
-
-;; ALIASES
-(add-hook 'eshell-mode-hook (lambda ()
-  (eshell/alias "marco" "pwd")
-  (eshell/alias "em" "find-file $1")
-  (eshell/alias "eo" "find-file-other-window $1")
-  (eshell/alias "la" "ls -AFGhl $1")
-  (eshell/alias "d" "dired $1")))
-
+(setq eshell-aliases-file "~/.config/emacs/eshell-aliases")
 
 ;; FUNCTIONS
 
@@ -26,6 +17,8 @@
   (magit))
 
 ;; implementation of bashmarks / fishmarks
+;; only [c] / jump command is implemented
+;; save, list, delete commands are not implemented
 (defun eshell/c (&optional arg)
   "Change to bookmark'd directory"
   (if (= (length arg) 0)

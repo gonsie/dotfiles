@@ -142,9 +142,12 @@
 (use-package auto-dim-other-buffers
   :ensure t
   :diminish auto-dim-other-buffers-mode
-  :init (auto-dim-other-buffers-mode t)
+  :init (add-hook 'after-init-hook (lambda ()
+                                     (when (fboundp 'auto-dim-other-buffers-mode)
+                                       (auto-dim-other-buffers-mode t))))
   :config
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#42444C"))
+
 
 ;; Python development
 (use-package elpy
