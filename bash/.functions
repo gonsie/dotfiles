@@ -45,3 +45,9 @@ function mva() {
 function catl() {
          cat $2 | head -$1 | tail -1
 }
+
+# show recent jobs from a user
+function debug-jobs () {
+         echo  sacct -X -u $1 -S `date +%m/%d/%y -d yesterday` -E `date +%m/%d/%y` -M $LCSCHEDCLUSTER -r pdebug -o "jobid,user,jobname,account,cluster,partition,nnodes,state,start,elapsed,exitcode"
+         sacct -X -u $1 -S `date +%m/%d/%y -d yesterday` -E `date +%m/%d/%y` -M $LCSCHEDCLUSTER -r pdebug -o "jobid,user,jobname,account,cluster,partition,nnodes,state,start,elapsed,exitcode"
+}
