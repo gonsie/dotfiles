@@ -48,6 +48,7 @@ fonts."
      (region ((t (:foreground nil :background "#555555"))))
      (show-paren-match-face ((t (:bold t :foreground "#ffffff" :background "#050505"))))
      (highline-face ((t (:background "#919075")))) ;919075
+     (pulse-highlight-face-start ((t (:background "#919075"))))
      (setnu-line-number-face ((t (:background "Grey15" :foreground "White" :bold t))))
      (show-paren-match-face ((t (:background "grey30"))))
      (region ((t (:background "grey15"))))
@@ -58,6 +59,27 @@ fonts."
      (widget-field-face ((t (:background "navy" :foreground "white"))))
      (widget-single-line-field-face ((t (:background "royalblue" :foreground "white")))))) )
 
+
+;; fonts
+(require 'cl)
+
+(defun* test-and-set-font (fontlist)
+  "Given a priority list of font names, test for font to exist and if so, set it"
+  (while fontlist
+    (let* ((fontname (car fontlist)))
+      (setq fontlist (cdr fontlist))
+      (when (member fontname (font-family-list))
+        (set-frame-font (concat fontname " 18") nil t)
+        (set-frame-font fontname)
+        (let* ((fontfile (concat "~/.config/emacs/font-"
+                                 (downcase (replace-regexp-in-string " " "-" fontname))
+                                 ".el")))
+          (when (file-exists-p fontfile)
+            (load-file fontfile)))
+                                        ;(princ (concat "Set font to " fontname))
+        (return-from test-and-set-font)))))
+
+
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
@@ -66,11 +88,8 @@ fonts."
        ;; settings for GUI emacs
        (add-to-list 'default-frame-alist '(background-color . "#282B35"))
        (add-to-list 'default-frame-alist '(foreground-color . "White"))
-       (when (member "Fira Code" (font-family-list))
-         (if (< 24 emacs-major-version)
-             (set-frame-font "Fira Code 18" nil t)
-           (set-frame-font "Fira Code"))
-         (load-file "~/.config/emacs/font-fira-code.el")))))
+       (when (< 24 emacs-major-version)
+         (test-and-set-font '("JetBrains Mono" "Fira Code" "Inconsolata"))))))
 
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
