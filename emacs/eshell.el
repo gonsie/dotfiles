@@ -66,7 +66,7 @@
 (defun my-prompt/hostname ()
   "Return hostname."
   (let ((hostname (split-string (system-name) "\\.")))
-    (concat " " hostname " ")))
+    (concat " " (car hostname) " ")))
 
 (setq eshell-prompt-function
       (lambda ()

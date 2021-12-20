@@ -99,6 +99,17 @@ For MacOS only"
 ;;   '(progn (define-key eshell-mode-map (kbd "C-c C-o") 'tmtxt/open-current-dir-in-terminal)))
 
 
+(defun my/insert-prev ()
+  "Insert $_ and move point."
+  (interactive)
+  (insert "$_"))
+
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (define-key eshell-mode-map (kbd "M-.") 'my/insert-prev)
+            (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)))
+
+
 ;;; DELETE v KILL
 ;; from https://stackoverflow.com/a/12990359/1160876
 (defun backward-delete-word (arg)

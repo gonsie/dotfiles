@@ -131,6 +131,8 @@ fonts."
                 `((space :align-to (- (+ right right-fringe right-margin)
                                       ,(+ 3 (string-width mode-name)))))))
 
+               ;(propertize org-mode-line-string 'face '(:foreground "#5DD8FF"))
+
                ;; the current major mode
                (propertize " %m " 'face 'font-lock-string-face)
                ;;minor-mode-alist
