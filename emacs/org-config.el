@@ -1,5 +1,4 @@
-
-(advice-add 'org-edit-src-code :after #'delete-other-windows)
+;(advice-add 'org-edit-src-code :after #'delete-other-windows)
 
 ;; Settings
 (setq org-adapt-indentation nil)
@@ -200,11 +199,23 @@
     (expand-file-name
      (format "~/Projects/blorg/blog/drafts/%s.org" slug))))
 
+(defun my/inc-parse (inc-string)
+    (let* ((incstring (split-string inc-string "	"))
+       (incnumber (nth 0 incstring))
+       (incname (nth 1 incstring))
+       (inctitle (nth 2 incstring))
+       (incfullname (car (split-string incname " ("))))
+      (concat incnumber " - " incfullname "
+- " incname "
+- " inctitle)))
+
 (setq org-capture-templates
       '(("b" "Blog Post" plain (file capture-blog-post-file) (file "templates/blog-post.org"))
         ("j" "Journal" entry (file+datetree "~/ORG/journal.org") "* %?\nEntered on %U\n %i\n %a")
         ("n" "Notes" entry (file "~/ORG/notes.org") "* %(my/current-timestamp) %?\n")
-        ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n")))
+        ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n")
+        ("i" "Incident" entry (file+datetree "~/ORG/LLNL/inc.org") "* OPEN %(my/current-timestamp) %(my/inc-parse %c)" :tree-type month)
+        ))
 
 ;; Time Tracking
 (setq org-time-stamp-rounding-minutes (quote (0 30)))
@@ -223,10 +234,12 @@
                               (directory-files (concat "~/Projects/" dirl) t "^notes.org" nil))))
     (remove nil proj-list)))
 
+;(setq org-refile-use-outline-path 'file)
 (setq org-refile-targets
       `((nil :maxlevel . 9)
         (my/org-project-notes :maxlevel . 3)
-        ("~/ORG/projects.org" :maxlevel . 9)))
+        ("~/ORG/projects.org" :maxlevel . 9)
+        ("~/ORG/LLNL/notes.org" :maxlevel . 1)))
 
 
 ;; Agenda
