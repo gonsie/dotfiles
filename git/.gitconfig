@@ -8,7 +8,6 @@
     pul = pull --rebase origin master
     # oops
     fix = commit --amend -C HEAD
-    undopush = push -f origin HEAD^:master
     # where am i?
     marco = branch --merged
     polo = branch -a
@@ -60,11 +59,11 @@
     keepBackup = true
 [branch]
     sort = -committerdate
-    
-# Use 'origin' as the default remote on the 'master' branch in all cases
-[branch "master"]
+
+# Use 'origin' as the default remote on the 'main' branch in all cases
+[branch "main"]
     remote = origin
-    merge = refs/heads/master
+    merge = refs/heads/main
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -75,3 +74,5 @@
     protocol = ssh
 [pull]
     rebase = True
+[init]
+    defaultBranch = main
