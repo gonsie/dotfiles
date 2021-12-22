@@ -56,7 +56,7 @@
     (setq proj-list (sort proj-list (lambda (a b) (string> (cdr a) (cdr b)))))
     (when (dashboard-insert-project-list
 	   "[R]ecent Projects:"
-	   (dashboard-subseq proj-list 0 list-size))
+	   (dashboard-subseq proj-list list-size))
       (dashboard-insert-shortcut "r" "[R]ecent Projects:"))))
 
 (add-to-list 'dashboard-item-generators  '(projects . dashboard-insert-projects))
