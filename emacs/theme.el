@@ -61,7 +61,7 @@ fonts."
 
 
 ;; fonts
-(require 'cl)
+(require 'cl-lib)
 
 (defun* test-and-set-font (fontlist)
   "Given a priority list of font names, test for font to exist and if so, set it"
