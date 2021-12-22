@@ -199,13 +199,13 @@
     (expand-file-name
      (format "~/Projects/blorg/blog/drafts/%s.org" slug))))
 
-(defun my/inc-parse (inc-string)
-    (let* ((incstring (split-string inc-string "	"))
-       (incnumber (nth 0 incstring))
-       (incname (nth 1 incstring))
-       (inctitle (nth 2 incstring))
-       (incfullname (car (split-string incname " ("))))
-      (concat incnumber " - " incfullname "
+(defun my/inc-parse ()
+  (let* ((incstring (split-string (and kill-ring (current-kill 0)) "	"))
+         (incnumber (nth 0 incstring))
+         (incname   (nth 1 incstring))
+         (inctitle  (nth 2 incstring))
+         (incfname  (car (split-string incname "("))))
+    (concat incnumber " - " incfname "
 - " incname "
 - " inctitle)))
 
@@ -214,7 +214,7 @@
         ("j" "Journal" entry (file+datetree "~/ORG/journal.org") "* %?\nEntered on %U\n %i\n %a")
         ("n" "Notes" entry (file "~/ORG/notes.org") "* %(my/current-timestamp) %?\n")
         ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n")
-        ("i" "Incident" entry (file+datetree "~/ORG/LLNL/inc.org") "* OPEN %(my/current-timestamp) %(my/inc-parse %c)" :tree-type month)
+        ("i" "Incident" entry (file+datetree "~/ORG/LLNL/inc.org") "* OPEN %(my/current-timestamp) %(my/inc-parse)" :tree-type month)
         ))
 
 ;; Time Tracking
