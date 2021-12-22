@@ -136,7 +136,7 @@
   :ensure t
   :diminish page-break-lines-mode
   :config
-  (load "~/.config/emacs/my-dashboard-extras.el"))
+  (load "~/.config/emacs/my-dashboard.el"))
 
 ;; auto dim / dimmer
 (use-package auto-dim-other-buffers

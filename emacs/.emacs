@@ -118,7 +118,7 @@ If the *scratch* buffer does not exist, create it."
 ;;; 4. Alternate Load Files
 
 ;; KEYBINDINGS
-(load "~/.config/emacs/keybindings.el")
+(load "~/.config/emacs/my-keybindings.el")
 
 ;; MY FUNCTIONS & Packages
 (add-to-list 'load-path "~/.config/emacs/elisp")
