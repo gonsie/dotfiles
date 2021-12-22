@@ -37,14 +37,14 @@
     (mapc (lambda (el)
             (setq el (concat "~/Projects/" (car el)))
             (insert "\n    ")
-            (widget-create 'push-button
+            (widget-create 'item
+                           :tag (abbreviate-file-name el)
                            :action `(lambda (&rest ignore) (find-file-existing ,el))
                            :mouse-face 'highlight
                            :follow-link "\C-m"
                            :button-prefix ""
                            :button-suffix ""
-                           :format "%[%t%]"
-                           (abbreviate-file-name el)))
+                           :format "%[%t%]"))
           list)))
 
 (defun dashboard-insert-projects (list-size)
@@ -66,19 +66,20 @@
 (defun dashboard-widget-create-existing-file (path name)
   "Helper function to create a widget for existing files"
   (insert "\n    ")
-  (widget-create 'push-button
+  (widget-create 'item
+                 :tag name
                  :action `(lambda (&rest ignore) (find-file-existing ,path))
                  :mouse-face 'highlight
                  :follow-link "\C-m"
                  :button-prefix ""
                  :button-suffix ""
-                 :format "%[%t%]"
-                 (princ name)))
+                 :format "%[%t%]"))
 
 (defun dashboard-insert-freqs (list-size)
   (dashboard-insert-heading "Frequent[s]:")
   (insert "\n    ")
-  (widget-create 'push-button
+  (widget-create 'item
+                 :tag "*eshell*"
                  :action `(lambda (&rest ignore) (progn
                                                    (switch-to-buffer (get-buffer-create "*eshell*"))
                                                    (eshell)))
@@ -86,22 +87,21 @@
                  :follow-link "\C-m"
                  :button-prefix ""
                  :button-suffix ""
-                 :format "%[%t%]"
-                 (princ "*eshell*"))
+                 :format "%[%t%]")
   (dashboard-widget-create-existing-file "~/ORG/" "~/ORG/")
   (dashboard-widget-create-existing-file "~/.config/emacs" ".config/emacs")
   (dashboard-widget-create-existing-file custom-file ".emacs.d/custom")
   (dashboard-widget-create-existing-file "~/Projects/dotfiles" "dotfiles")
   (dashboard-widget-create-existing-file "~/Projects" "Projects")
   (insert "\n    ")
-  (widget-create 'push-button
+  (widget-create 'item
+                 :tag "*scratch*"
                  :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*scratch*")))
                  :mouse-face 'highlight
                  :follow-link "\C-m"
                  :button-prefix ""
                  :button-suffix ""
-                 :format "%[%t%]"
-                 (princ "*scratch*")))
+                 :format "%[%t%]"))
 
 (dashboard-insert-shortcut "s" "Frequent[s]:")
 (add-to-list 'dashboard-item-generators  '(freqs . dashboard-insert-freqs))
