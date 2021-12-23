@@ -86,9 +86,13 @@ if [ ! -e $install_dir ]; then
 fi
 
 # setup submodule symlinks
+one_time=0
 for m in `grep 'path' .gitmodules | cut -d' ' -f3`; do
-    echo "creating submodule symlink $install_dir/$m"
     if [ ! -e $install_dir/$m ]; then
+        if [ ! $one_time ]; then
+            echo "creating submodule symlink $install_dir/$m"
+            one_time=1
+        fi
         ln -s `pwd`/$m $install_dir/$m
     fi
 done
