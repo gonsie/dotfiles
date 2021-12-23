@@ -97,6 +97,15 @@ for m in `grep 'path' .gitmodules | cut -d' ' -f3`; do
     fi
 done
 
+# make sure dotfiles repo is up-to-date
+git pull origin master
+if [[ $? && $1 != "-f" ]]; then
+    echo ""
+    echo "Error with git pull. Exiting."
+    echo "Override with -f"
+    exit
+fi
+
 # main loop
 for d in `ls -d */`; do
     d=`basename $d`
