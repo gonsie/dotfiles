@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+    echo "ERROR: command required"
+    exit
+fi
+
+(
+    echo "To: gonsie@llnl.gov";
+    echo "Subject: $LCSCHEDCLUSTER $1";
+    echo "MIME-Version: 1.0";
+    echo "Content-Type: text/html";
+    echo "Content-Disposition: inline";
+    echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
+    echo -e '<html>\n<body>\n<pre style="font: monospace">'
+    date
+    hostname
+    echo "$@"
+    $@
+    echo "</pre></body></html>"
+) | sendmail -t
