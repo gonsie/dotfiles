@@ -45,6 +45,7 @@
 ;;(add-hook 'shell-mode-hook 'remap-up-key-in-shell)
 
 (global-set-key (kbd "C-<tab>") 'other-window)
+;; originally bound to delete-frame
 (global-set-key (kbd "s-w") nil)
 
 (global-set-key (kbd "s-}") 'other-frame)

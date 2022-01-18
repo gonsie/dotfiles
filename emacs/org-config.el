@@ -161,6 +161,7 @@
   (eval-after-load 'org
     '(progn
        (add-to-list 'org-structure-template-alist '("N" "#+NAME: "))
+       (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
        (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
        (add-to-list 'org-structure-template-alist '("t" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n"))
        (add-to-list 'org-structure-template-alist '("T" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n\n#+property: exported:nil\n#+options: toc:nil date:nil\n"))
