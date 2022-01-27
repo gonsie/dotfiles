@@ -2,6 +2,7 @@
 
 - Dvorak Keyboard
 - Control Key for Caps-Lock
+- Calendar: Preferences > Advanced > Turn on timezone support
 
 ## Finder
 
