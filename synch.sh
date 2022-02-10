@@ -99,7 +99,7 @@ done
 
 # make sure dotfiles repo is up-to-date
 git pull origin master
-if [[ $? && $1 != "-f" ]]; then
+if [[ $? -ne 0 && $1 != "-f" ]]; then
     echo ""
     echo "Error with git pull. Exiting."
     echo "Override with -f"
