@@ -57,8 +57,10 @@
  '(org-level-6 ((t (:inherit 'org-level-2))))
  '(org-level-7 ((t (:inherit 'org-level-3))))
  '(org-level-8 ((t (:inherit 'org-level-4))))
+ '(org-quote-face ((t (:inherit 'org-block))))
  '(org-meta-line ((t (:foreground "peru"))))
  '(org-special-keyword ((t (:inherit 'outline-4))))
+ '(org-drawer ((t (:foreground "Gray30"))))
  )
 
 (provide-theme 'dusk)
