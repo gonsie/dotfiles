@@ -19,6 +19,7 @@
 
 (set-default 'cursor-type 'bar)
 (show-paren-mode 1)
+(setq use-dialog-box nil)
 
 ;; Fancy titlebar for MacOS
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
@@ -47,13 +48,18 @@
   (setq default-directory (concat (getenv "HOME") "/")))
 
 ;; files settings
-(global-auto-revert-mode)
+(global-auto-revert-mode t)
+(setq global-auto-revert-non-file-buffers t)
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 4)
 (setq gdb-gud-control-all-threads t)
 (setq require-final-newline t)
 (setq-default truncate-lines t)
 (setq large-file-warning-threshold 100000000)
+(setq history-length 25)
+(savehist-mode 1)
+(save-place-mode 1)
+(recentf-mode 1)
 
 ;; hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
