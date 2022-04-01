@@ -30,6 +30,17 @@
   :config
   (setq org-ref-bibliography-notes "~/ORG/refs.org"))
 
+;;(require 'org-tree-slide)
+(use-package org-tree-slide
+  :bind  (("<f8>" . org-tree-slide-mode)
+          ("<f7>" . org-tree-slide-move-previous-tree)
+          ("<f9>" . org-tree-slide-move-next-tree))
+  :config
+  (setq org-tree-slide-skip-outline-level 4)
+  (org-tree-slide-narrowing-control-profile)
+  (setq org-tree-slide-skip-done nil)
+  (setq org-tree-slide-header t))
+
 ;; Babel
 (org-babel-do-load-languages
  'org-babel-load-languages
