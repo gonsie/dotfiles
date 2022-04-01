@@ -25,6 +25,7 @@
 ;;; * Personally Included Packages
 (add-to-list 'load-path "~/.config/emacs/elisp")
 (load "wc")
+;(load "xah")
 
 ;; autopair
 ;; (autopair-global-mode)
@@ -37,7 +38,7 @@
 
 ;; dired-sidebar
 (use-package dired-sidebar
-  :bind ([f8] . dired-sidebar-toggle-sidebar)
+  :bind ("<f10>" . dired-sidebar-toggle-sidebar)
   :ensure t
   :commands (dired-sidebar-toggle-sidebar))
 
@@ -129,7 +130,10 @@
   (setq ivy-use-virutal-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-display-style 'fancy)
-  (setq ivy-count-format "(%d/%d) "))
+  (setq ivy-count-format "(%d/%d) ")
+  ;; (setq ivy-history t)
+  ;; (setq counsel-M-x-history t)
+  )
 
 ;; dashboard
 (use-package dashboard
