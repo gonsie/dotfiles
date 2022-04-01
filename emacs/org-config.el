@@ -252,8 +252,8 @@
 ;(setq org-refile-use-outline-path 'file)
 (setq org-refile-targets
       `((nil :maxlevel . 9)
-        (my/org-project-notes :maxlevel . 3)
-        ("~/ORG/projects.org" :maxlevel . 9)
+        ;(my/org-project-notes :maxlevel . 3)
+        ("~/ORG/notes.org" :maxlevel . 3)
         ("~/ORG/LLNL/notes.org" :maxlevel . 1)))
 
 
