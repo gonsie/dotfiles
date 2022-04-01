@@ -196,22 +196,40 @@
     (expand-file-name
      (format "~/Projects/blorg/blog/drafts/%s.org" slug))))
 
-(defun my/inc-parse ()
-  (let* ((incstring (split-string (and kill-ring (current-kill 0)) "	"))
+(defun my/inc-parse1 ()
+  (let* ((incstring (split-string (and kill-ring (current-kill 0)) "\11"))
+         (incfulls (string-join incstring " "))
          (incnumber (nth 0 incstring))
          (incname   (nth 1 incstring))
          (inctitle  (nth 2 incstring))
          (incfname  (car (split-string incname "("))))
     (concat incnumber " - " incfname "
 - " incname "
-- " inctitle)))
+- " inctitle "
+- " incfulls)))
+
+(defun my/inc-parse ()
+  (let (incstring (and kill-ring (current-kill 0)))
+    (if (string-match "INC" incstring)
+        (let* ((incstring (split-string (and kill-ring (current-kill 0)) "	"))
+               (incnumber (nth 0 incstring))
+               (incname   (nth 1 incstring))
+               (inctitle  (nth 2 incstring))
+               (incfname  (car (split-string incname "("))))
+          (concat incnumber " - " incfname "
+- " incname "
+- " inctitle))
+      ;; else make empty inc
+      (concat "INCXXXXXXX - ??
+- " incstring))))
 
 (setq org-capture-templates
       '(("b" "Blog Post" plain (file capture-blog-post-file) (file "templates/blog-post.org"))
         ("j" "Journal" entry (file+datetree "~/ORG/journal.org") "* %?\nEntered on %U\n %i\n %a")
         ("n" "Notes" entry (file "~/ORG/notes.org") "* %(my/current-timestamp) %?\n")
         ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n")
-        ("i" "Incident" entry (file+datetree "~/ORG/LLNL/inc.org") "* OPEN %(my/current-timestamp) %(my/inc-parse)" :tree-type month)
+        ("i" "Incident" entry (file+datetree "~/ORG/LLNL/inc.org") "* OPEN %(my/current-timestamp) %(my/inc-parse1)" :tree-type month)
+        ("I" "Incident (blank)" entry (file+datetree "~/ORG/LLNL/inc.org") "* OPEN %(my/current-timestamp) INCXXXXXXX - USER\n" :tree-type month)
         ))
 
 ;; Time Tracking
