@@ -117,9 +117,11 @@
                          "#+author: Elsa Gonsiorowski" n
                          (concat "#+date: " (format-time-string "%B %e, %Y")) n
                          n
+                         "#+jekyll_tags:" n
                          "#+property: exported:nil" n
                          "#+options: toc:nil date:nil" n %))
 (add-to-list 'org-tempo-tags '("<to" . tempo-template-org-title-options-block))
+(add-to-list 'org-tempo-tags '("<T" . tempo-template-org-title-options-block))
 (tempo-define-template "org-begin-end-block"
                        '("#+begin_" (p) n
                          "#+end_" n %))
@@ -224,7 +226,7 @@
 - " incstring))))
 
 (setq org-capture-templates
-      '(("b" "Blog Post" plain (file capture-blog-post-file) (file "templates/blog-post.org"))
+      '(("b" "Blog Post" plain (file capture-blog-post-file) (file "~/.config/emacs/templates/blog-post.org"))
         ("j" "Journal" entry (file+datetree "~/ORG/journal.org") "* %?\nEntered on %U\n %i\n %a")
         ("n" "Notes" entry (file "~/ORG/notes.org") "* %(my/current-timestamp) %?\n")
         ("t" "TODO" entry (file "~/ORG/inbox.org") "* TODO %?\n")
