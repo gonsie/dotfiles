@@ -8,8 +8,8 @@
 ;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
 ;; Quick keys
-(dashboard-insert-shortcut "f" "Recent [F]iles:")
-(dashboard-insert-shortcut "a" "Agenda for today:")
+(dashboard-insert-shortcut (dashboard-get-shortcut 'recents) "f" "Recent Files:")
+(dashboard-insert-shortcut (dashboard-get-shortcut 'agenda) "a" "Agenda for today:")
 (define-key dashboard-mode-map (kbd "n") 'next-line)
 (define-key dashboard-mode-map (kbd "p") 'previous-line)
 
@@ -57,7 +57,8 @@
     (when (dashboard-insert-project-list
 	   "[R]ecent Projects:"
 	   (dashboard-subseq proj-list list-size))
-      (dashboard-insert-shortcut "r" "[R]ecent Projects:"))))
+      (dashboard-insert-shortcut (dashboard-get-shortcut 'projects) "r" "[R]ecent Projects:")
+      )))
 
 (add-to-list 'dashboard-item-generators  '(projects . dashboard-insert-projects))
 (add-to-list 'dashboard-items '(projects . 10) t)
@@ -103,7 +104,7 @@
                  :button-suffix ""
                  :format "%[%t%]"))
 
-(dashboard-insert-shortcut "s" "Frequent[s]:")
+(dashboard-insert-shortcut (dashboard-get-shortcut 'freqs) "s" "Frequent[s]:")
 (add-to-list 'dashboard-item-generators  '(freqs . dashboard-insert-freqs))
 (add-to-list 'dashboard-items '(freqs) t)
 
