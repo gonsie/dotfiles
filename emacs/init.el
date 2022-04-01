@@ -188,3 +188,14 @@
   :config
   (add-hook 'prog-mode-hook 'outline-minor-mode)
   (add-hook 'prog-mode-hook 'hs-minor-mode))
+
+;; projectile
+(use-package projectile
+  :init (projectile-mode +1)
+  :bind (("s-p" . projectile-command-map)))
+
+;; note: built in package
+(use-package outline-mode
+  :bind (("C-c C-n" . outline-next-heading)
+         ("C-c C-p" . outline-previous-heading)
+         ("C-c C-u" . outline-up-heading)))

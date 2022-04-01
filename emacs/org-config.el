@@ -24,6 +24,8 @@
 
 (require 'ox-reveal)
 
+(require 'org-inlinetask)
+
 (use-package org-ref
   :init
   (setq org-ref-completion-library 'org-ref-ivy-cite)
