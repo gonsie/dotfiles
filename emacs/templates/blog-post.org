@@ -1,8 +1,9 @@
 #+title: %^{Title}
-#+date: %<%Y-%m-%d>
-#+begin_abstract
-%^{Abstract}
-#+end_abstract
-#+index: %^{Concept Index Entry}
+#+author: Elsa Gonsiorowski
+#+date: %<%M %d, %Y>
+
+#+jekyll_tags: %^{Tags}
+#+property: exported:nil
+#+options: toc:nil date:nil
 
 %?
