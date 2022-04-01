@@ -1,6 +1,11 @@
 (setq custom-theme-directory "~/.config/emacs/")
 (load-theme 'dusk t)
 
+(defun my/new-frame-reapply-theme (frame)
+  (select-frame frame)
+  (load-theme 'dusk t))
+(add-hook 'after-make-frame-functions 'my/new-frame-reapply-theme)
+
 ;; fonts
 (require 'cl-lib)
 
