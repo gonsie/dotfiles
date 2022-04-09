@@ -152,7 +152,6 @@
   :config
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#42444C"))
 
-
 ;; Python development
 (use-package elpy
   :defer t
