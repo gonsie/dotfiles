@@ -120,7 +120,6 @@
                          (concat "#+date: " (format-time-string "%B %e, %Y")) n
                          n
                          "#+jekyll_tags:" n
-                         "#+property: exported:nil" n
                          "#+options: toc:nil date:nil" n %))
 (add-to-list 'org-tempo-tags '("<to" . tempo-template-org-title-options-block))
 (add-to-list 'org-tempo-tags '("<T" . tempo-template-org-title-options-block))
@@ -180,7 +179,7 @@
        (add-to-list 'org-structure-template-alist '("n" "#+NAME: "))
        (add-to-list 'org-structure-template-alist '("p" ":PROPERTIES:\n?\n:END:"))
        (add-to-list 'org-structure-template-alist '("t" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n"))
-       (add-to-list 'org-structure-template-alist '("T" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n\n#+property: exported:nil\n#+options: toc:nil date:nil\n"))
+       (add-to-list 'org-structure-template-alist '("T" "#+title: ?\n#+author: Elsa Gonsiorowski\n#+date: \n\n#+jekyll_tags:\n#+options: toc:nil date:nil\n"))
        (add-to-list 'org-structure-template-alist '("E" "#+END_EXAMPLE\n?\n#+BEGIN_EXAMPLE"))
        (add-to-list 'org-structure-template-alist '("b" "#+BEGIN_?\n\n#+END_")))))
 
