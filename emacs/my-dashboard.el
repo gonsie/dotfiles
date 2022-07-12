@@ -40,7 +40,8 @@
   (interactive)
   (switch-to-buffer "*dashboard*")
   (follow-mode 1)
-  (split-window-right))
+  (split-window-right)
+  (beginning-of-buffer))
 (global-set-key (kbd "C-c d") #'my/display-2col-dashboard)
 
 (defun my/dashboard-quit-window ()
