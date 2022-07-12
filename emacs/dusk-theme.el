@@ -61,6 +61,9 @@
  '(org-meta-line ((t (:foreground "peru"))))
  '(org-special-keyword ((t (:inherit 'outline-4))))
  '(org-drawer ((t (:foreground "Gray30"))))
+ '(tab-bar ((t (:inherit mode-line))))
+ '(tab-bar-tab ((t (:inherit mode-line :foreground "white"))))
+ '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive :foreground "black"))))
  )
 
 (provide-theme 'dusk)

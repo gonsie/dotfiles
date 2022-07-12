@@ -21,6 +21,18 @@
 (show-paren-mode 1)
 (setq use-dialog-box nil)
 
+;; tab bar settings
+(when (< 26 emacs-major-version)
+  (tab-bar-mode 1)
+  (setq tab-bar-show 1)
+  (setq tab-bar-close-button-show nil)
+  (setq tab-bar-new-tab-choice "*dashboard*")
+  (setq tab-bar-tab-hints t)
+  (setq tab-bar-select-tab-modifiers "super")
+  ;; TODO: test if this version wrapper is necessary
+  (when (< 27 emacs-major-version)
+    (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))))
+
 ;; Fancy titlebar for MacOS
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))

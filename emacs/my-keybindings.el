@@ -46,10 +46,10 @@
 
 (global-set-key (kbd "C-<tab>") 'other-window)
 ;; originally bound to delete-frame
-(global-set-key (kbd "s-w") nil)
+(global-set-key (kbd "s-w") nil) ;; overwritten by tab
 
-(global-set-key (kbd "s-}") 'other-frame)
-(global-set-key (kbd "s-{") 'other-frame)
+(global-set-key (kbd "s-}") 'other-frame) ;; overwritten by tab
+(global-set-key (kbd "s-{") 'other-frame) ;; overwritten by tab
 (global-set-key (kbd "M-g") 'goto-line)
 
 (global-set-key (kbd "M-RET") 'newline-and-indent)
@@ -62,6 +62,23 @@
 (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 
 (global-set-key (kbd "<f5>") 'compile)
+
+;; TODO: do I need to wrap this in a when emacs-major-version ?
+(global-set-key (kbd "s-{") 'tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "s-}") 'tab-bar-switch-to-next-tab)
+(global-set-key (kbd "s-t") 'tab-bar-new-tab)
+(global-set-key (kbd "s-w") 'tab-bar-close-tab)
+(global-set-key (kbd "s-1") 'tab-bar-select-tab)
+(global-set-key (kbd "s-2") 'tab-bar-select-tab)
+(global-set-key (kbd "s-3") 'tab-bar-select-tab)
+(global-set-key (kbd "s-4") 'tab-bar-select-tab)
+(global-set-key (kbd "s-5") 'tab-bar-select-tab)
+(global-set-key (kbd "s-6") 'tab-bar-select-tab)
+(global-set-key (kbd "s-7") 'tab-bar-select-tab)
+(global-set-key (kbd "s-8") 'tab-bar-select-tab)
+(global-set-key (kbd "s-9") 'tab-bar-select-tab)
+(global-set-key (kbd "s-0") 'tab-bar-select-tab)
+
 
 ;; defaults overridden by multiple cursors
 (global-set-key (kbd "M-<f2>") 'kmacro-start-macro)
