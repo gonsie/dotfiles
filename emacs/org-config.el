@@ -5,6 +5,7 @@
 (setq org-highlight-latex-and-related '(latex))
 (setq org-catch-invisible-edits 'show-and-error)
 (setq org-use-speed-commands t)
+(setq org-image-actual-width nil)
 
 (setq org-ellipsis "⤵")
 
