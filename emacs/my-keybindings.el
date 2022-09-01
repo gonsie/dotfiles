@@ -55,6 +55,7 @@
 (global-set-key (kbd "M-RET") 'newline-and-indent)
 (global-set-key (kbd "M-q")   'query-replace)
 (global-set-key (kbd "M-SPC") 'execute-extended-command)
+(global-set-key (kbd "C-c SPC") 'execute-extended-command)
 
 (global-set-key (kbd "C-c g") 'revert-buffer)
 (global-set-key (kbd "C-c v") 'toggle-truncate-lines)
