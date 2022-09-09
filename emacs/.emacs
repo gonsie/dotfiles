@@ -44,9 +44,12 @@
       "Pulse the current line."
       (pulse-momentary-highlight-one-line (point)))
 
-(dolist (command '(scroll-up-command scroll-down-command
-                                     recenter-top-bottom other-window))
-  (advice-add command :after #'pulse-line))
+(when (< 24 emacs-major-version)
+;; advice-add function added in 24.4
+;; TODO figure out how to do minor version comparison, too convoluted now
+  (dolist (command '(scroll-up-command scroll-down-command
+				       recenter-top-bottom other-window))
+    (advice-add command :after #'pulse-line)))
 (setq pulse-flag nil)
 
 ;;;; Behavior
