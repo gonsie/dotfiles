@@ -2,5 +2,7 @@
 "\e[B": history-search-forward
 "\eOA": history-search-backward
 "\eOB": history-search-forward
+"\C-p": history-search-backward
+"\C-n": history-search-forward
 set show-all-if-ambiguous on
 set completion-ignore-case on
