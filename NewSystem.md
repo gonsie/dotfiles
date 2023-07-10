@@ -38,6 +38,7 @@
 - bash
 - `--cask emacs`
 - git
+- git-crypt
 - hub
 - ssh-copy-id
 
