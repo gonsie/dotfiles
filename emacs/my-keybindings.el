@@ -48,6 +48,9 @@
 ;; originally bound to delete-frame
 (global-set-key (kbd "s-w") nil) ;; overwritten by tab
 
+(global-set-key (kbd "C-<wheel-up>") nil)
+(global-set-key (kbd "C-<wheel-down>") nil)
+
 (global-set-key (kbd "s-}") 'other-frame) ;; overwritten by tab
 (global-set-key (kbd "s-{") 'other-frame) ;; overwritten by tab
 (global-set-key (kbd "M-g") 'goto-line)
