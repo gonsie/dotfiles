@@ -64,6 +64,25 @@
  '(tab-bar ((t (:inherit mode-line))))
  '(tab-bar-tab ((t (:inherit mode-line :foreground "white"))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive :foreground "black"))))
+
+ ;; Color Meter colors from Terminal
+ '(ansi-color-red     ((t (:foreground "#D15C41" :background "#D14C41"))))
+ '(ansi-color-green   ((t (:foreground "#70CA50" :background "#70CA50"))))
+ '(ansi-color-yellow  ((t (:foreground "#BFBC4f" :background "#BFBC4f"))))
+ '(ansi-color-blue    ((t (:foreground "#714ef6" :background "#714ef6"))))
+ '(ansi-color-magenta ((t (:foreground "#DB5FE3" :background "#DB5FE3"))))
+ '(ansi-color-cyan    ((t (:foreground "#70E7D4" :background "#70E7D4"))))
+ '(ansi-color-white   ((t (:foreground "#D5D4D4" :background "#D5D4D4"))))
+
+ '(ansi-color-bright-black   ((t (:foreground "#979797" :background "#979797"))))
+ '(ansi-color-bright-red     ((t (:foreground "#EC613F" :background "#EC613F"))))
+ '(ansi-color-bright-green   ((t (:foreground "#7BEE55" :background "#7BEE55"))))
+ '(ansi-color-bright-yellow  ((t (:foreground "#F1F055" :background "#F1F055"))))
+ '(ansi-color-bright-blue    ((t (:foreground "#D19AF9" :background "#D19AF9"))))
+ '(ansi-color-bright-magenta ((t (:foreground "#EC61F7" :background "#EC61F7"))))
+ '(ansi-color-bright-cyan    ((t (:foreground "#7BF3F4" :background "#7BF3F4"))))
+ '(ansi-color-bright-white   ((t (:foreground "#EEEEEE" :background "#EEEEEE"))))
+
  )
 
 (provide-theme 'dusk)

@@ -67,6 +67,11 @@
                (propertize "%I" 'face 'font-lock-constant-face) ;; size
                "] "
 
+               ;; ansi-term's line or char mode
+               ":"
+               'mode-line-process
+               ":"
+
                ;; spaces to align right
                '(:eval (propertize
                 " " 'display
