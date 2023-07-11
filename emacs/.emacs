@@ -161,3 +161,4 @@ If the *scratch* buffer does not exist, create it."
   (setq cursys (getenv "LCSCHEDCLUSTER")))
 (setq custom-file (concat "~/.emacs.d/custom-" cursys ".el"))
 (load custom-file 'noerror)
+(put 'upcase-region 'disabled nil)
