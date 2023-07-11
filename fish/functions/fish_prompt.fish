@@ -1,3 +1,6 @@
+# NOTE: must use color names (e.g., "brown", "magenta")
+# to have colors propagate through to emacs ansi-term
+
 function fish_prompt --description 'Write out the prompt'
     set -l last_status $status
 
@@ -52,7 +55,7 @@ function fish_prompt --description 'Write out the prompt'
         case '*'
 
             if not set -q __fish_prompt_color_cwd
-                set -g __fish_prompt_color_cwd (set_color $fish_color_cwd)
+                set -g __fish_prompt_color_cwd (set_color magenta)
             end
 
     end
@@ -76,7 +79,7 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_git_prompt_color_stagedstate brown
 
     if not set -q __fish_prompt_color_time
-        set -g __fish_prompt_color_time (set_color ffaf5f)
+        set -g __fish_prompt_color_time (set_color brown)
     end
 
     if set -q VIRTUAL_ENV

@@ -28,6 +28,35 @@
 (when (and (display-graphic-p) (< 24 emacs-major-version))
     (test-and-set-font '("JetBrains Mono" "Fira Code" "Inconsolata")))
 
+;; change the behavior of ansi-term's mode line
+(defun my/term-update-mode-line ()
+  (let ((term-mode
+         (if (term-in-char-mode)
+             (propertize "term"
+                         'help-echo "mouse-1: Switch to line (emacs) mode"
+                         'mouse-face 'mode-line-highlight
+                         'local-map
+                         '(keymap
+                           (mode-line keymap (down-mouse-1 . term-line-mode))))
+           (propertize "emacs"
+                       'help-echo "mouse-1: Switch to char (term) mode"
+                       'mouse-face 'mode-line-highlight
+                       'local-map
+                       '(keymap
+                         (mode-line keymap (down-mouse-1 . term-char-mode)))))))
+    (setq mode-line-process
+          (list term-mode)))
+  (force-mode-line-update))
+;;;; TODO: change color of mode line for term mode, some thing like
+;;;; maybe this goes as a hook to the term-char/line-mode function?
+;; (face-remap-add-relative
+;;              'mode-line '((:foreground "ivory" :background "DarkOrange2") mode-line))
+
+
+(advice-add 'term-update-mode-line :override
+            'my/term-update-mode-line)
+
+
 ;; Mode line settings
 ;; use setq-default to set it for /all/ modes
 
