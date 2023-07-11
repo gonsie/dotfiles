@@ -8,6 +8,7 @@
     pul = pull --rebase origin master
     # oops
     fix = commit --amend -C HEAD
+    #undopush = push -f origin HEAD^:master
     # where am i?
     marco = branch --merged
     polo = branch -a
