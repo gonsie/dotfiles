@@ -67,6 +67,10 @@ There are two kinds of new machines:
 New front end systems require additional applicaitons and manual preference configuration.
 See the [[NewSystem.md][~NewSystem.md~]] file for more details.
 
+** Synchronizing
+/See =synch.sh=/
+
+
 ** Inspiration
 
 There are a ton of great dotfiles repos out there, but here were the ones I found that originally inspired this repo.
