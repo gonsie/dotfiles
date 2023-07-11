@@ -34,9 +34,9 @@
 (setq-default mode-line-format
               (list
 
-               ;; meow modal mode
-               (when (require 'meow nil 'noerror)
-                 (meow-indicator))
+               ;; ;; meow modal mode
+               ;; (when (require 'meow nil 'noerror)
+               ;;   (meow-indicator))
 
                ;; day and time
                '(:eval (propertize (format-time-string " %b %d %H:%M ")
