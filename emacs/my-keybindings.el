@@ -58,7 +58,7 @@
 (global-set-key (kbd "C-c SPC") 'execute-extended-command)
 
 (global-set-key (kbd "C-c g") 'revert-buffer)
-(global-set-key (kbd "C-c v") 'toggle-truncate-lines)
+(global-set-key (kbd "C-c v") 'visual-line-mode)
 (global-set-key (kbd "C-c w") 'whitespace-mode)
 (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 
