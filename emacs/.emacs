@@ -4,7 +4,7 @@
 ;; package.el will insert this, but I call it from init.el
 ;; (package-initialize)
 
-;;;; UI
+;; UI
 (when (display-graphic-p)
   (tool-bar-mode -1)
   (scroll-bar-mode -1))

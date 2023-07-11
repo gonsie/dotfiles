@@ -36,13 +36,13 @@
   :if (eq system-type 'darwin)
   :ensure t)
 
-;;;; dired-sidebar
+;; dired-sidebar
 (use-package dired-sidebar
   :bind ("<f10>" . dired-sidebar-toggle-sidebar)
   :ensure t
   :commands (dired-sidebar-toggle-sidebar))
 
-;;;; CMake
+;; CMake
 (use-package cmake-mode
   :mode ("\\.cmake\\'"
          "CMakeLists\\.txt\\'"))
@@ -55,7 +55,7 @@
 (use-package eldoc-cmake
   :hook (cmake-mode . eldoc-cmake-enable))
 
-;;;; MAGIT
+;; MAGIT
 (use-package magit
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-file-dispatch))
