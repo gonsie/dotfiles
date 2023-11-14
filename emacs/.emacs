@@ -28,6 +28,8 @@
   (setq tab-bar-close-button-show nil)
   (setq tab-bar-new-tab-choice "*dashboard*")
   (setq tab-bar-tab-hints t)
+  (setq tab-bar-tab-name-function 'tab-bar-tab-name-truncated)
+  (setq tab-bar-tab-name-truncated-max 10)
   (setq tab-bar-select-tab-modifiers "super")
   ;; TODO: test if this version wrapper is necessary
   (when (< 27 emacs-major-version)
@@ -73,7 +75,8 @@
 (setq large-file-warning-threshold 100000000)
 (setq history-length 25)
 (savehist-mode 1)
-(save-place-mode 1)
+(when (< 24 emacs-major-version)
+  (save-place-mode 1))
 (recentf-mode 1)
 
 ;; hooks

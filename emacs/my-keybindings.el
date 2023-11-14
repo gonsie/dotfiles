@@ -88,6 +88,10 @@
 (global-set-key (kbd "M-<f2>") 'kmacro-start-macro)
 (global-set-key (kbd "M-<f3>") 'kmacro-end-macro)
 
+;;; specific modes mode
+;; term
+(define-key term-raw-map (kbd "C-y") 'term-paste)
+(define-key term-raw-map (kbd "M-SPC") 'execute-extended-command)
 ;; override html mode
 (define-key my-keys-mode-map (kbd "C-c /") #'comment-or-uncomment-region)
 ;; override elpy mode

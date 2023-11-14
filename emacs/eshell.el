@@ -65,7 +65,11 @@
 
 (defun my-prompt/hostname ()
   "Return hostname."
-  (let ((hostname (split-string (system-name) "\\.")))
+  (let ((hostname (split-string
+                   (if (string-match-p "ssh:" (pwd))
+                       (file-remote-p default-directory 'host)
+                     (system-name))
+                   "\\.")))
     (concat " " (car hostname) " ")))
 
 (setq eshell-prompt-function
