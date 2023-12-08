@@ -1,4 +1,4 @@
-;;; 1. Connect to MELPA
+;;; 1. Setup
 
 ;; Package configs
 (require 'package)
