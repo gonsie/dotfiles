@@ -98,7 +98,7 @@ for m in `grep 'path' .gitmodules | cut -d' ' -f3`; do
 done
 
 # make sure dotfiles repo is up-to-date
-git pull origin master
+git pull origin main
 if [[ $? -ne 0 && $1 != "-f" ]]; then
     echo ""
     echo "Error with git pull. Exiting."
