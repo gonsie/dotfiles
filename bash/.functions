@@ -5,6 +5,11 @@ if [[ $- == *i* ]]; then
     }
 fi
 
+function checkjob () {
+scontrol show job $1
+sacct -X -j $1 -o JobID,JobName,State,User,Group,Account,Partition,QOS,Timelimit,Submit,Eligible,Start,End,NNodes,NCPUS,MinCPUNode,NodeList,Priority,Elapsed
+}
+
 # Create a new directory and enter it
 function md() {
          mkdir -p "$@" && cd "$@"
@@ -48,6 +53,10 @@ function catl() {
 
 # show recent jobs from a user
 function debug-jobs () {
-         echo  sacct -X -u $1 -S `date +%m/%d/%y -d yesterday` -E `date +%m/%d/%y` -M $LCSCHEDCLUSTER -r pdebug -o "jobid,user,jobname,account,cluster,partition,nnodes,state,start,elapsed,exitcode"
-         sacct -X -u $1 -S `date +%m/%d/%y -d yesterday` -E `date +%m/%d/%y` -M $LCSCHEDCLUSTER -r pdebug -o "jobid,user,jobname,account,cluster,partition,nnodes,state,start,elapsed,exitcode"
+         echo  -en sacct -X -u $1 -S `date +%m/%d/%y -d yesterday` -E `date +%m/%d/%y -d tomorrow` -M $LCSCHEDCLUSTER
+         echo  ' -r pdebug -o "jobid,user,jobname,account,nnodes,state,start,elapsed,exitcode"'
+         sacct -X -u $1 -S `date +%m/%d/%y -d yesterday` -E `date +%m/%d/%y -d tomorrow` -M $LCSCHEDCLUSTER -r pdebug -o "jobid,user,jobname,account,nnodes,state,start,elapsed,exitcode"
+         echo ""
+         echo squeue -u $1
+         squeue -u $1
 }
