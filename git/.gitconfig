@@ -4,11 +4,11 @@
     s = status -sb
     ls = ls-files
     # quick and dirty push/pull to origin
-    put = push origin master
-    pul = pull --rebase origin master
+    put = push origin main
+    pul = pull --rebase origin main
     # oops
     fix = commit --amend -C HEAD
-    #undopush = push -f origin HEAD^:master
+    #undopush = push -f origin HEAD^:main
     # where am i?
     marco = branch --merged
     polo = branch -a
