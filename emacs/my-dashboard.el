@@ -98,10 +98,10 @@
 
 (defun dashboard-insert-freqs (list-size)
   (dashboard-insert-heading "Frequent[s]:")
-  ;; TODO: machine-specific freq items
-  (mapcar (lambda (f)
+  (when (boundp 'my/dashboard-freqs)
+    (mapcar (lambda (f)
              (dashboard-widget-create-existing-file (car f)(car (cdr f))))
-          my/dashboard-freqs)
+          my/dashboard-freqs))
   (insert "\n    ")
   (widget-create 'item
                  :tag "*eshell*"
