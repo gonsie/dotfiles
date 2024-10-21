@@ -1,0 +1,90 @@
+#+title: New System Setup Instructions
+#+author: Elsa Gonsiorowski
+#+date: October 21, 2024
+
+
+* System Preferences
+
+- Dvorak Keyboard
+- Control Key for Caps-Lock
+- Calendar: Preferences > Advanced > Turn on timezone support
+
+** Emacs Keybindings in MacOS
+
+[[http://irreal.org/blog/?p=259][Emacs Keybindings for Mac OS X]]
+
+1. Download the [[https://github.com/jrus/cocoa-text-system/blob/master/KeyBindings/Emacs%20Opt%20Bindings.dict][bindings file]].
+2. Rename the file to =DefaultKeyBinding.dict=.
+3. Stash the file into the =~/Library/KeyBindings= folder.
+
+#+begin_src sh
+  curl -L https://raw.githubusercontent.com/jrus/cocoa-text-system/refs/heads/master/KeyBindings/Emacs%20Opt%20Bindings.dict -o ~/Library/KeyBindings/DefaultKeyBinding.dict
+#+end_src
+
+#+name: make-dest-and-download
+#+begin_src fish
+  if test -f ~/Library/KeyBindings
+    if test -f ~/Library/KeyBindings/DefaultKeyBinding.dict
+        echo "Sorry, file exists"
+        exit
+    end
+  else
+    mkdir ~/Library/KeyBindings
+  end
+  curl -L https://raw.githubusercontent.com/jrus/cocoa-text-system/refs/heads/master/KeyBindings/Emacs%20Opt%20Bindings.dict -o ~/Library/KeyBindings/DefaultKeyBinding.dict
+#+end_src
+
+** Finder
+
+- Dock on left, large icons
+- View all file endings
+- Large icons
+- Show hidden files
+
+* Installations
+
+- [[https://brew.sh][Homebrew]]
+
+** Applications
+
+- XCode / Developers Tools
+- [[http://pilotmoon.com/popclip/][PopClip]]
+- [[https://www.alfredapp.com][Alfred]]
+- Todoist
+
+- Configure prefs synching
+
+- Bartender
+- [[http://dropbox.com][Dropbox]]
+
+** Fonts & Text Tools
+
+- [[http://levien.com/type/myfonts/inconsolata.html][font-inconsolata]]
+- font-fira-code
+- font-jetbrains-mono
+- aspell
+- pandoc
+
+** Terminal Packages
+
+- [[http://fishshell.com][Fish]]
+- bash
+- =--cask emacs=
+- git
+- git-crypt
+- hub
+- ssh-copy-id
+
+*** Optional Packages
+
+- GCC
+- GDB
+- CMake
+- dos2unix
+- mpich
+- graphviz
+- kramdown
+
+* Repos
+
+- ORG, requires GPG setup for full file access
