@@ -5,11 +5,6 @@ if [[ $- == *i* ]]; then
     }
 fi
 
-function checkjob () {
-scontrol show job $1
-sacct -X -j $1 -o JobID,JobName,State,User,Group,Account,Partition,QOS,Timelimit,Submit,Eligible,Start,End,NNodes,NCPUS,MinCPUNode,NodeList,Priority,Elapsed
-}
-
 # Create a new directory and enter it
 function md() {
          mkdir -p "$@" && cd "$@"
