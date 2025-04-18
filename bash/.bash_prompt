@@ -23,8 +23,8 @@ function slurm_jobid {
     echo "[$SLURM_JOBID] "
   elif [[ $LSB_JOBID ]]; then
     echo "[$LSB_JOBID] "
-  elif [[ $FLUX_JOB_ID ]]; then
-    echo "[$FLUX_JOB_ID] "
+  elif [[ $FLUX_URI ]]; then
+    echo "[$(flux getattr jobid)] "
   fi
   exit $RC
 }
