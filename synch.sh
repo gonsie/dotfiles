@@ -166,6 +166,8 @@ if [ "$first_time" = true ]; then
     cd fishmarks
     make install
 
+    echo "DIR_df /Users/gonsiorowski1/Projects/dotfiles" >> ~/.sdirs
+
     echo "** Setting up Git **"
     echo -ne "Enter user.name: "
     read username
@@ -176,6 +178,8 @@ if [ "$first_time" = true ]; then
 
     echo "* Setup Complete *"
     echo "Please review the files saved in $install_dir/originals"
+
+    echo "Don't forget to run git submodules"
 fi
 
 unset install_dir
