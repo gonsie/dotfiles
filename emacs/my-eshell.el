@@ -6,6 +6,13 @@
 (setq eshell-destroy-buffer-when-process-dies t)
 (setq eshell-aliases-file "~/.config/emacs/eshell-aliases")
 
+;; Aliases
+(defun eshell/em (file)
+  (find-file file))
+
+(defalias 'la "ls -AFhl")
+(defalias 'marco "hostname -s | tr '\n' ' ' ; pwd")
+
 ;; FUNCTIONS
 
 ;; open file and magit shortcut
