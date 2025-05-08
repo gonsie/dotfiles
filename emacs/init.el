@@ -166,6 +166,7 @@
 
 ;; window management
 (use-package win-switch
+  :disabled
   :load-path "~/.config/emacs/elisp/win-switch"
   :ensure t
   :config
