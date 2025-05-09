@@ -26,6 +26,7 @@
 (add-to-list 'load-path "~/.config/emacs/elisp")
 (load "wc")
 ;(load "xah")
+(load "my-config-synch")
 
 ;; autopair
 ;; (autopair-global-mode)
