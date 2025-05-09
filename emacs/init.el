@@ -33,11 +33,17 @@
 ;; (diminish 'autopair-mode)
 (electric-pair-mode)
 
+;; OSX Packages
 (use-package osx-trash
   :if (eq system-type 'darwin)
   :ensure t)
 
-;; dired-sidebar
+(use-package osx-dictionary
+  :if (eq system-type 'darwin)
+  :ensure t
+  :bind ("C-c i" . osx-dictionary-search-input))
+
+;;;; dired-sidebar
 (use-package dired-sidebar
   :bind ("<f10>" . dired-sidebar-toggle-sidebar)
   :ensure t
@@ -63,6 +69,7 @@
   :config
   (set-face-attribute 'magit-diff-context-highlight t :background "grey45" :foreground "grey50")
   (set-face-attribute 'magit-section-highlight t :background "grey45")
+  ;; (setq magit-log-margin (t "%Y-%m-%d" magit-log-margin-width t 18))
   :ensure t)
 
 (use-package forge
@@ -147,9 +154,7 @@
 (use-package auto-dim-other-buffers
   :ensure t
   :diminish auto-dim-other-buffers-mode
-  :init (add-hook 'after-init-hook (lambda ()
-                                     (when (fboundp 'auto-dim-other-buffers-mode)
-                                       (auto-dim-other-buffers-mode t))))
+  :init (auto-dim-other-buffers-mode t)
   :config
   (set-face-attribute 'auto-dim-other-buffers-face nil :background "#42444C"))
 
@@ -180,6 +185,7 @@
 
 ;; Keybindings
 (use-package bicycle
+  :disabled
   :after outline
   :bind (:map outline-minor-mode-map
               ([C-tab] . bicycle-cycle)
@@ -202,6 +208,7 @@
          ("C-c C-u" . outline-up-heading)))
 
 (use-package meow
+  :disabled
   :init
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-dvorak)
@@ -288,4 +295,12 @@
   :config
   (meow-setup)
   (meow-global-mode 1)
-  (meow-setup-indicator))
+  (meow-setup-indicator)
+  ;; (add-hook ediff-registry-setup-hook 'meow-motion-mode)
+  ;; (add-hook ediff-after-session-group-setup-hook 'meow-motion-mode)
+  )
+
+(use-package evil
+  :disabled
+  :config
+  (evil-mode 1))
