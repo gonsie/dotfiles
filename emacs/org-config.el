@@ -1,4 +1,5 @@
-;(advice-add 'org-edit-src-code :after #'delete-other-windows)
+(advice-add 'org-edit-src-code :after #'delete-other-windows)
+(setq org-edit-src-content-indentation 0)
 
 ;; Settings
 (setq org-adapt-indentation nil)
@@ -52,6 +53,7 @@
    (shell . t)
    (awk . t)
    (dot . t)
+   (jq . t)
    (org . t)
    (applescript . t)
    ))

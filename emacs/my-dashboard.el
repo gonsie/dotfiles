@@ -40,7 +40,8 @@
   (interactive)
   (switch-to-buffer "*dashboard*")
   (follow-mode 1)
-  (split-window-right))
+  (split-window-right)
+  (beginning-of-buffer))
 (global-set-key (kbd "C-c d") #'my/display-2col-dashboard)
 
 (defun my/dashboard-quit-window ()
@@ -52,7 +53,8 @@
     (mapcar (lambda (window)
               (delete-window window))
             othr-buf))
-  (quit-window))
+  (quit-window)
+  (follow-mode -1))
 (define-key dashboard-mode-map (kbd "q") #'my/dashboard-quit-window)
 
 ;; widget creation helper
@@ -69,13 +71,13 @@
                  :format "%[%t%]"))
 
 ;; Project List Section
-(defun dashboard-insert-project-list (list-display-name list)
+(defun dashboard-insert-project-list-item (list-display-name list)
   "Render LIST-DISPLAY-NAME title and items of LIST."
   (when (car list)
     (dashboard-insert-heading list-display-name)
     (mapc (lambda (el)
-            (setq el (concat "~/Projects/" (car el)))
-            (dashboard-widget-create-existing-file el (abbreviate-file-name el)))
+            (let ((el (concat "~/Projects/" (car el))))
+              (dashboard-widget-create-existing-file el (abbreviate-file-name el))))
           list)))
 
 (defun dashboard-insert-projects (list-size)
@@ -85,7 +87,7 @@
       (setq proj-list (append proj-list (list (cons (car dirl)
                                               (format-time-string "%s" (file-attribute-access-time (cdr dirl))))))))
     (setq proj-list (sort proj-list (lambda (a b) (string> (cdr a) (cdr b)))))
-    (when (dashboard-insert-project-list
+    (when (dashboard-insert-project-list-item
 	   "[R]ecent Projects:"
 	   (dashboard-subseq proj-list list-size))
       (dashboard-insert-shortcut (dashboard-get-shortcut 'projects) "r" "[R]ecent Projects:")
@@ -98,14 +100,16 @@
 
 (defun dashboard-insert-freqs (list-size)
   (dashboard-insert-heading "Frequent[s]:")
+  ;; TODO: machine-specific freq items
   (when (boundp 'my/dashboard-freqs)
-    (mapcar (lambda (f)
-             (dashboard-widget-create-existing-file (car f)(car (cdr f))))
-          my/dashboard-freqs))
+    (mapcar '(lambda (f)
+               (dashboard-widget-create-existing-file (car f)(car (cdr f))))
+            my/dashboard-freqs))
   (insert "\n    ")
   (widget-create 'item
                  :tag "*eshell*"
                  :action `(lambda (&rest ignore) (progn
+                                                   (my/dashboard-quit-window)
                                                    (switch-to-buffer (get-buffer-create "*eshell*"))
                                                    (eshell)))
                  :mouse-face 'highlight
@@ -121,7 +125,9 @@
   (insert "\n    ")
   (widget-create 'item
                  :tag "*scratch*"
-                 :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*scratch*")))
+                 :action `(lambda (&rest ignore) (progn
+                                                   (my/dashboard-quit-window)
+                                                   (switch-to-buffer (get-buffer-create "*scratch*"))))
                  :mouse-face 'highlight
                  :follow-link "\C-m"
                  :button-prefix ""
