@@ -138,6 +138,10 @@
 (when (< 23 emacs-major-version)
   (add-hook 'prog-mode-hook #'hs-minor-mode))
 
+;; repeat mode
+(when (<= emacs-major-version 28)
+  (repeat-mode 1))
+
 ;; Scratch
 ;; from https://www.emacswiki.org/emacs/RecreateScratchBuffer
 (defun unkillable-scratch-buffer ()
