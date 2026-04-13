@@ -82,6 +82,28 @@
 (when (<= emacs-major-version 30)
   (global-visual-wrap-prefix-mode 1))
 
+;; from Bozhidar Batsov
+;; https://emacsredux.com/blog/2026/04/07/stealing-from-the-best-emacs-configs/
+
+;; -- performance tweaks
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+(setq redisplay-skip-fontification-on-input t)
+(setq read-process-output-max (* 4 1024 1024)) ; 4MB
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+
+;; -- kill ring / clipboard
+(setq kill-do-not-save-duplicates t)
+
+;; -- editing
+(setq reb-re-syntax 'string)
+
+;; -- windows
+(setq window-combination-resize t)
+(setq help-window-select t)
+
 ;; hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
