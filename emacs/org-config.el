@@ -7,6 +7,7 @@
 (setq org-catch-invisible-edits 'show-and-error)
 (setq org-use-speed-commands t)
 (setq org-image-actual-width nil)
+(setq org-edit-src-content-indentation 0)
 
 (setq org-ellipsis "⤵")
 
