@@ -75,6 +75,9 @@
                ;; '(:eval (propertize (substring vc-mode 5)
                ;;                     'face 'font-lock-comment-face))
 
+               ;; View Mode
+               '(:eval (if view-mode "*"))
+
                ;; the buffer name; the file name as a tool tip
                '(:eval (propertize " %b "
                                    'face
@@ -82,6 +85,8 @@
                                      (if face 'font-lock-warning-face
                                        'font-lock-type-face))
                                    'help-echo (buffer-file-name)))
+
+               '(:eval (if view-mode "*"))
 
                ;; line and column
                " (" ;; '%02' to set to 2 chars at least; prevents flickering
