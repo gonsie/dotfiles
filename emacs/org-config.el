@@ -109,7 +109,7 @@
                                 `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
 (add-to-list 'org-tempo-keywords-alist '("N" . "name"))
-
+(add-to-list 'org-tempo-keywords-alist '("O" . "options"))
 
 ;; (1) recover the old templates
 (tempo-define-template "org-title-block"
