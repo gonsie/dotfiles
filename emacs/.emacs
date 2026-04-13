@@ -79,6 +79,9 @@
   (save-place-mode 1))
 (recentf-mode 1)
 
+(when (<= emacs-major-version 30)
+  (global-visual-wrap-prefix-mode 1))
+
 ;; hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
