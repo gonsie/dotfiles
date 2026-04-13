@@ -138,6 +138,8 @@ If the *scratch* buffer does not exist, create it."
 
 ")
 
+;; tramp
+(customize-set-variable 'tramp-use-connection-share nil)
 
 ;;; 4. Alternate Load Files
 
