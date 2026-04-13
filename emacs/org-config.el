@@ -24,12 +24,16 @@
 (setq org-latex-listings t)
 (add-to-list 'org-latex-packages-alist '("" "listings"))
 (add-to-list 'org-latex-packages-alist '("" "color"))
+(setq org-latex-src-block-backend 'minted)
+(add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
 
-(require 'ox-reveal)
+(use-package ox-reveal
+  :ensure t)
 
 (require 'org-inlinetask)
 
 (use-package org-ref
+  :disabled
   :init
   (setq org-ref-completion-library 'org-ref-ivy-cite)
   :config
