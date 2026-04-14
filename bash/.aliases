@@ -1,4 +1,12 @@
-alias em="emacs -nw"
+#alias em="emacs -nw"
+function em() {
+  if [[ "$TERM" =~ ^"eterm" ]]; then
+     echo "I suggest you open a tramp session"
+  else
+     emacs -nw $@
+  fi
+}
+
 alias emw="emacs"
 
 # interactive
