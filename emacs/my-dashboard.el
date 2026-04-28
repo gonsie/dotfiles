@@ -1,19 +1,16 @@
 ;; Config
 (setq dashboard-startup-banner 1)
-(setq dashboard-show-shortcuts 'nil)
-(setq dashboard-item-names '(("Recent Files:" . "Recent [F]iles:")
-                             ("Agenda for today:" . "Today:")
-                             ("Agenda for the coming week:" . "Agenda:")))
+                                        ;(setq dashboard-navigation-cycle nil)
+(setq dashboard-show-shortcuts nil)
+(setq dashboard-item-names '(("Recent Files:" . "Recent [F]iles:")))
 (dashboard-setup-startup-hook)
-;(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
-;; Quick keys
-(dashboard-insert-shortcut (dashboard-get-shortcut 'recents) "f" "Recent Files:")
-(dashboard-insert-shortcut (dashboard-get-shortcut 'agenda) "a" "Agenda for today:")
+
+;; Key Bindings
 (define-key dashboard-mode-map (kbd "n") 'next-line)
 (define-key dashboard-mode-map (kbd "p") 'previous-line)
 
-;; Key-bound functions for dashboards
+;;; key-bound functions
 
 (defun my/new-frame-dashboard ()
   "Create a new frame showing the dashboard"
@@ -27,7 +24,6 @@
   (switch-to-buffer "*dashboard*"))
 ;;(global-set-key (kbd "C-c d") #'my/switch-to-dashboard)
 
-;;; TODO:
 ;;; Use follow-mode to get a 2 column view of the dashboard
 ;;; 1. make the 2 column / 2 window view appear when switching into the dashboard
 ;;; 2. make the 2 window view disappear when leaving the dashboard
@@ -39,8 +35,13 @@
   "Use follow-mode to display a 2 column / 2 window dashboard"
   (interactive)
   (switch-to-buffer "*dashboard*")
-  (follow-mode 1)
-  (split-window-right)
+  (when (> (frame-width) 125)
+    (when (< (window-body-height)
+           (progn
+             (goto-char (point-max))
+             (string-to-number (cadr (split-string (what-line))))))
+      (follow-mode 1)
+      (split-window-right)))
   (beginning-of-buffer))
 (global-set-key (kbd "C-c d") #'my/display-2col-dashboard)
 
@@ -53,11 +54,12 @@
     (mapcar (lambda (window)
               (delete-window window))
             othr-buf))
-  (quit-window)
-  (follow-mode -1))
+  (quit-window))
 (define-key dashboard-mode-map (kbd "q") #'my/dashboard-quit-window)
 
-;; widget creation helper
+;; Helper functions
+
+;;; widget creation helper
 (defun dashboard-widget-create-existing-file (path name)
   "Helper function to create a widget for existing files"
   (insert "\n    ")
@@ -70,46 +72,44 @@
                  :button-suffix ""
                  :format "%[%t%]"))
 
-;; Project List Section
-(defun dashboard-insert-project-list-item (list-display-name list)
-  "Render LIST-DISPLAY-NAME title and items of LIST."
-  (when (car list)
-    (dashboard-insert-heading list-display-name)
-    (mapc (lambda (el)
-            (let ((el (concat "~/Projects/" (car el))))
-              (dashboard-widget-create-existing-file el (abbreviate-file-name el))))
-          list)))
-
-(defun dashboard-insert-projects (list-size)
-  "Add the list of LIST-SIZE items from recently accessed projects."
+;; Re-implement my list of recently accessed projects
+(defun my/dashboard--get-projects ()
+    "Get list of items in ~/Projects"
   (let (proj-list)
     (dolist (dirl (directory-files-and-attributes "~/Projects" nil "^[^.]+.*"))
       (setq proj-list (append proj-list (list (cons (car dirl)
-                                              (format-time-string "%s" (file-attribute-access-time (cdr dirl))))))))
+                                                    (format-time-string "%s" (file-attribute-access-time (cdr dirl))))))))
     (setq proj-list (sort proj-list (lambda (a b) (string> (cdr a) (cdr b)))))
-    (when (dashboard-insert-project-list-item
-	   "[R]ecent Projects:"
-	   (dashboard-subseq proj-list list-size))
-      (dashboard-insert-shortcut (dashboard-get-shortcut 'projects) "r" "[R]ecent Projects:")
-      )))
+    (mapcar (lambda (el)
+              (setq el (concat "~/Projects/" (car el))))
+            proj-list)))
 
-(add-to-list 'dashboard-item-generators  '(projects . dashboard-insert-projects))
-(add-to-list 'dashboard-items '(projects . 10) t)
+(defun my/dashboard-insert-projects (list-size)
+  "Add the list of recently accessed items from ~/Projects"
+  (dashboard-insert-section
+   "[R]ecent Projects:"
+   (my/dashboard--get-projects)
+   list-size
+   'my-projects
+   (dashboard-get-shortcut 'my-projects)
+   `(lambda (&rest _)
+            (my/dashboard-quit-window)
+            (find-file-existing ,el))
+   (abbreviate-file-name el)))
+(add-to-list 'dashboard-item-generators '(my-projects . my/dashboard-insert-projects))
 
 ;; Frequents Section
-
 (defun dashboard-insert-freqs (list-size)
-  (dashboard-insert-heading "Frequent[s]:")
-  ;; TODO: machine-specific freq items
+  "Insert list of frequent items. LIST-SIZE does not matter."
+  (dashboard-insert-heading "Frequent[s]:" nil nil)
   (when (boundp 'my/dashboard-freqs)
-    (mapcar '(lambda (f)
-               (dashboard-widget-create-existing-file (car f)(car (cdr f))))
-            my/dashboard-freqs))
+    (mapcar (lambda (f)
+             (dashboard-widget-create-existing-file (car f)(car (cdr f))))
+          my/dashboard-freqs))
   (insert "\n    ")
   (widget-create 'item
                  :tag "*eshell*"
                  :action `(lambda (&rest ignore) (progn
-                                                   (my/dashboard-quit-window)
                                                    (switch-to-buffer (get-buffer-create "*eshell*"))
                                                    (eshell)))
                  :mouse-face 'highlight
@@ -125,30 +125,20 @@
   (insert "\n    ")
   (widget-create 'item
                  :tag "*scratch*"
-                 :action `(lambda (&rest ignore) (progn
-                                                   (my/dashboard-quit-window)
-                                                   (switch-to-buffer (get-buffer-create "*scratch*"))))
+                 :action `(lambda (&rest ignore) (switch-to-buffer (get-buffer-create "*scratch*")))
                  :mouse-face 'highlight
                  :follow-link "\C-m"
                  :button-prefix ""
                  :button-suffix ""
-                 :format "%[%t%]"))
-
-(dashboard-insert-shortcut (dashboard-get-shortcut 'freqs) "s" "Frequent[s]:")
+                 :format "%[%t%]")
+  (dashboard-insert-shortcut 'freqs "s" "Frequent[s]:"))
 (add-to-list 'dashboard-item-generators  '(freqs . dashboard-insert-freqs))
-(add-to-list 'dashboard-items '(freqs) t)
 
-;; Extra Space Section
-(defun dashboard-generate-extraspace (list-size)
-  "Add some extra newlines. Used to improve the 2 column view."
-  (dotimes (i list-size)
-           (insert "\n")))
 
-(add-to-list 'dashboard-item-generators '(extraspace . dashboard-generate-extraspace))
-(add-to-list 'dashboard-items '(extraspace) t)
-
-;; Define items to show
 (setq dashboard-items '((recents . 5)
                         (freqs . 1)
-                        (extraspace . 6)
-                        (projects . 20)))
+                        (my-projects . 20)))
+
+(setq dashboard-item-shortcuts '((recents  . "f")
+                                 (freqs    . "s")
+                                 (my-projects . "r")))
